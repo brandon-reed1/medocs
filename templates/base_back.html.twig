@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Liste de médicaments !{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+    {% block stylesheets %}
+        {# parent() #}
+        {{ encore_entry_link_tags('back') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {# parent() #}
+        {{ encore_entry_script_tags('back') }}
+    {% endblock %}
+</head>
+<body>
+<div id="container">
+    {% block header %}
+        <header>
+            <h1>Liste de Médicaments</h1>
+        </header>
+    {% endblock %}
+
+    {% block body %}{% endblock %}
+
+
+    {% block footer %}
+        <footer>
+           <h6>jphNovitz</h6>
+        </footer>
+    {% endblock %}
+</div>
+</body>
+
+</html>
