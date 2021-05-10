@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -41,6 +43,17 @@ class User implements UserInterface
      * @ORM\Column(type="boolean")
      */
     private $isVerified = false;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Line")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    private $lines;
+
+    public function __construct()
+    {
+        $this->lines = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -131,6 +144,35 @@ class User implements UserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->isVerified;
+    }
+
+    /**
+     * @return Collection|Line[]
+     */
+    public function getLines(): Collection
+    {
+        return $this->lines;
+    }
+
+    public function addLine(Line $line): self
+    {
+        if (!$this->lines->contains($line)) {
+            $this->lines[] = $line;
+        }
+
+        return $this;
+    }
+
+    public function removeLine(Line $line): self
+    {
+        $this->lines->removeElement($line);
 
         return $this;
     }
