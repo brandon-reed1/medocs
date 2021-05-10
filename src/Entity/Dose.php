@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Dose
 {
+    public function __toString()
+    {
+       return $this->frequency." - ".$this->moment;
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -17,10 +22,7 @@ class Dose
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=200)
-     */
-    private $name;
+
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Frequency", cascade={"persist", "remove"})
@@ -37,19 +39,6 @@ class Dose
     {
         return $this->id;
     }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
 
     public function getMoment(): ?Moment
     {
