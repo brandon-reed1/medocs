@@ -1,0 +1,17 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Frequency List{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('admin_dose_frequency_new') }}">Nouveau</a>
+
+    {# list if exist #}
+    {% if list is defined and list is not empty %}
+        {% for item in list %}
+            <p>{{ item.name }} | modifier | supprimer</p>
+        {% endfor %}
+    {% else %}
+        <p>Aucun élément</p>
+    {% endif %}
+{% endblock %}

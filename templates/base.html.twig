@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Liste de médicaments !{% endblock %}</title>
+
+    {% block stylesheets %}
+        {# parent() #}
+        {{ encore_entry_link_tags('front') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {# parent() #}
+        {{ encore_entry_script_tags('front') }}
+    {% endblock %}
+</head>
+<body>
+<div id="container">
+    {% block header %}
+        <header>
+            <h1>Liste de Médicaments</h1>
+        </header>
+    {% endblock %}
+
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-error">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% block body %}{% endblock %}
+
+
+    {% block footer %}
+        <footer>
+           <h6>jphNovitz</h6>
+        </footer>
+    {% endblock %}
+</div>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+.alert{
+  display: flex;
+  color: white;
+  padding: 1rem;
+}
+
+.alert .alert-success{
+  background-color: green;
+}
+
+.alert .alert-notice{
+  background-color: darkorange;
+}
+
+.alert .alert-danger, .alert .alert-error{
+  background-color: red;
+}
