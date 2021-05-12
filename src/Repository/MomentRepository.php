@@ -19,6 +19,15 @@ class MomentRepository extends ServiceEntityRepository
         parent::__construct($registry, Moment::class);
     }
 
+    public function getAll()
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Moment[] Returns an array of Moment objects
     //  */
