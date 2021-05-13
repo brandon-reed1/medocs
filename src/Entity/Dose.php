@@ -12,7 +12,7 @@ class Dose
 {
     public function __toString()
     {
-       return $this->frequency." - ".$this->moment;
+       return $this->frequency->getName()." - ".$this->moment->getName();
     }
 
     /**
@@ -25,12 +25,14 @@ class Dose
 
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Frequency", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Frequency", cascade={"persist", "remove"})
+     *
      */
     private $frequency;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Moment", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Moment", cascade={"persist", "remove"})
+     *
      */
     private $moment;
 

@@ -19,6 +19,16 @@ class DoseRepository extends ServiceEntityRepository
         parent::__construct($registry, Dose::class);
     }
 
+    public function getAll()
+    {
+        return $this->createQueryBuilder('d')
+            ->orderBy('d.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
     // /**
     //  * @return Dose[] Returns an array of Dose objects
     //  */
