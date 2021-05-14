@@ -25,13 +25,13 @@ class Dose
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Frequency", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Frequency")
      *
      */
     private $frequency;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Moment", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Moment")
      *
      */
     private $moment;
