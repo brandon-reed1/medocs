@@ -57,4 +57,8 @@ class Line
 
         return $this;
     }
+
+    public function __toString(){
+        return $this->product->getName()." ".$this->dose;
+    }
 }
