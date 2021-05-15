@@ -18,12 +18,14 @@ class Line
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Dose", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Dose")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $dose;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Product", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Product")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $product;
 

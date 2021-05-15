@@ -26,12 +26,14 @@ class Dose
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Frequency")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      *
      */
     private $frequency;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Moment")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      *
      */
     private $moment;
