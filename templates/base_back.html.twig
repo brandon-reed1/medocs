@@ -16,11 +16,27 @@
         {{ encore_entry_script_tags('back') }}
     {% endblock %}
 </head>
-<body>
-<div id="container">
+<body class="bg-violet bg-illustration">
+<div class="container-left bg-white">
     {% block header %}
-        <header>
-            <h1>Liste de Médicaments</h1>
+        <header class="toolbar">
+            <span class="title text-primary"> <span class="text-quaternary"> <i class="fi-rr-doctor"></i> </span>Ma liste de médicaments</span>
+
+            {% block login_button %}
+                {% if app.user %}
+                    {{ app.user.username }},
+                    <a href="{{ path('app_logout') }}" class="btn btn-basic">
+                        Logout
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="btn btn-basic">
+                        Sign in
+                    </a> or
+                    <a href="{{ path('app_register') }}" class="btn btn-basic">
+                        Register
+                    </a>
+                {% endif %}
+            {% endblock %}
         </header>
     {% endblock %}
 
@@ -44,9 +60,9 @@
 
 
     {% block footer %}
-        <footer>
+        {# <footer>
            <h6>jphNovitz</h6>
-        </footer>
+        </footer> #}
     {% endblock %}
 </div>
 </body>

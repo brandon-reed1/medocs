@@ -18,6 +18,11 @@ class LineType extends AbstractType
             ->add('dose', EntityType::class, [
                 'class' => Dose::class
             ])
+ /*           ->add('doseNew', DoseType::class, array(
+                'required' => FALSE,
+                'mapped' => FALSE,
+                'property_path' => 'item',
+            )) */
             ->add('product', EntityType::class, [
                 'class' => Product::class,
                 'choice_label' => 'name'
