@@ -79,7 +79,7 @@
 
 #login form input[type=password]
 #register form input[type=password] {
-    background: url(../../../../skilify-admin/assets/icons/visibility.svg) no-repeat 96% 50%;
+    background: url("assets/icons/visibility.svg") no-repeat 96% 50%;
     background-size: 1rem;;
 }
 
