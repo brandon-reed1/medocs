@@ -1,0 +1,103 @@
+#login,
+#register {
+    max-width: 80%;
+    /*justify-content: center;*/
+}
+
+#login,
+#register h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    color: var(--primary-darker);
+    margin-top: 1rem;
+    font-size: 2.2rem;
+}
+
+#login,
+#register p {
+    color: var(--tertiary);
+    font-size: .95rem;
+    line-height: 1.45rem;
+    /* color: #ECEFF6; */
+}
+
+#login .form-row,
+#register .form-row {
+
+}
+
+#login .form-row-horizontal,
+#register .form-row-horizontal {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: min-content;
+}
+
+#login .form-row-horizontal > div,
+#register .form-row-horizontal > div {
+    flex-direction: row;
+    max-width: max-content;
+}
+
+#login form label,
+#register form label {
+    /*    background-color: white;
+        color: rgba(189, 189, 190, 1);*/
+    background-color: var(--white);
+    color: var(--primary-lighter);
+    font-size: .9rem;
+    margin-bottom: -20px;
+    z-index: 1;
+    display: inline-flex;
+    width: max-content;
+    margin-left: 1rem;
+    padding: .8rem;
+}
+
+#login form input,
+#register form input {
+    line-height: 2rem;
+    /* border: solid 1px rgba(189, 189, 190, .6);*/
+    border: solid 1px var(--tertiary-light);
+}
+
+#login form input:active,
+#register form input:active {
+    border: var(--tertiary);
+}
+
+
+#login, form input[type=submit],
+#register form input[type=submit] {
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: .7rem;
+    margin-top: 1rem;
+
+}
+
+#login form input[type=password]
+#register form input[type=password] {
+    background: url(../../../../skilify-admin/assets/icons/visibility.svg) no-repeat 96% 50%;
+    background-size: 1rem;;
+}
+
+#login form input[type=password]:focus,
+#register form input[type=password]:focus {
+    background: none;
+}
+
+@media (min-width: 768px) {
+    #login,
+    #register {
+        max-width: 60%;
+    }
+}
+
+@media (min-width: 992px) {
+    #login,
+    #register {
+        max-width: 50%;
+    }
+}

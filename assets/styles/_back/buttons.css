@@ -1,0 +1,20 @@
+.btn{
+    border: solid 2px #ECEFF6;
+    padding: 8px;
+    font-size: .8rem;
+}
+
+a:link,
+a:visited,
+a.btn.btn-basic:link,
+a.btn.btn-basic:visited{
+    color: var(--primary);
+    text-decoration: none;
+
+}
+a.btn.btn-basic:hover{
+    text-decoration: underline;
+}
+a.btn.btn-basicactive{
+    font-weight: bold;
+}

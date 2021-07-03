@@ -1,0 +1,18 @@
+* { box-sizing: border-box; }
+html, body { min-height: 100vh; margin: 0; }
+
+div,
+html,
+body,
+nav,
+header,
+hgroup,
+footer,
+section,
+article {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    font-family: 'Space Grotesk', sans-serif;
+}
