@@ -42,6 +42,13 @@
 }*/
 
 
+.bg-illustration{
+    background-repeat: no-repeat;
+    background-image: url("../../images/Wavy_Med-logo_bg.png");
+    background-position: 99% 50%;
+    background-size: 40%;
+}
+
 .bg-primary{
     background-color: var(--primary);
     color: var(--white);
@@ -79,4 +86,8 @@
 }
 .text-quaternary{
     color: var(--quaternary);
+}
+
+.border-primary{
+    border: solid 1px var(--primary);
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43becc5c6601f53b97138ea440faec9b",
+    "content-hash": "e217e5f03e3fcfd4337183875b18c1e4",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -4968,16 +4968,16 @@
         },
         {
             "name": "symfony/webpack-encore-bundle",
-            "version": "v1.11.2",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/webpack-encore-bundle.git",
-                "reference": "f282fb17ffa4839ba491eb7e3f5ffdd40c86f969"
+                "reference": "9943a59f8551b7a8181e19a2b4efa60e5907c667"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/webpack-encore-bundle/zipball/f282fb17ffa4839ba491eb7e3f5ffdd40c86f969",
-                "reference": "f282fb17ffa4839ba491eb7e3f5ffdd40c86f969",
+                "url": "https://api.github.com/repos/symfony/webpack-encore-bundle/zipball/9943a59f8551b7a8181e19a2b4efa60e5907c667",
+                "reference": "9943a59f8551b7a8181e19a2b4efa60e5907c667",
                 "shasum": ""
             },
             "require": {
@@ -5017,7 +5017,25 @@
                 }
             ],
             "description": "Integration with your Symfony app & Webpack Encore!",
-            "time": "2021-04-26T12:48:17+00:00"
+            "support": {
+                "issues": "https://github.com/symfony/webpack-encore-bundle/issues",
+                "source": "https://github.com/symfony/webpack-encore-bundle/tree/v1.12.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-06-18T19:13:11+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -5432,5 +5450,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
