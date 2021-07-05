@@ -1,14 +1,14 @@
-{% extends 'base_back.html.twig' %}
+{% extends 'base_security.html.twig' %}
 
 {% block login_button %}
     {% if app.user %}Sign in
         {{ app.user.username }},
         <a href="{{ path('app_logout') }}" class="btn btn-basic">
-            Logout
+            Déconexion
         </a>
     {% else %}
         <a href="{{ path('app_login') }}" class="btn btn-basic">
-            Sign in
+            Conexion
         </a>
     {% endif %}
 {% endblock %}
@@ -23,15 +23,27 @@
 
         {{ form_start(registrationForm) }}
         <div class="form-row">
-            {{ form_row(registrationForm.email) }}
+            {{ form_label(registrationForm.email) }}
+            {{ form_widget(registrationForm.email) }}
+        </div>
+        <div class="form-error">
+            {{ form_errors(registrationForm.email) }}
         </div>
         <div class="form-row">
-            {{ form_row(registrationForm.plainPassword, {
-                label: 'Password'
-            }) }}
+            {{ form_label(registrationForm.plainPassword, 'Mot de passe') }}
+            {{ form_widget(registrationForm.plainPassword) }}
         </div>
-        <div class="form-row">
-            {{ form_row(registrationForm.agreeTerms) }}
+
+        <div class="form-error">
+            {{ form_errors(registrationForm.plainPassword) }}
+        </div>
+        <div class="form-row flow-reverse" style="align-items: baseline ; justify-content: flex-end">
+            {{ form_label(registrationForm.agreeTerms, 'J\'accepte les conditions') }}
+            {{ form_widget(registrationForm.agreeTerms) }}
+        </div>
+
+        <div class="form-error">
+            {{ form_errors(registrationForm.agreeTerms) }}
         </div>
         <div class="form-row">
             <input type="submit" class="bg-primary" value="je m'inscris">

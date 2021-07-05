@@ -181,6 +181,13 @@
    right: 0;
  }
 
+ .flow-row{
+   flex-direction: row;
+ }
+ .flow-reverse{
+   flex-direction: row-reverse;
+ }
+
  .decoration-up {
    top: 0;
  }
