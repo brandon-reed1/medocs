@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Liste de médicaments !{% endblock %}</title>
+
+    {% block stylesheets %}
+        {# parent() #}
+        {{ encore_entry_link_tags('back') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {# parent() #}
+        {{ encore_entry_script_tags('back') }}
+    {% endblock %}
+</head>
+<body class="bg-tertiary-light">
+<div class="container-fluid">
+    <nav id="sidebar" class="bg-white text-primary">
+        <div id="logo">
+            <a href="#" id="sidebar-menu"> <i class="fi-rr-menu-burger"></i> </a>
+            <span class="title text-primary">
+                <span class="text-notice">
+                    <i class="fi-rr-medicine"></i>
+                </span>Ma liste de médicaments
+            </span>
+        </div>
+        <ul class="menu-vertical">
+            <li class="active">
+                <a href="index.html">
+                    <i class="fi-rr-home"></i> Accueil
+                </a>
+            </li>
+            <li class="">
+                <a href="index.html">
+                    <i class="fi-rr-home"></i> Lorem
+                </a>
+            </li>
+        </ul>
+
+        <img src="{{ asset('images/Wavy_Med-logo_bg.png') }}"/>
+
+        <footer>
+            <span>Dashboard / Admin interface</span>
+            <span>  <i class="fi-rr-copyright"></i> 2021 <a href="https://jphnovitz.be/"> Jiffy.Codes</a></span>
+        </footer>
+
+    </nav>
+
+    <div id="content" class="">
+        <div id="content-logo">
+
+            <a href="#" id="menu"> <i class="fi-rr-menu-burger"></i> </a>
+            <span class="title text-primary"> <span class="text-quaternary"> &amp; </span>jphNovitz</span>
+        </div>
+        <header>
+            <div>
+                <h1>
+                    {% block header_h1 %}
+                        Hello You
+                    {% endblock %}
+                    {% block header_h1_icon %}
+                        <i class="open-hand"></i>
+                    {% endblock %}
+                </h1>
+                <h2>
+                    {% block header_h2 %}
+                        Ma liste de médicaments
+                    {% endblock %}
+                </h2>
+            </div>
+
+            <input type="search" id="site-search" name="q"
+                   aria-label="Search through site content" placeholder=" ">
+        </header>
+       {% block content %}
+        <section>content</section>
+        {% endblock %}
+    </div>
+    {# <div id="container">
+    {% block header %}
+        <header>
+            <h1>Liste de Médicaments</h1>
+        </header>
+    {% endblock %}
+
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-error">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% block body %}{% endblock %}
+
+</div> #}
+</body>
+
+</html>

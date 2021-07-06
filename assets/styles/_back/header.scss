@@ -1,0 +1,106 @@
+header {
+  display: flex;
+  /* flex-direction: column; */
+  align-content: space-between;
+  /*padding: 1rem 1.5rem;*/
+  max-height: 8rem;
+  /*justify-content: center;
+  align-items: center;*/
+  margin: 1.5rem 0;
+
+}
+
+header h1 {
+  font-weight: 900;
+  color: var(--primary-darker);
+  margin-bottom: 0;
+  font-size: 1.9rem;
+}
+
+header h2 {
+  margin-top: 0;
+  color: var(--primary-light);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+header > div {
+  max-height: 5rem;
+  align-content: center;
+  justify-content: center;
+}
+
+.open-hand {
+  background-image: url("../../icons/open-hand.svg");
+  display: inline-flex;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 1.5rem;
+  height: 1.5rem;
+  align-self: center;
+  justify-self: center;
+}
+
+#messages input[type=search]:placeholder-shown,
+header input[type=search]:placeholder-shown {
+  background-image: url("../../icons/search-solid.svg");
+}
+
+#messages input[type=search]:focus,
+#messages input[type=search]{
+  flex: 1;
+  margin-top: 1.5rem;
+}
+
+#messages input[type=search]:focus,
+#messages input[type=search],
+#messages-send-box input[type=text]:focus,
+#messages-send-box input[type=text],
+header input[type=search]:focus,
+header input[type=search] {
+  font-size: 1.2rem;
+  height: 3rem;
+  padding: .5rem;
+  background-color: var(--tertiary-light);
+  background-image: none;
+  background-size: 1.2rem;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  color: var(--primary-light);
+  border: 0;
+  border-radius: 5px;
+  box-shadow: none;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+
+#messages-send-box .actions{
+  height: 2.5rem;
+  align-self: end;
+  width: 8rem;
+  justify-content: space-around;
+}
+#messages-send-box{
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  width: 98%;
+  align-items: center;
+  padding-top: 0
+}
+#messages-send-box input[type=text]:focus,
+#messages-send-box input[type=text]{
+  width: 60%;
+}
+
+#messages input[type=search]:hover,
+header input[type=search]:hover {
+  -webkit-box-shadow: 0px 0px 7px 0px var(--primary-darker);
+  box-shadow: 0px 0px 7px 0px var(--primary-darker);
+}
+
+@media (min-width: 1200px) {
+  header {
+    flex-direction: row;
+  }
+}

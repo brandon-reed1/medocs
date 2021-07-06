@@ -27,6 +27,7 @@
  @import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
  @import url(_back/reset.css);
  @import url(_back/colors.css);
+ @import "_back/header";
  @import url(_back/buttons.css);
  @import url(_back/register-forms.css);
  @import url(_back/sidebar.css);
@@ -34,7 +35,8 @@
  @import url(_back/content.css);
 
  body {
-   background-color: var(--primary);
+   background-color: var(--tertiary-light);
+   color: var(--tertiary-darker);
    display: flex;
    flex-direction: column;
  }
@@ -66,6 +68,9 @@
 
  }
 
+ #logo{
+   flex: 0;
+ }
  .container-left {
    width: 80%;
    max-width: 80%;
