@@ -1,20 +1,26 @@
 .alert{
   display: flex;
-  color: white;
   padding: 1rem;
+  border: solid 1px;
 }
 
 .alert.alert-success{
-  background-color: green;
+  background-color: var(--success-light);
+  color: var(--success);
+  border-color: var(--success);
 }
 .alert .alert-success{
-  background-color: green;
+  background-color: var(--success);
 }
 
 .alert.alert-notice{
-  background-color: darkorange;
+  background-color: var(--notice-light);
+  color: var(--notice);
+  border-color: var(--notice);
 }
 
-.alert.alert-danger,.alert .alert-error{
-  background-color: red;
+.alert.alert-danger,.alert.alert-error{
+  background-color: var(--danger-light);
+  color: var(--danger-darker);
+  border-color: var(--danger-darker);
 }
