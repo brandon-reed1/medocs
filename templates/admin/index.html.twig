@@ -1,6 +1,8 @@
 {% extends 'base_back.html.twig' %}
 
 {% block title %}Index{% endblock %}
+
+{% block header_h1 %} {{ app.user.email }}{% endblock %}
 {% block body %}
     <div id="index">
 

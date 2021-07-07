@@ -28,7 +28,9 @@
  @import url(_back/reset.css);
  @import url(_back/colors.css);
  @import "_back/header";
- @import url(_back/buttons.css);
+ @import url(_back/card.scss);
+ @import url(_back/list.scss);
+ @import url(_back/buttons.scss);
  @import url(_back/register-forms.css);
  @import url(_back/sidebar.css);
  @import url(_back/leftbar.css);

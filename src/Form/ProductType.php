@@ -15,7 +15,7 @@ class ProductType extends AbstractType
         $builder
             ->add('name')
             ->add('comment')
-            ->add('envoi', SubmitType::class)
+            //->add('envoi', SubmitType::class)
         ;
     }
 

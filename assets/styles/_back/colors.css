@@ -166,6 +166,9 @@
     color: var(--info) !important;
 }
 
+.border-primary{
+    border: solid 1px var(--primary) !important;
+}
 .border-left-primary{
     border-left: solid 2px var(--primary);
 }

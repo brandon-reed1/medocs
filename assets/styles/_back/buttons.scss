@@ -1,0 +1,47 @@
+.btn{
+    border: solid 2px #ECEFF6;
+    padding: 8px;
+    font-size: .8rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn.inline{
+    display: inline-flex !important;
+}
+.btn.circle{
+    border-radius: 50%;
+    width: 2.5rem !important;
+    height: 2.5em !important;
+    font-size: 1rem;
+}
+
+.btn-3{
+    width: 3rem !important;
+}
+
+.auto-max{
+    width: max-content;
+}
+.auto-min{
+    width: min-content;
+}
+
+a:link,
+a:visited,
+a.btn.btn-basic:link,
+a.btn.btn-basic:visited{
+    color: var(--primary);
+    text-decoration: none;
+
+}
+a.btn.btn-basic:hover{
+    text-decoration: underline;
+}
+a.btn.btn-basic.active{
+    font-weight: bold;
+}

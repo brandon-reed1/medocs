@@ -22,7 +22,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/admin/product", name="admin_product_index")
+     * @Route("/admin/products", name="admin_product_index")
      */
     public function index(): Response
     {

@@ -2,16 +2,32 @@
 
 {% block title %}Product List{% endblock %}
 
+{% block header_h1 %} Liste des produits{% endblock %}
+{% block header_h1_icon %}
+    <a href="{{ path('admin_product_new') }}" class="btn circle bg-primary-lighter border-primary inline">
+        <i class="material-icons">add</i>
+    </a>
+{% endblock %}
 {% block body %}
 
-    <a href="{{ path('admin_product_new') }}">Nouveau</a>
+    <section class="card wfull">
+        {# list if exist #}
+        {% if list is defined and list is not empty %}
+            <ul class="vertical-list">
+                {% for item in list %}
+                    <li class="list-item alternate">
+                        {{ item.name }}
+                        <div class="actions">
+                            <a href="" class="btn circle text-info"><span class="material-icons-round">visibility </span> </a>
+                            <a href="" class="btn circle text-edit"><span class="material-icons-round">edit</span> </a>
+                            <a href="" class="btn circle text-danger"><span class="material-icons-round">delete </span> </a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
 
-    {# list if exist #}
-    {% if list is defined and list is not empty %}
-        {% for item in list %}
-            <p>{{ item.name }} | modifier | supprimer</p>
-        {% endfor %}
-    {% else %}
-        <p>Aucun élément</p>
-    {% endif %}
+            <p>Aucun élément</p>
+        {% endif %}
+    </section>
 {% endblock %}

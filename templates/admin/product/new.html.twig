@@ -2,6 +2,28 @@
 
 {% block title %}Nouveau médicament{% endblock %}
 
+{% block header_h1 %} Ajouter un médicament{% endblock %}
+{% block header_h1_icon %}
+    <a href="{{ path('admin_product_index') }}" class="btn circle bg-primary-lighter border-primary inline">
+        <i class="material-icons">list</i>
+    </a>
+{% endblock %}
 {% block body %}
-{{ form(form) }}
+    <section class="card wfull">
+
+        {{ form_start(form) }}
+        <div class="form-row">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="form-row">
+            {{ form_label(form.comment) }}
+            {{ form_widget(form.comment) }}
+        </div>
+        <div class="form-row">
+            <input type="submit" class="btn auto-min bg-primary text-white" value="ajouter">
+        </div>
+        {{ form_end(form) }}
+
+    </section>
 {% endblock %}
