@@ -21,7 +21,7 @@
             {{ form_widget(form.comment) }}
         </div>
         <div class="form-row">
-            <input type="submit" class="btn auto-min bg-primary text-white" value="ajouter">
+            {% block submit %} <input type="submit" class="btn auto-min bg-primary text-white" value="ajouter">{% endblock %}
         </div>
         {{ form_end(form) }}
 

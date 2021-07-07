@@ -18,13 +18,14 @@
                     <li class="list-item alternate">
                         {{ item.name }}
                         <div class="actions">
-                            <a href="" class="btn circle text-info"><span class="material-icons-round">visibility </span> </a>
-                            <a href="" class="btn circle text-edit"><span class="material-icons-round">edit</span> </a>
-                            <a href="" class="btn circle text-danger"><span class="material-icons-round">delete </span> </a>
+                            <a href="#" class="btn circle text-info"><span class="material-icons-round">visibility </span> </a>
+                            <a href="{{ path('admin_product_update', {'id': item.id}) }}" class="btn circle text-edit"><span class="material-icons-round">edit</span> </a>
+                            <a href="{{ path('admin_product_delete', {'id': item.id}) }}" class="btn circle text-danger"><span class="material-icons-round">delete </span> </a>
                         </div>
                     </li>
                 {% endfor %}
             </ul>
+
         {% else %}
 
             <p>Aucun élément</p>

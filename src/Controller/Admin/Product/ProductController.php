@@ -69,7 +69,7 @@ class ProductController extends AbstractController
      *     name="admin_product_update",
      *     methods={"GET", "PUT"})
      */
-    public function update(Request $request, Product $product): Response
+    public function update(Request $request, Product $product = null): Response
     {
 
         if (!$product) {
