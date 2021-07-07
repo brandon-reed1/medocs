@@ -28,14 +28,15 @@
             </span>
         </div>
         <ul class="menu-vertical">
-            <li class="active">
-                <a href="index.html">
-                    <i class="fi-rr-home"></i> Accueil
+            <li class="
+            {% if app.request.attributes.get('_route') == 'admin_index' %}active{% endif %}">
+                <a href="{{ path('admin_index') }}">
+                    <i class="material-icons-round">home</i> Accueil
                 </a>
             </li>
-            <li class="">
-                <a href="index.html">
-                    <i class="fi-rr-home"></i> Lorem
+            <li class=" {% if app.request.attributes.get('_route') == 'admin_product_index' %}active{% endif %}">
+                <a href="{{ path('admin_product_index') }}">
+                    <i class="material-icons-round">inventory_2</i> Produits
                 </a>
             </li>
         </ul>
