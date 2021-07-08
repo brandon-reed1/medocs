@@ -2,7 +2,7 @@
 
 {% block title %}Product List{% endblock %}
 
-{% block header_h1 %} Liste des produits{% endblock %}
+{% block header_h1 %} Produits{% endblock %}
 {% block header_h1_icon %}
     <a href="{{ path('admin_product_new') }}" class="btn circle bg-primary-lighter border-primary inline">
         <i class="material-icons">add</i>
@@ -11,24 +11,32 @@
 {% block body %}
 
     <section class="card wfull">
-        {# list if exist #}
-        {% if list is defined and list is not empty %}
-            <ul class="vertical-list">
-                {% for item in list %}
-                    <li class="list-item alternate">
-                        {{ item.name }}
-                        <div class="actions">
-                            <a href="#" class="btn circle text-info"><span class="material-icons-round">visibility </span> </a>
-                            <a href="{{ path('admin_product_update', {'id': item.id}) }}" class="btn circle text-edit"><span class="material-icons-round">edit</span> </a>
-                            <a href="{{ path('admin_product_delete', {'id': item.id}) }}" class="btn circle text-danger"><span class="material-icons-round">delete </span> </a>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
+        <div class="card-header">
+            <h3 class="title">Liste des produits disponibles</h3>
+        </div>
+        <div class="card-body">
+            {# list if exist #}
+            {% if list is defined and list is not empty %}
+                <ul class="vertical-list">
+                    {% for item in list %}
+                        <li class="list-item alternate">
+                            {{ item.name }}
+                            <div class="actions">
+                           {#      <a href="#" class="btn circle text-info"><span
+                                            class="material-icons-round">visibility </span> </a> #}
+                                <a href="{{ path('admin_product_update', {'id': item.id}) }}"
+                                   class="btn circle text-edit"><span class="material-icons-round">edit</span> </a>
+                                <a href="{{ path('admin_product_delete', {'id': item.id}) }}"
+                                   class="btn circle text-danger"><span class="material-icons-round">delete </span> </a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
 
-        {% else %}
+            {% else %}
 
-            <p>Aucun élément</p>
-        {% endif %}
+                <p>Aucun élément</p>
+            {% endif %}
+        </div>
     </section>
 {% endblock %}

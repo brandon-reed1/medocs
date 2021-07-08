@@ -107,7 +107,7 @@ class ProductController extends AbstractController
      *     name="admin_product_delete",
      *     methods={"GET", "DELETE"})
      */
-    public function delete(Request $request, Product $product): Response
+    public function delete(Request $request, Product $product=null): Response
     {
 
         if (!$product) {
@@ -118,15 +118,19 @@ class ProductController extends AbstractController
 
         $defaultData = ['message' => 'Voulez vous effacer ' . $product->getName() . ' ?'];
         $form = $this->createFormBuilder($defaultData)
-            ->add('oui', SubmitType::class)
-            ->add('non', SubmitType::class)
+            ->add('yes', SubmitType::class, [
+                'label' => 'Oui Supprimer'
+            ])
+            ->add('no', SubmitType::class, [
+                'label' => 'Non Annuler'
+            ])
             ->setMethod('DELETE')
             ->getForm();
-//dd($form);
+//dd($form->getData());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->get('oui')->isClicked()):
+            if ($form->get('yes')->isClicked()):
                 try {
                     $this->em->remove($product);
                     $this->em->flush();
