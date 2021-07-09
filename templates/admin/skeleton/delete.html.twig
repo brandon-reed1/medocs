@@ -1,0 +1,36 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Suppressions {% endblock %}
+
+{% block header_h1 %} Objet {% endblock %}
+{% block header_h1_icon %}
+    <a href="{{ path('admin_' ~ object ~ '_index') }}"
+       class="btn circle bg-primary-lighter border-primary inline"
+       title="revenir à la liste">
+
+        <i class="material-icons">list</i>
+    </a>
+{% endblock %}
+{% block body %}
+    <section class="card wfull">
+        <div class="card-header">
+            <h3 class="title">Demande de confirmation</h3>
+        </div>
+        <div class="form-body">
+            {{ form_start(form) }}
+            <h3>{{ form.vars.data.message }}</h3>
+
+            <div class="horizontal-group">
+                <div class="horizontal-item">
+                    {{ form_row(form.yes, {'attr': {'class': 'btn  bg-success btn-6'},
+                    'label': 'OUI supprimer'}) }}
+                </div>
+                <div class="horizontal-item">
+                    {{ form_row(form.no, {'attr': {'class': 'btn  bg-danger btn-6'},
+                        'label': 'NON le garder' }) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}
