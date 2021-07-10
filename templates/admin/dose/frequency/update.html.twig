@@ -1,9 +1,8 @@
-{% extends 'base_back.html.twig' %}
+{% extends 'admin/skeleton/update.html.twig'%}
 
-{% block title %}Frequency List{% endblock %}
+{% set object = 'frequency' %}
 
-{% block body %}
+{% block title %}Liste des fréquences{% endblock %}
 
-    {{ form(form) }}
-
-{% endblock %}
+{% block header_h1 %} Fréquences {% endblock %}
+{% block comment %} {% endblock %}

@@ -1,11 +1,3 @@
-{% extends 'base_back.html.twig' %}
-
-{% block title %}Frequency Delete{% endblock %}
-
-{% block body %}
-
-   <h3>{{ default_data.message }}</h3>
-   {{ form(form) }}
-
-
-{% endblock %}
+{% extends 'admin/skeleton/delete.html.twig'%}
+{% set object = 'frequency' %}
+{% block header_h1 %} Fréquence {% endblock %}

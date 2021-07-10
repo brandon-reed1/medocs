@@ -1,17 +1,8 @@
-{% extends 'base_back.html.twig' %}
+{% extends 'admin/skeleton/index.html.twig'%}
 
-{% block title %}Frequency List{% endblock %}
+{% set object = 'frequency' %}
 
-{% block body %}
+{% block title %}Liste des fréquences{% endblock %}
 
-    <a href="{{ path('admin_dose_frequency_new') }}">Nouveau</a>
-
-    {# list if exist #}
-    {% if list is defined and list is not empty %}
-        {% for item in list %}
-            <p>{{ item.name }} | modifier | supprimer</p>
-        {% endfor %}
-    {% else %}
-        <p>Aucun élément</p>
-    {% endif %}
-{% endblock %}
+{% block header_h1 %} Fréquences {% endblock %}
+{% block card_title %} fréquences {% endblock %}
