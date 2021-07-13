@@ -14,7 +14,7 @@ class FrequencyType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('envoi', SubmitType::class)
+
         ;
     }
 

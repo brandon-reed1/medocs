@@ -19,14 +19,15 @@ class DoseType extends AbstractType
 
     protected $em;
 
-    public function __construct(EntityManagerInterface $entityManager){
+    public function __construct(EntityManagerInterface $entityManager)
+    {
         $this->em = $entityManager;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('frequency', EntityType::class,[
+            ->add('frequency', EntityType::class, [
                 'class' => Frequency::class,
                 'choice_label' => 'name'
             ])
@@ -35,14 +36,17 @@ class DoseType extends AbstractType
                 'mapped' => FALSE,
                 'property_path' => 'item',
             ))
-            ->add('moment', EntityType::class,[
+            ->add('moment', EntityType::class, [
                 'class' => Moment::class,
                 'choice_label' => 'name'
             ])
-            ->add('envoi', SubmitType::class)
-        ;
+            ->add('momentNew', MomentType::class, array(
+                'required' => FALSE,
+                'mapped' => FALSE,
+                'property_path' => 'item',
+            ));
 
-       $builder->addEventListener(FormEvents::POST_SUBMIT, function(FormEvent $event) {
+        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
             $form = $event->getForm();
 //dump($data['frequencyNew']['name']);
@@ -57,7 +61,7 @@ class DoseType extends AbstractType
                 $newFrequency->setName($form->get('frequencyNew')->getData()->getName());
                 $this->em->persist($newFrequency);
                 $this->em->flush();
-              //  $data['frequencyNew']['name'] = '';
+                //  $data['frequencyNew']['name'] = '';
 
                 $data->setFrequency($newFrequency);
                 $event->setData($data);
@@ -69,6 +73,15 @@ class DoseType extends AbstractType
                     'mapped' => TRUE,
                     'property_path' => 'frequency',
                 ));*/
+            }
+            if (!empty($form->get('momentNew')->getData())) {
+                $newMoment = new Moment();
+                $newMoment->setName($form->get('momentNew')->getData()->getName());
+                $this->em->persist($newMoment);
+                $this->em->flush();
+
+                $data->setMoment($newMoment);
+                $event->setData($data);
             }
         });
 
