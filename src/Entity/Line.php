@@ -29,6 +29,11 @@ class Line
      */
     private $product;
 
+    /**
+     * @ORM\Column(type="float", nullable=true, scale=1)
+     */
+    private $qty;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,5 +65,21 @@ class Line
 
     public function __toString(){
         return $this->product->getName()." ".$this->dose;
+    }
+
+    public function getQty(): ?float
+    {
+        return $this->qty;
+    }
+
+    public function setQty(?float $qty): self
+    {
+        $this->qty = $qty;
+
+        return $this;
+    }
+
+    public function getName(){
+        return $this->getQty()." ".$this->getProduct()->getName()." - ".$this->getDose();
     }
 }

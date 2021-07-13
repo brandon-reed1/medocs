@@ -68,4 +68,8 @@ class Dose
         return $this;
     }
 
+    public function getName(){
+        return $this->getFrequency()->getName()." - ".$this->getMoment()->getName();
+    }
+
 }

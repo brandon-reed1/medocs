@@ -52,6 +52,7 @@ class DoseController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
+                //dd($dose);
                 $this->em->persist($dose);
                 $this->em->flush();
 
@@ -63,7 +64,7 @@ class DoseController extends AbstractController
                 die('erreur');
             }
         }
-        return $this->render('admin/dose/dose/create.html.twig', [
+        return $this->render('admin/dose/dose/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }

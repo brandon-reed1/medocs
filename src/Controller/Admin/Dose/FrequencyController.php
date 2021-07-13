@@ -24,7 +24,7 @@ class FrequencyController extends AbstractController
     }
 
     /**
-     * @Route("/admin/dose/frequency", name="admin_dose_frequency")
+     * @Route("/admin/dose/frequency", name="admin_frequency_index")
      */
     public function index(): Response
     {
@@ -39,7 +39,7 @@ class FrequencyController extends AbstractController
 
     /**
      * @Route("/admin/dose/frequency/new",
-     *     name="admin_dose_frequency_new",
+     *     name="admin_frequency_new",
      *     methods={"GET", "POST"})
      */
     public function create(Request $request): Response
@@ -57,7 +57,7 @@ class FrequencyController extends AbstractController
 
                 $this->addFlash('success', 'ajouté');
 
-                return $this->redirectToRoute("admin_dose_frequency");
+                return $this->redirectToRoute("admin_frequency_index");
 
             } catch (ORMException $ORMException) {
                 die('erreur');
@@ -70,7 +70,7 @@ class FrequencyController extends AbstractController
 
     /**
      * @Route("/admin/dose/frequency/{id}/update",
-     *     name="admin_dose_frequency_update",
+     *     name="admin_frequency_update",
      *     methods={"GET", "PUT"})
      */
     public function update(Request $request, Frequency $frequency): Response
@@ -79,7 +79,7 @@ class FrequencyController extends AbstractController
         if (!$frequency) {
             $this->addFlash('error', 'N\'existe pas');
 
-            return $this->redirectToRoute("admin_dose_frequency");
+            return $this->redirectToRoute("admin_frequency_index");
         }
 
         $form = $this->createForm(FrequencyType::class, $frequency, [
@@ -95,7 +95,7 @@ class FrequencyController extends AbstractController
 
                 $this->addFlash('success', 'modifié');
 
-                return $this->redirectToRoute("admin_dose_frequency");
+                return $this->redirectToRoute("admin_frequency_index");
 
             } catch (ORMException $ORMException) {
                 die('erreur');
@@ -108,7 +108,7 @@ class FrequencyController extends AbstractController
 
     /**
      * @Route("/admin/dose/frequency/{id}/delete",
-     *     name="admin_dose_frequency_delete",
+     *     name="admin_frequency_delete",
      *     methods={"GET", "DELETE"})
      */
     public function delete(Request $request, Frequency $frequency): Response
@@ -117,27 +117,27 @@ class FrequencyController extends AbstractController
         if (!$frequency) {
             $this->addFlash('error', 'N\'existe pas');
 
-            return $this->redirectToRoute("admin_dose_frequency");
+            return $this->redirectToRoute("admin_frequency_index");
         }
 
         $defaultData = ['message' => 'Voulez vous effacer ' . $frequency->getName() . ' ?'];
         $form = $this->createFormBuilder($defaultData)
-            ->add('oui', SubmitType::class)
-            ->add('non', SubmitType::class)
+            ->add('yes', SubmitType::class)
+            ->add('no', SubmitType::class)
             ->setMethod('DELETE')
             ->getForm();
 //dd($form);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->get('oui')->isClicked()):
+            if ($form->get('yes')->isClicked()):
                 try {
                     $this->em->remove($frequency);
                     $this->em->flush();
 
                     $this->addFlash('success', 'supprimé');
 
-                    return $this->redirectToRoute("admin_dose_frequency");
+                    return $this->redirectToRoute("admin_frequency_index");
 
                 } catch (ORMException $ORMException) {
                     die('erreur');
@@ -145,7 +145,7 @@ class FrequencyController extends AbstractController
             else:
                 $this->addFlash('notice', 'annulé');
 
-                return $this->redirectToRoute("admin_dose_frequency");
+                return $this->redirectToRoute("admin_frequency_index");
 
             endif;
 

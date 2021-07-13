@@ -22,7 +22,7 @@ class MomentController extends AbstractController
     }
 
     /**
-     * @Route("/admin/dose/moment", name="admin_dose_moment")
+     * @Route("/admin/dose/moments", name="admin_moment_index")
      */
     public function index(): Response
     {
@@ -37,7 +37,7 @@ class MomentController extends AbstractController
 
     /**
      * @Route("/admin/dose/moment/new",
-     *     name="admin_dose_moment_new",
+     *     name="admin_moment_new",
      *     methods={"GET", "POST"})
      */
     public function create(Request $request): Response
@@ -55,7 +55,7 @@ class MomentController extends AbstractController
 
                 $this->addFlash('success', 'ajouté');
 
-                return $this->redirectToRoute("admin_dose_moment");
+                return $this->redirectToRoute("admin_moment_index");
 
             } catch (ORMException $ORMException) {
                 die('erreur');
@@ -68,7 +68,7 @@ class MomentController extends AbstractController
 
     /**
      * @Route("/admin/dose/moment/{id}/update",
-     *     name="admin_dose_moment_update",
+     *     name="admin_moment_update",
      *     methods={"GET", "PUT"})
      */
     public function update(Request $request, Moment $moment): Response
@@ -77,7 +77,7 @@ class MomentController extends AbstractController
         if (!$moment) {
             $this->addFlash('error', 'N\'existe pas');
 
-            return $this->redirectToRoute("admin_dose_moment");
+            return $this->redirectToRoute("admin_moment_index");
         }
 
         $form = $this->createForm(MomentType::class, $moment, [
@@ -93,7 +93,7 @@ class MomentController extends AbstractController
 
                 $this->addFlash('success', 'modifié');
 
-                return $this->redirectToRoute("admin_dose_moment");
+                return $this->redirectToRoute("admin_moment_index");
 
             } catch (ORMException $ORMException) {
                 die('erreur');
@@ -106,7 +106,7 @@ class MomentController extends AbstractController
 
     /**
      * @Route("/admin/dose/moment/{id}/delete",
-     *     name="admin_dose_moment_delete",
+     *     name="admin_moment_delete",
      *     methods={"GET", "DELETE"})
      */
     public function delete(Request $request, Moment $moment): Response
@@ -115,27 +115,27 @@ class MomentController extends AbstractController
         if (!$moment) {
             $this->addFlash('error', 'N\'existe pas');
 
-            return $this->redirectToRoute("admin_dose_moment");
+            return $this->redirectToRoute("admin_moment_index");
         }
 
         $defaultData = ['message' => 'Voulez vous effacer ' . $moment->getName() . ' ?'];
         $form = $this->createFormBuilder($defaultData)
-            ->add('oui', SubmitType::class)
-            ->add('non', SubmitType::class)
+            ->add('yes', SubmitType::class)
+            ->add('no', SubmitType::class)
             ->setMethod('DELETE')
             ->getForm();
 //dd($form);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->get('oui')->isClicked()):
+            if ($form->get('yes')->isClicked()):
                 try {
                     $this->em->remove($moment);
                     $this->em->flush();
 
                     $this->addFlash('success', 'supprimé');
 
-                    return $this->redirectToRoute("admin_dose_moment");
+                    return $this->redirectToRoute("admin_moment_index");
 
                 } catch (ORMException $ORMException) {
                     die('erreur');
@@ -143,7 +143,7 @@ class MomentController extends AbstractController
             else:
                 $this->addFlash('notice', 'annulé');
 
-                return $this->redirectToRoute("admin_dose_moment");
+                return $this->redirectToRoute("admin_moment_index");
 
             endif;
 
