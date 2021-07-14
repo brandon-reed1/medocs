@@ -1,17 +1,8 @@
-{% extends 'base_back.html.twig' %}
+{% extends 'admin/skeleton/index.html.twig'%}
 
-{% block title %}DoseList{% endblock %}
+{% set object = 'dose' %}
 
-{% block body %}
+{% block title %}Liste des dosages{% endblock %}
 
-    <a href="{{ path('admin_dose_new') }}">Nouveau</a>
-
-    {# list if exist #}
-    {% if list is defined and list is not empty %}
-        {% for item in list %}
-            <p>{{ item }} | modifier | supprimer</p>
-        {% endfor %}
-    {% else %}
-        <p>Aucun élément</p>
-    {% endif %}
-{% endblock %}
+{% block header_h1 %} Dosages {% endblock %}
+{% block card_title %} Listes des médicaments à prendre {% endblock %}

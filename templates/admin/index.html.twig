@@ -4,13 +4,71 @@
 
 {% block header_h1 %} {{ app.user.email }}{% endblock %}
 {% block body %}
-    <div id="index">
+    <section class="horizontal-group">
+        <article class="horizontal-item bg-white auto-height margin-horizontal-2 radius-3">
+            <div class="border-left-primary jauge">
+                <div>
+                    <span class="header">Taille de ma liste</span>
+                    <span class="number">{{ list_size }} </span>
+                </div>
+            </div>
+        </article>
+        <article class="horizontal-item bg-white auto-height margin-horizontal-2 radius-3">
+            <div class="border-left-info jauge">
+                <div>
+                    <span class="header">New Visitor</span>
+                    <span class="number">78%</span>
+                </div>
 
+            </div>
+        </article>
+        <article class="horizontal-item bg-white auto-height margin-horizontal-2 radius-3">
+            <div class="border-left-danger jauge">
+                <div>
+                    <span class="header">Total Revenue</span>
+                    <span class="number">89,832 €</span>
+                </div>
 
-        <h1 class="h3 mb-3 font-weight-normal">Admin .::. Accueil</h1>
+            </div>
+        </article>
 
+    </section>
 
-        <p>Bienvenue à l'accueil</p>
-    </div>
+    <section class="card bg-white wfull">
+        <div class="card-header">
+            <h2 class="title">
+                Les médicament que je prends chaque jour
+            </h2>
+        </div>
+        <div class="card-body wrappable">
+            <table>
+                <tbody>
+                <tr class="header">
+                    <th>Médicament</th>
+                    <th>Combien</th>
+                    <th>Combien de fois</th>
+                    <th>Quand</th>
+                    <th></th>
+                </tr>
+
+                {% for item in list %}
+                    <tr>
+                        <td class="">
+                            {{ item.product.name }}
+                        </td>
+                        <td>{{ item.qty }}</td>
+                        <td>{{ item.dose.frequency.name }}</td>
+                        <td>{{ item.dose.moment.name }}</td>
+                        <td>
+                            <i class="material-icons-outlined">edit</i>
+                            <i class="material-icons-outlined">delete</i>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
 {% endblock %}
 

@@ -40,6 +40,21 @@
                     <i class="material-icons-round">inventory_2</i> Produits
                 </a>
             </li>
+            <li class=" {% if ( 'admin_frequency' in app.request.attributes.get('_route'  )) %} active {% endif %}">
+                <a href="{{ path('admin_frequency_index') }}">
+                    <i class="material-icons-round">timelapse</i> Fréquences
+                </a>
+            </li>
+            <li class=" {% if ( 'admin_moment' in app.request.attributes.get('_route'  )) %} active {% endif %}">
+                <a href="{{ path('admin_moment_index') }}">
+                    <i class="material-icons-round">watch</i> Moment
+                </a>
+            </li>
+            <li class=" {% if ( 'admin_dose' in app.request.attributes.get('_route'  )) %} active {% endif %}">
+                <a href="{{ path('admin_dose_index') }}">
+                    <i class="material-icons-round">water_drop</i> Dosage
+                </a>
+            </li>
             {#  <li class=" {% if (app.request.attributes.get('_route') == 'admin_product_index')
             or (app.request.attributes.get('_route') == 'admin_product_update') %}active{% endif %}">
                 <a href="{{ path('admin_product_index') }}">

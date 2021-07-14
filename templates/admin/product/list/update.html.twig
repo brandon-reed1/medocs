@@ -1,0 +1,17 @@
+{% extends 'admin/product/list/new.html.twig' %}
+
+{% set object = 'line' %}
+
+{% block title %}Modifier un médicament dans la liste{% endblock %}
+
+{% block header_h1 %} Méciaments dans la liste{% endblock %}
+{% block comment %} {% endblock %}
+{% block card_title %} Modifier {% endblock %}
+{% block submit %}
+    <div class="flow-row">
+        <input type="submit" class="btn auto-min bg-primary text-white" value="Modifier" style="margin-right: 1rem">
+        <a href="{{ path('admin_line_new')}}" class="submit btn auto-min bg-primary-lighter text-primary">
+            Ajouter
+        </a>
+    </div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{# {% extends 'admin/skeleton/new.html.twig'%} #}
+
+{% set object = 'line' %}
+
+{# {% block title %}Ajouter une ligne{% endblock %} #}
+
+{# {% block header_h1 %} Lignes {% endblock %} #}
+
+{# {% block comment %} {% endblock %} #}
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Nouvelle ligne{% endblock %}
+
+{% block header_h1 %} Médicaments dans la liste {% endblock %}
+{% block header_h1_icon %}
+    <a href="{{ path('admin_' ~ object ~ '_index') }}"
+       class="btn circle bg-primary-lighter border-primary inline"
+       title="revenir à la liste">
+
+        <i class="material-icons">list</i>
+    </a>
+{% endblock %}
+{% block body %}
+    <section class="card wfull">
+        <div class="card-header">
+            <h3 class="title">{% block card_title %} Ajouter {% endblock %}</h3>
+        </div>
+        <div class="card-body">
+            {{ form_start(form) }}
+            <div class="horizontal-group wfull">
+
+                <div class="horizontal-item">
+                    <div class="form-row">
+                        {{ form_label(form.qty, 'Q') }}
+                        {{ form_widget(form.qty, {
+                            'type':'number',
+                            'attr': {
+                                'min': 0.5,
+                                'max': 10,
+                                'step': 0.5,
+                                'style': 'width: 5rem'
+                            }}) }}
+
+                    </div>
+                </div>
+                <div class="horizontal-item">
+                    <div class="form-row">
+                        {{ form_label(form.product, 'Produits') }}
+                        {{ form_widget(form.product) }}
+                    </div>
+                    <div class="form-row">
+                        <a href="{{ path('admin_product_new') }}"
+                           title="ajouter un produit"
+                           class="text-primary-darker">
+                            <i class="material-icons-round">add_box</i>
+                        </a>
+                    </div>
+                </div>
+                <div class="horizontal-item">
+                    <div class="form-row">
+                        {{ form_label(form.dose) }}
+                        {{ form_widget(form.dose) }}
+                    </div>
+                    <div class="form-row">
+                        <a href="{{ path('admin_dose_new') }}" class="text-primary-darker">
+                            <i class="material-icons-round">add_box</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                {% block submit %} <input type="submit" class="btn auto-min bg-primary text-white"
+                                          value="ajouter">{% endblock %}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}
