@@ -44,7 +44,9 @@ class DoseController extends AbstractController
      */
     public function create(Request $request): Response
     {
-
+        if (!$this->get('session')->get('referer')) {
+            $this->get('session')->set('referer', $request->server->get('HTTP_REFERER'));
+        }
         $dose = new Dose();
         $form = $this->createForm(DoseType::class, $dose);
 
@@ -58,7 +60,12 @@ class DoseController extends AbstractController
 
                 $this->addFlash('success', 'ajouté');
 
-                return $this->redirectToRoute("admin_dose_index");
+                if ($referer = $this->get('session')->get('referer')) {
+                    $this->get('session')->remove('referer');
+                    return $this->redirect($referer);
+                } else  return $this->redirectToRoute('admin_product_new');
+
+//                return $this->redirectToRoute("admin_dose_index");
 
             } catch (ORMException $ORMException) {
                 die('erreur');
