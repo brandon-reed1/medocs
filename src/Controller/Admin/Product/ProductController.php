@@ -39,23 +39,28 @@ class ProductController extends AbstractController
      */
     public function new(Request $request): Response
     {
-
+        if (!$this->get('session')->get('referer')) {
+            $this->get('session')->set('referer', $request->server->get('HTTP_REFERER'));
+        }
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
-           try {
-               $this->em->persist($product);
-               $this->em->flush();
-               $this->addFlash('success', 'Produit ajouté');
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $this->em->persist($product);
+                $this->em->flush();
+                $this->addFlash('success', 'Produit ajouté');
 
-               return $this->redirectToRoute('admin_product_new');
+                if ($referer = $this->get('session')->get('referer')) {
+                    $this->get('session')->remove('referer');
+                    return $this->redirect($referer);
+                } else  return $this->redirectToRoute('admin_product_new');
 
-           }catch(ORMException $e){
-               die;
-           }
+            } catch (ORMException $e) {
+                die;
+            }
         }
 
         return $this->render('admin/product/new.html.twig', [
@@ -107,7 +112,7 @@ class ProductController extends AbstractController
      *     name="admin_product_delete",
      *     methods={"GET", "DELETE"})
      */
-    public function delete(Request $request, Product $product=null): Response
+    public function delete(Request $request, Product $product = null): Response
     {
 
         if (!$product) {

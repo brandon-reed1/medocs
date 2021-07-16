@@ -13,8 +13,12 @@ class IndexController extends AbstractController
      */
     public function index(): Response
     {
+
+        $list_size = $this->getDoctrine()->getManager()->getRepository('App:Line')->getCount();
+        $products = $this->getDoctrine()->getManager()->getRepository('App:Line')->getAll();
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'IndexController',
+            'list_size' => $list_size,
+            'list' => $products
         ]);
     }
 }

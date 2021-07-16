@@ -4,30 +4,54 @@
 
 {% block header_h1 %} {{ app.user.email }}{% endblock %}
 {% block body %}
-    <section class="horizontal-group">
+    <section class="horizontal-group" style="line-height: 1rem;">
         <article class="horizontal-item bg-white auto-height margin-horizontal-2 radius-3">
-            <div class="border-left-primary jauge">
-                <div>
-                    <span class="header">Taille de ma liste</span>
-                    <span class="number">{{ list_size }} </span>
+            <div class="border-left-primary jauge flow-column">
+                <div class="header">
+                    Taille de ma liste
+                </div>
+                <div class="big">
+                    {{ list_size }}
                 </div>
             </div>
         </article>
         <article class="horizontal-item bg-white auto-height margin-horizontal-2 radius-3">
-            <div class="border-left-info jauge">
-                <div>
-                    <span class="header">New Visitor</span>
-                    <span class="number">78%</span>
-                </div>
+            <div class="border-left-info jauge flow-column">
+                {# <div> #}
+                <form action="" class="wfull" id="emergency">
+                    <span class="header">Mon url urgence</span>
+                    <div class="form-row">
+                        <label for="url">{{ app.request.schemeAndHttpHost ~ app.request.baseUrl }}/
+                            {# <label for="url">https://totolehero/ #}
+                            <input type="text" id="url" style="line-height: 1rem;"/>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <a href="#" class="submit btn auto-min bg-primary text-white">
+                            Modifier
+                        </a>
+                    </div>
+                </form>
+                <span class=""></span>
+                {# </div> #}
 
             </div>
         </article>
         <article class="horizontal-item bg-white auto-height margin-horizontal-2 radius-3">
-            <div class="border-left-danger jauge">
-                <div>
-                    <span class="header">Total Revenue</span>
-                    <span class="number">89,832 €</span>
-                </div>
+            <div class="border-left-success jauge">
+                <form action="" class="wfull" id="">
+                    <span class="header">Envoyer ma liste</span>
+                    <div class="form-row">
+                        <label for="send">
+                            <input type="text" id="send"/>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <a href="#" class="submit btn auto-min bg-success text-success">
+                            Envoyer
+                        </a>
+                    </div>
+                </form>
 
             </div>
         </article>

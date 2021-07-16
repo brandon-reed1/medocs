@@ -61,20 +61,26 @@ form label,
 
 form input,
 #login form input,
-#register form input {
+#register form input
+select{
     line-height: 3rem;
     /* border: solid 1px rgba(189, 189, 190, .6);*/
-    border: solid 1px var(--primary-light);
+    border: solid 1px var(--primary-light) !important;
+    border-radius: 0.25em;
+    font-size: 1.05rem;
+    padding-top: 5px;
+    padding-left: 5px;
 }
 
 #login form input:active,
 #register form input:active {
-    border: var(--tertiary);
+    border: solid 1px var(--tertiary);
 }
 
 
 #login, form input[type=submit],
-#register form input[type=submit] {
+#register form input[type=submit],
+.submit{
     font-size: 1.1rem;
     font-weight: bold;
     padding: .7rem;
@@ -93,16 +99,37 @@ form input,
     background: none;
 }
 
+select {
+    width: 100%;
+    min-width: 15ch;
+    max-width: 30ch;
+    height: 3rem;
+    max-height: 3rem;
+    border-radius: 0.25em;
+    font-size: 1.05rem;
+    cursor: pointer;
+    color: var(--primary);
+    line-height: 1.1;
+    background-color: var(--primary-lighter);
+    background-image: linear-gradient(to top, var(--primary-lighter), #fff 33%);
+    border: solid 1px var(--primary-light);
+}
+
+select::-ms-expand{
+    display: none;
+}
+
+
 @media (min-width: 768px) {
     #login,
     #register {
-       /* max-width: 0%; */
+        /* max-width: 0%; */
     }
 }
 
 @media (min-width: 992px) {
     #login,
     #register {
-       /* max-width: 50%; */
+        /* max-width: 50%; */
     }
 }

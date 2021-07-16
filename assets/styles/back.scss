@@ -33,9 +33,10 @@
  @import url(_back/list.scss);
  @import url(_back/buttons.scss);
  @import url(_back/register-forms.css);
- @import url(_back/sidebar.css);
+ @import url(_back/_sidebar.css);
  @import url(_back/leftbar.css);
  @import url(_back/content.css);
+ @import url(_back/_jauge.scss);
 
  body {
    background-color: var(--tertiary-light);
@@ -43,7 +44,36 @@
    display: flex;
    flex-direction: column;
  }
+ .top-visible{
+   padding-top: 2.5rem;
+   border-top: solid 2px var(--tertiary);
+ }
+ .bottom-visible{
+   padding-bottom: 1.5rem;
+   border-bottom: solid 2px var(--tertiary);
+ }
 
+
+ .center-4{
+   justify-content: center;
+   align-content: center;
+   align-items: center;
+ }
+
+ .border-dashed-1{
+   border: dashed 1px var(--tertiary);
+ }
+ .border-dashed-2{
+   border: dashed 2px var(--tertiary);
+ }
+
+ table{
+   width: 100%;
+ }
+
+ .flex-0 {
+   flex: 0;
+ }
  .size-09 {
    font-size: 0.9rem;
  }
@@ -51,6 +81,71 @@
  .size-1 {
    font-size: 1rem;
  }
+
+ .size-1-1 {
+   font-size: 1.1rem !important;
+ }
+
+ .radius-3 {
+   border-radius: 3% !important;
+ }
+
+ .radius-5p {
+   border-radius: 5px;
+ }
+
+ .bold {
+   font-weight: 700;
+ }
+
+ .bolder {
+   font-weight: 900;
+ }
+
+ .p06 {
+   padding: .6rem;
+ }
+
+ .p1 {
+   padding: 1rem;
+ }
+
+ .p1-5 {
+   padding: 1.5rem;
+ }
+
+ .max-height {
+   height: max-content;
+   padding: 1rem 0;
+ }
+
+ .auto-height {
+   height: auto;
+   padding: 1rem 0;
+ }
+
+ .margin-horizontal-1 {
+   margin: 0 .5rem;
+ }
+
+ .margin-horizontal-2 {
+   margin: 0 1rem;
+ }
+
+ .margin-horizontal-1:first-child,
+ .margin-horizontal-2:first-child {
+   margin-left: 0;
+ }
+
+ .margin-horizontal-1:last-child,
+ .margin-horizontal-2:last-child {
+   margin-right: 0;
+ }
+
+ .inline {
+   display: inline;
+ }
+
 
  .container-fluid{
    width: 100%;

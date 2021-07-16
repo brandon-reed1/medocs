@@ -91,6 +91,10 @@
     font-weight: 520;
 }
 
+#sidebar ul.menu-vertical li i{
+    font-size: 1rem;
+}
+
 #sidebar.only-icons  {
     min-width: min-content;
 }

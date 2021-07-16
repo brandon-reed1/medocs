@@ -28,6 +28,14 @@ class LineRepository extends ServiceEntityRepository
             ;
     }
 
+    public function getCount()
+    {
+        return $this->createQueryBuilder('l')
+            ->select('count(l.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     // /**
     //  * @return Line[] Returns an array of Line objects
     //  */

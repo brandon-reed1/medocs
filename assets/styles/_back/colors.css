@@ -178,3 +178,6 @@
 .border-left-danger{
     border-left: solid 2px var(--danger);
 }
+.border-left-success{
+    border-left: solid 2px var(--success);
+}
