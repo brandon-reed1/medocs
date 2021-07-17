@@ -1,0 +1,86 @@
+.jauge {
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  text-align: left;
+  padding: 0 1rem;
+
+}
+
+.jauge > div {
+  text-align: center;
+}
+
+#mydoughnut {
+  width: 75px
+  /*height: 50px;*/
+}
+
+.jauge .myChart,
+.jauge .mydoughnut,
+.jauge .mybars {
+  display: none;
+}
+
+
+.jauge .header {
+  font-weight: bolder;
+  font-size: 1rem;
+  max-height: 4rem;
+}
+
+.jauge .number {
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+
+.jauge .big{
+  font-size: 6rem;
+}
+
+
+.jauge form,
+.jauge form#emergency{
+  align-self: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+.jauge form .form-row,
+.jauge form#emergency .form-row{
+  margin: 0;
+  line-height: 1.5rem;
+}
+.jauge form .form-row label,
+.jauge form#emergency .form-row label{
+  background-color: transparent;
+  margin-left: 0;
+  padding-left: 0;
+  width: 100%;
+}
+
+.jauge form input,
+.jauge form#emergency input{
+  line-height: 1rem;
+  width: 100%;
+}
+.jauge form#emergency input[type=text]:before{
+  content: '';
+}
+
+@media (min-width: 1200px) {
+
+  .jauge > div {
+    text-align: left;
+  }
+
+  .jauge .myChart ,
+  .jauge .mydoughnut ,
+  .jauge .mybars  {
+    width: 20%;
+    align-content: flex-end;
+    display: flex;
+    align-items: flex-end;
+    padding: 0;
+  }
+}

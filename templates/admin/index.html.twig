@@ -84,8 +84,8 @@
                         <td>{{ item.dose.frequency.name }}</td>
                         <td>{{ item.dose.moment.name }}</td>
                         <td>
-                            <i class="material-icons-outlined">edit</i>
-                            <i class="material-icons-outlined">delete</i>
+                            <a href="{{ path('admin_line_update', {'id': item.id}) }}" class="text-info"> <i class="material-icons-outlined">edit</i> </a>
+                            <a href="{{ path('admin_line_delete', {'id': item.id}) }}" class="text-danger"> <i class="material-icons-outlined">delete</i> </a>
                         </td>
 
                     </tr>
