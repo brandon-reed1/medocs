@@ -19,6 +19,17 @@ class LineRepository extends ServiceEntityRepository
         parent::__construct($registry, Line::class);
     }
 
+    public function getAllUserLines($user_id)
+    {
+        return $this->createQueryBuilder('l')
+            ->leftJoin('l.user', 'user')
+            ->andWhere('user.id = :id')
+            ->setParameter('id', $user_id)
+            ->orderBy('l.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     public function getAll()
     {
         return $this->createQueryBuilder('l')
@@ -28,6 +39,16 @@ class LineRepository extends ServiceEntityRepository
             ;
     }
 
+    public function getCountByUser($user_id)
+    {
+        return $this->createQueryBuilder('l')
+            ->leftJoin('l.user', 'user')
+            ->andWhere('user.id = :id')
+            ->setParameter('id', $user_id)
+            ->select('count(l.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
     public function getCount()
     {
         return $this->createQueryBuilder('l')

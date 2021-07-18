@@ -17,8 +17,10 @@ class IndexController extends AbstractController
     {
 
        /* @todo dependy injection construct */
-        $list_size = $this->getDoctrine()->getManager()->getRepository('App:Line')->getCount();
-        $products = $this->getDoctrine()->getManager()->getRepository('App:Line')->getAll();
+        $list_size = $this->getDoctrine()->getManager()->getRepository('App:Line')
+            ->getCountByUser($this->getUser()->getId());
+        $products = $this->getDoctrine()->getManager()->getRepository('App:Line')
+            ->getAllUserLines($this->getUser()->getId());;
 
         $url_form = $this->createForm(UrlType::class, null, [
             'action'=>$this->generateUrl('admin_index_url'),

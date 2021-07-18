@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LineRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,9 +32,20 @@ class Line
     private $product;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="lines")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    private $user;
+
+    /**
      * @ORM\Column(type="float", nullable=true, scale=1)
      */
     private $qty;
+
+    public function __construct()
+    {
+        $this->user = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -63,8 +76,9 @@ class Line
         return $this;
     }
 
-    public function __toString(){
-        return $this->product->getName()." ".$this->dose;
+    public function __toString()
+    {
+        return $this->product->getName() . " " . $this->dose;
     }
 
     public function getQty(): ?float
@@ -79,7 +93,32 @@ class Line
         return $this;
     }
 
-    public function getName(){
-        return $this->getQty()." ".$this->getProduct()->getName()." - ".$this->getDose();
+    public function getName()
+    {
+        return $this->getQty() . " " . $this->getProduct()->getName() . " - " . $this->getDose();
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUser(): Collection
+    {
+        return $this->user;
+    }
+
+
+    public function removeUser(User $user): self
+    {
+        $this->user->removeElement($user);
+        $user->removeLine($this);
+        return $this;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+        $user->addLine($this);
+
+        return $this;
     }
 }

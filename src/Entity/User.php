@@ -46,7 +46,7 @@ class User implements UserInterface
     private $isVerified = false;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Line")
+     * @ORM\OneToMany(targetEntity="App\Entity\Line", mappedBy="user")
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $lines;

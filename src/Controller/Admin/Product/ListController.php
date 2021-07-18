@@ -29,8 +29,7 @@ class ListController extends AbstractController
     public function index(): Response
     {
         $list = $this->em->getRepository(Line::class)
-            ->getAll();
-
+            ->getAllUserLines($this->getUser()->getId());
         return $this->render('admin/product/list/index.html.twig', [
             'list' => $list,
         ]);
@@ -49,6 +48,7 @@ class ListController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
+                $line->setUser($this->getUser());
                 $this->em->persist($line);
                 $this->em->flush();
                 $this->addFlash('success', 'Ligne ajouté');
@@ -136,6 +136,7 @@ class ListController extends AbstractController
             if ($form->get('yes')->isClicked()):
                 try {
                     $this->em->remove($line);
+//                    $this->getUser()->remove($line);
                     $this->em->flush();
 
                     $this->addFlash('success', 'supprimé');
