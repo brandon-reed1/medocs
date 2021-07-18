@@ -18,22 +18,25 @@
         <article class="horizontal-item bg-white auto-height margin-horizontal-2 radius-3">
             <div class="border-left-info jauge flow-column">
                 {# <div> #}
-                <form action="" class="wfull" id="emergency">
-                    <span class="header">Mon url urgence</span>
-                    <div class="form-row">
-                        <label for="url">{{ app.request.schemeAndHttpHost ~ app.request.baseUrl }}/
-                            {# <label for="url">https://totolehero/ #}
-                            <input type="text" id="url" style="line-height: 1rem;"/>
-                        </label>
-                    </div>
-                    <div class="form-row">
-                        <a href="#" class="submit btn auto-min bg-primary text-white">
-                            Modifier
-                        </a>
-                    </div>
-                </form>
-                <span class=""></span>
-                {# </div> #}
+
+                {{ form_start(url_form, {'attr': {
+                    'class': 'wfull',
+                    'id': 'emergency'
+                }}) }}
+                <span class="header">Mon url urgence</span>
+                <div class="form-row">
+                    <label for="url_url">{{ app.request.schemeAndHttpHost ~ app.request.baseUrl }}/
+                        {{ form_widget(url_form.url, {
+                            'value': app.user.url
+                        }) }}
+                    </label>
+                </div>
+                <div class="form-row">
+                    <input type="submit" class="btn auto-min bg-primary text-white"
+                           value="Modifier">
+                </div>
+                {{ form_end(url_form) }}
+
 
             </div>
         </article>
@@ -84,8 +87,10 @@
                         <td>{{ item.dose.frequency.name }}</td>
                         <td>{{ item.dose.moment.name }}</td>
                         <td>
-                            <a href="{{ path('admin_line_update', {'id': item.id}) }}" class="text-info"> <i class="material-icons-outlined">edit</i> </a>
-                            <a href="{{ path('admin_line_delete', {'id': item.id}) }}" class="text-danger"> <i class="material-icons-outlined">delete</i> </a>
+                            <a href="{{ path('admin_line_update', {'id': item.id}) }}" class="text-info"> <i
+                                        class="material-icons-outlined">edit</i> </a>
+                            <a href="{{ path('admin_line_delete', {'id': item.id}) }}" class="text-danger"> <i
+                                        class="material-icons-outlined">delete</i> </a>
                         </td>
 
                     </tr>

@@ -51,6 +51,11 @@ class User implements UserInterface
      */
     private $lines;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $url;
+
     public function __construct()
     {
         $this->lines = new ArrayCollection();
@@ -174,6 +179,18 @@ class User implements UserInterface
     public function removeLine(Line $line): self
     {
         $this->lines->removeElement($line);
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(?string $url): self
+    {
+        $this->url = $url;
 
         return $this;
     }
