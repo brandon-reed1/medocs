@@ -25,7 +25,8 @@
                 }}) }}
                 <span class="header">Mon url urgence</span>
                 <div class="form-row">
-                    <label for="url_url">{{ app.request.schemeAndHttpHost ~ app.request.baseUrl }}/
+                    <label for="url_url">
+                        {{ app.request.schemeAndHttpHost ~ app.request.baseUrl }}/
                         {{ form_widget(url_form.url, {
                             'value': app.user.url
                         }) }}
@@ -42,19 +43,22 @@
         </article>
         <article class="horizontal-item bg-white auto-height margin-horizontal-2 radius-3">
             <div class="border-left-success jauge">
-                <form action="" class="wfull" id="">
-                    <span class="header">Envoyer ma liste</span>
-                    <div class="form-row">
-                        <label for="send">
-                            <input type="text" id="send"/>
-                        </label>
-                    </div>
-                    <div class="form-row">
-                        <a href="#" class="submit btn auto-min bg-success text-success">
-                            Envoyer
-                        </a>
-                    </div>
-                </form>
+
+                {{ form_start(send_form, {'attr': {
+                    'class': 'wfull',
+                    'id': ''
+                }}) }}
+                <span class="header">Envoyer ma liste</span>
+                <div class="form-row">
+                    <label for="send_email">
+                        {{ form_widget(send_form.email) }}
+                    </label>
+                </div>
+                <div class="form-row">
+                    <input type="submit" class="btn auto-min bg-success text-success"
+                           value="Modifier">
+                </div>
+                {{ form_end(url_form) }}
 
             </div>
         </article>
