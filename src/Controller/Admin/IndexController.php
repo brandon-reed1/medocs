@@ -61,8 +61,17 @@ class IndexController extends AbstractController
      */
     public function sendMyUrl(MailerInterface $mailer, Request $request): Response
     {
-//        dd($request->request);
         $user = $this->getUser();
+        $lines = $this->getDoctrine()->getManager()->getRepository('App:Line')
+            ->getAllUserLines($this->getUser()->getId());
+
+        $list = '<ul>';
+
+        foreach ($lines as $line) {
+            $list .= '<li>'. $line->getQty().' x '. $line->getProduct()->getName(). ' ' . $line->getDose() . '</li>';
+        }
+        $list .= '</ul>';
+
         $email = (new Email())
             ->from('hello@example.com')
             ->to($request->request->get('share_list')['email'])
@@ -71,8 +80,8 @@ class IndexController extends AbstractController
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
             ->subject($user->getEmail() . ' vous envoie sa liste de médicaments')
-            ->text('Voici la liste des médicaments que je dois prendre:')
-            ->html('<p>TO DO CREATE A LIST</p>');
+            ->text('Voici la liste des médicaments que je dois prendre:'.$list)
+            ->html('<h1>Voici la liste des médicaments que je dois prendre:</h1>'.$list);
 
         try {
             $mailer->send($email);
