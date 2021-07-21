@@ -11,6 +11,7 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 class IndexController extends AbstractController
 {
@@ -65,14 +66,14 @@ class IndexController extends AbstractController
         $lines = $this->getDoctrine()->getManager()->getRepository('App:Line')
             ->getAllUserLines($this->getUser()->getId());
 
-        $list = '<ul>';
+//        $list = '<ul>';
+//
+//        foreach ($lines as $line) {
+//            $list .= '<li>'. $line->getQty().' x '. $line->getProduct()->getName(). ' ' . $line->getDose() . '</li>';
+//        }
+//        $list .= '</ul>';
 
-        foreach ($lines as $line) {
-            $list .= '<li>'. $line->getQty().' x '. $line->getProduct()->getName(). ' ' . $line->getDose() . '</li>';
-        }
-        $list .= '</ul>';
-
-        $email = (new Email())
+        $email = (new TemplatedEmail())
             ->from('hello@example.com')
             ->to($request->request->get('share_list')['email'])
             //->cc('cc@example.com')
@@ -80,8 +81,11 @@ class IndexController extends AbstractController
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
             ->subject($user->getEmail() . ' vous envoie sa liste de médicaments')
-            ->text('Voici la liste des médicaments que je dois prendre:'.$list)
-            ->html('<h1>Voici la liste des médicaments que je dois prendre:</h1>'.$list);
+            ->htmlTemplate('emails/list/html-list.html.twig')
+            ->textTemplate('emails/list/text-list.html.twig')
+        ->context([
+            'lines'=> $lines
+        ]);
 
         try {
             $mailer->send($email);

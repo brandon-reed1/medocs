@@ -1,0 +1,14 @@
+<h1>{{ app.user.email }} a choisi de vous envoyer sa liste de médicaments.</h1>
+
+<ul>
+    {% for line in lines %}
+        <li>
+            {{ line.qty }} x {{ line.product.name }} ({{ line.dose}})
+
+        </li>
+
+    {% endfor %}
+
+</ul>
+
+<h5 style="margin-top: 5rem">Envoyé depuis mesmedocs.be {{ "now"|date('d.m.y') }}</h5>
