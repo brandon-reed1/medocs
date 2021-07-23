@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Form\ShareListType;
 use App\Form\UrlType;
+use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,6 +38,8 @@ class IndexController extends AbstractController
             'method' => 'POST'
         ]);
 
+
+
         return $this->render('admin/index.html.twig', [
             'list_size' => $list_size,
             'list' => $products,
@@ -65,13 +68,6 @@ class IndexController extends AbstractController
         $user = $this->getUser();
         $lines = $this->getDoctrine()->getManager()->getRepository('App:Line')
             ->getAllUserLines($this->getUser()->getId());
-
-//        $list = '<ul>';
-//
-//        foreach ($lines as $line) {
-//            $list .= '<li>'. $line->getQty().' x '. $line->getProduct()->getName(). ' ' . $line->getDose() . '</li>';
-//        }
-//        $list .= '</ul>';
 
         $email = (new TemplatedEmail())
             ->from('hello@example.com')
