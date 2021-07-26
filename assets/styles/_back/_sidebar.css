@@ -6,7 +6,7 @@
     max-height: 96vh;
     padding: .80rem;
     font-family: 'Roboto', sans-serif;
-    /*margin-left: -13rem;*/
+    margin-left: -13rem;
     transition: margin-left .8s  ease-in-out;
 }
 
