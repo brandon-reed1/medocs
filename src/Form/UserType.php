@@ -17,15 +17,15 @@ class UserType extends AbstractType
             ->add('email', EmailType::class)
 //            ->remove('password', PasswordType::class)
             ->add('oldPassword', PasswordType::class, [
-                'mapped' => false,
+//                'mapped' => false,
                 'required' => false
             ])
-            ->add('newPassword', PasswordType::class, [
-                'mapped' => false,
+            ->add('plainPassword', PasswordType::class, [
+//                'mapped' => false,
                 'required' => false
             ])
             ->add('repeatPassword', PasswordType::class, [
-                'mapped' => false,
+//                'mapped' => false,
                 'required' => false
             ])
         ;
@@ -34,7 +34,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => null,
         ]);
     }
 }

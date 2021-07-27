@@ -11,8 +11,9 @@
         <div class="card-body">
 {#            <article class="horizontal-item bg-white auto-height margin-horizontal-2 radius-3">#}
                 <div class="form-row">
+
                     {{ form_label(form.email) }}
-                    {{ form_widget(form.email) }}
+                    {{ form_widget(form.email, {'value': app.user.email}) }}
                 </div>
 {#            </article>#}
         </div>
@@ -27,8 +28,8 @@
                 {{ form_widget(form.oldPassword) }}
             </div>
             <div class="form-row">
-                {{ form_label(form.newPassword, 'Nouveau mot de passe') }}
-                {{ form_widget(form.newPassword) }}
+                {{ form_label(form.plainPassword, 'Nouveau mot de passe') }}
+                {{ form_widget(form.plainPassword) }}
             </div>
             <div class="form-row">
                 {{ form_label(form.repeatPassword, 'Répétez le mot de passe') }}
