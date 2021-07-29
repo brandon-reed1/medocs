@@ -1,22 +1,22 @@
 form,
 #login,
 #register {
-    max-width: 80%;
-    width: 80%;
+    max-width: 100%;
+    width: 100%;
     align-self: center;
     /*justify-content: center;*/
 }
 
-#login,
+#login h1,
 #register h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
     color: var(--primary-darker);
     margin-top: 1rem;
-    font-size: 2.2rem;
+    font-size: 1.5rem !important;
 }
 
-#login,
+#login p,
 #register p {
     color: var(--tertiary);
     font-size: .95rem;
@@ -28,7 +28,7 @@ form .form-row,
 #login .form-row,
 #register .form-row {
 
-    margin: 2rem 0;
+    margin: .75rem 0;
 }
 
 #login .form-row-horizontal,
@@ -62,7 +62,7 @@ form label,
 form input,
 #login form input,
 #register form input
-select{
+select {
     line-height: 3rem;
     /* border: solid 1px rgba(189, 189, 190, .6);*/
     border: solid 1px var(--primary-light) !important;
@@ -80,7 +80,7 @@ select{
 
 #login, form input[type=submit],
 #register form input[type=submit],
-.submit{
+.submit {
     font-size: 1.1rem;
     font-weight: bold;
     padding: .7rem;
@@ -115,10 +115,31 @@ select {
     border: solid 1px var(--primary-light);
 }
 
-select::-ms-expand{
+select::-ms-expand {
     display: none;
 }
 
+/*600px*/
+@media (min-width: 38rem) {
+    #login,
+    #register h1 {
+        font-size: 2.2rem;
+    }
+
+    form,
+    #login,
+    #register {
+        max-width: 80%;
+        width: 80%;
+    }
+
+    form .form-row,
+    #login .form-row,
+    #register .form-row {
+
+        margin: 2rem 0;
+    }
+}
 
 @media (min-width: 768px) {
     #login,

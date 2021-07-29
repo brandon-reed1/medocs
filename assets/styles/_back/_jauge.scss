@@ -1,3 +1,5 @@
+
+
 .jauge {
   flex-direction: row;
   align-items: flex-start;
@@ -69,7 +71,9 @@
 }
 
 @media (min-width: 1200px) {
-
+.jauge{
+  display: flex;
+}
   .jauge > div {
     text-align: left;
   }
