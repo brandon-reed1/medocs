@@ -127,24 +127,6 @@ table {
   padding: 1rem 0;
 }
 
-.margin-horizontal-1 {
-  margin: 0 .5rem;
-}
-
-.margin-horizontal-2 {
-  margin: 0 1rem;
-}
-
-.margin-horizontal-1:first-child,
-.margin-horizontal-2:first-child {
-  margin-left: 0;
-}
-
-.margin-horizontal-1:last-child,
-.margin-horizontal-2:last-child {
-  margin-right: 0;
-}
-
 .inline {
   display: inline;
 }
@@ -312,6 +294,24 @@ table {
     max-width: 80%;
   }
 
+
+  .margin-horizontal-1 {
+    margin: 0 .5rem;
+  }
+
+  .margin-horizontal-2 {
+    margin: 0 1rem;
+  }
+
+  .margin-horizontal-1:first-child,
+  .margin-horizontal-2:first-child {
+    margin-left: 0;
+  }
+
+  .margin-horizontal-1:last-child,
+  .margin-horizontal-2:last-child {
+    margin-right: 0;
+  }
 }
 
 @media (min-width: 768px) {

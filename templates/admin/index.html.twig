@@ -3,18 +3,21 @@
 {% block title %}Index{% endblock %}
 
 {% block header_h1 %} {{ app.user.email }}{% endblock %}
+{% block header_h1_icon %}
+    ( {{ list_size }} )
+{% endblock %}
 {% block body %}
     <section class="horizontal-group" style="line-height: 1rem;">
-        <article class="horizontal-item bg-white auto-height margin-horizontal-2 radius-3">
-            <div class="border-left-primary jauge flow-column">
-                <div class="header">
-                    Taille de ma liste
-                </div>
-                <div class="big">
-                    {{ list_size }}
-                </div>
-            </div>
-        </article>
+{#        <article class="horizontal-item bg-white auto-height margin-horizontal-2 radius-3">#}
+{#            <div class="border-left-primary jauge flow-column">#}
+{#                <div class="header">#}
+{#                    Taille de ma liste#}
+{#                </div>#}
+{#                <div class="big">#}
+{#                    {{ list_size }}#}
+{#                </div>#}
+{#            </div>#}
+{#        </article>#}
         <article class="horizontal-item bg-white auto-height margin-horizontal-2 radius-3">
             <div class="border-left-info jauge flow-column">
                 {# <div> #}
