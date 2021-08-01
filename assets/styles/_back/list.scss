@@ -22,11 +22,18 @@
   margin-bottom: 1rem;
 }
 
+.vertical-list .list-item .actions{
+  display: flex;
+  flex-direction: row;
+  max-width: max-content;
+}
+
 .vertical-list .list-item {
   padding: 0 .8rem;
   align-items: center;
   border-radius: 5px;
-  margin-bottom: 0;;
+  margin-bottom: 0;
+  justify-content: space-between;
 }
 
 
