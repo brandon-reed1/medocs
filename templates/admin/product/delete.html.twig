@@ -1,27 +1,10 @@
-{% extends 'base_back.html.twig' %}
+{% set object='product' %}
+{% extends 'admin/skeleton/delete.html.twig' %}
+{% block title %}Suppression d'un médicament {% endblock %}
 
-{% block title %}Suppressions d'un produit {% endblock %}
+{% block header_h1 %} Médicaments{% endblock %}
 
-{% block header_h1 %} Médicament {% endblock %}
+{% block card_title %} Supprimer{% endblock %}
 
-{% block body %}
-    <section class="card wfull">
-        <div class="card-header">
-            <h3 class="title">Demande de confirmation</h3>
-        </div>
-        <div class="form-body">
-            {{ form_start(form) }}
-            <h3>{{ form.vars.data.message }}</h3>
-
-            <div class="horizontal-group">
-                <div class="horizontal-item">
-                    {{ form_row(form.yes, {'attr': {'class': 'btn  bg-success btn-6'}}) }}
-                </div>
-                <div class="horizontal-item">
-                    {{ form_row(form.no, {'attr': {'class': 'btn  bg-danger btn-6'} }) }}
-                </div>
-            </div>
-            {{ form_end(form) }}
-        </div>
-    </section>
-{% endblock %}
+{#{% block submit %} <input type="submit" class="btn auto-min bg-primary text-white"#}
+{#                          value="Modifier">{% endblock %}#}

@@ -1,5 +1,4 @@
 {% extends 'base_back.html.twig' %}
-
 {% block title %}Suppressions {% endblock %}
 
 {% block header_h1 %} Objet {% endblock %}
@@ -20,14 +19,14 @@
             {{ form_start(form) }}
             <h3>{{ form.vars.data.message }}</h3>
 
-            <div class="horizontal-group">
+            <div class="horizontal-group flow-row">
                 <div class="horizontal-item">
                     {{ form_row(form.yes, {'attr': {'class': 'btn  bg-success btn-6'},
-                    'label': 'OUI supprimer'}) }}
+                    'label': 'OUI  supprimer'}) }}
                 </div>
                 <div class="horizontal-item">
                     {{ form_row(form.no, {'attr': {'class': 'btn  bg-danger btn-6'},
-                        'label': 'NON le garder' }) }}
+                        'label': 'NON  le garder' }) |nl2br}}
                 </div>
             </div>
             {{ form_end(form) }}
