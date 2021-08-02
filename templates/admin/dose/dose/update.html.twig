@@ -1,18 +1,7 @@
-{% extends 'base_back.html.twig' %}
-
-{% block title %}Dose update{% endblock %}
-{% block header_h1 %}
-    Dosage / Posologie
-{% endblock %}
-    {% block header_h1_icon %}
-      <span class="material-icons-outlined">
-        exposure
-    </span>
-{% endblock %}
-
+{% extends 'admin/dose/dose/new.html.twig' %}
 {% block card_title %} Modifier {% endblock %}
-{% block body %}
-
-    {{ form(form) }}
-
-{% endblock %}
+ {% block submit %}
+     <input type="submit"
+            class="btn auto-min bg-primary text-white"
+            value="Modifier" />
+ {% endblock %}

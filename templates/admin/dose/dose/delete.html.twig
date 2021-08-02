@@ -1,11 +1,2 @@
-{% extends 'base_back.html.twig' %}
-
-{% block title %}Dose Delete{% endblock %}
-
-{% block body %}
-
-   <h3>{{ default_data.message }}</h3>
-   {{ form(form) }}
-
-
-{% endblock %}
+{% extends 'admin/skeleton/delete.html.twig' %}
+{%  set object = 'dose' %}

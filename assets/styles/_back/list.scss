@@ -102,6 +102,14 @@
  margin: 5px 0;
 }
 
+.horizontal-item div:first-child{
+  justify-content: center;
+  /* justify-items: center; */
+  display: flex;
+  /* align-items: center; */
+  flex-direction: row;
+}
+
 
 .horizontal-item input {
   max-height: 3rem;

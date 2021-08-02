@@ -131,8 +131,8 @@ class DoseController extends AbstractController
 
         $defaultData = ['message' => 'Voulez vous effacer ' . $dose . ' ?'];
         $form = $this->createFormBuilder($defaultData)
-            ->add('oui', SubmitType::class)
-            ->add('non', SubmitType::class)
+            ->add('yes', SubmitType::class)
+            ->add('no', SubmitType::class)
             ->setMethod('DELETE')
             ->getForm();
 //dd($form);
