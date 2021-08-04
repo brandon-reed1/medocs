@@ -1,0 +1,135 @@
+$primary-lighter: #F0E8FF;
+$primary-light: #B0AEC9;
+$primary: #5A46AA;
+$primary-darker: #58548E;
+$white: #FFFFFF;
+$tertiary: #EDEFF6;
+$tertiary-darker: #626264;
+$tertiary-light: #f5f7fa;
+$quaternary: #FB6D3A;
+$notice: #FB6D3A;
+$notice-light: #FBE6E8;
+$danger: #EC2122;
+$danger-light: #FBE6E8;
+$success: #0CB82C;
+$success-light: #D4F8F7;
+$info: #51A3FF;
+$info-light: #e6f2ff;
+$violet: #5A45AA;
+
+.bg-primary {
+  background-color: $primary !important;
+  color: $white;
+}
+
+.bg-primary-lighter {
+  background-color: $primary-lighter !important;
+  color: $primary;
+}
+
+.bg-white {
+  background-color: $white !important;
+  color: $primary;
+}
+
+.bg-quaternary {
+  background-color: $quaternary !important;
+  color: $white;
+}
+
+
+
+.bg-success-dark, .bg-success {
+  background-color: $success !important;
+  color: $white;
+}
+
+
+.bg-notice-dark {
+  background-color: $notice !important;
+  color: $white;
+}
+
+.bg-notice {
+  background-color: $notice-light !important;
+  color: $notice;
+}
+
+.bg-danger {
+  background-color: $danger !important;
+  color: $white;
+}
+
+.bg-danger-darker {
+  background-color: $danger;
+  color: $white;
+}
+
+.bg-info {
+  background-color: $info-light;
+  color: $info;
+}
+
+.text-white {
+  color: $white;
+}
+
+.text-primary {
+  color: $primary;
+}
+
+.text-primary-light {
+  color: $primary-light;
+}
+
+.text-tertiary {
+  color: $tertiary;
+}
+
+.text-primary-darker {
+  color: $primary-darker;
+}
+
+.text-tertiary-darker {
+  color: $tertiary-darker;
+}
+
+.text-quaternary {
+  color: $quaternary;
+}
+
+.text-success {
+  color: $success;
+}
+
+.text-notice {
+  color: $notice;
+}
+
+.text-danger {
+  color: $danger;
+}
+
+.text-info {
+  color: $info;
+}
+
+.border-primary {
+  border: solid 1px $primary;
+}
+
+.border-left-primary {
+  border-left: solid 2px $primary;
+}
+
+.border-left-info {
+  border-left: solid 2px $info;
+}
+
+.border-left-danger {
+  border-left: solid 2px $danger;
+}
+
+.border-left-success {
+  border-left: solid 2px $success;
+}

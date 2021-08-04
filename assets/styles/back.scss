@@ -1,42 +1,19 @@
-/*@import "_back/header";
-@import "_back/footer";
-@import "_back/log_in";
-@import "_back/forms";
-@import "_back/flash";
-*/
-/*body, #container{
-  display: flex;
-  flex-direction: column;
 
-  padding: 0;
-  margin: 0;
-  min-height: 100vh;
-}*/
+@import "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap";
+@import "https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css";
 
-/*
-#container {
-  width: 100%;
-  min-width: 100%;
-  justify-content: space-between;
-  align-content: center;
-
-} */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap');
-@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
-@import url(_back/_reset.scss);
-@import url(_back/_colors.scss);
-@import url(_back/colors.css);
-@import url(_back/_flash.scss);
-@import "_back/header";
-@import url(_back/card.scss);
-@import url(_back/list.scss);
-@import url(_back/buttons.scss);
-@import url(_back/register-forms.css);
-@import url(_back/_sidebar.css);
-@import url(_back/leftbar.css);
-@import url(_back/content.css);
-@import url(_back/_jauge.scss);
+@import "_back/_reset.scss";
+@import "_back/_colors.scss";
+@import "_back/_flash.scss";
+@import "_back/_card.scss";
+@import "_back/_list.scss";
+@import "_back/_buttons.scss";
+@import "_back/_register-forms.scss";
+@import "_back/_sidebar.scss";
+@import "_back/_leftbar.scss";
+@import "_back/_content.scss";
+@import "_back/_jauge.scss";
 
 
 body {

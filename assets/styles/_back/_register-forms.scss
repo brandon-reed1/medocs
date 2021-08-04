@@ -11,14 +11,14 @@ form,
 #register h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
-    color: var(--primary-darker);
+    color: $primary-darker;
     margin-top: 1rem;
     font-size: 1.5rem !important;
 }
 
 #login p,
 #register p {
-    color: var(--tertiary);
+    color: $tertiary;
     font-size: .95rem;
     line-height: 1.45rem;
     /* color: #ECEFF6; */
@@ -48,8 +48,8 @@ form .form-row,
 form label,
 #login form label,
 #register form label {
-    background-color: var(--white);
-    color: var(--primary);
+    background-color: $white;
+    color: $primary;
     font-size: .9rem;
     margin-bottom: -20px;
     z-index: 1;
@@ -64,8 +64,8 @@ form input,
 #register form input
 select {
     line-height: 3rem;
-    /* border: solid 1px rgba(189, 189, 190, .6);*/
-    border: solid 1px var(--primary-light) !important;
+    /* border: solid 1px rgba(189, 189, 190, .6;*/
+    border: solid 1px $primary-light;
     border-radius: 0.25em;
     font-size: 1.05rem;
     padding-top: 5px;
@@ -74,7 +74,7 @@ select {
 
 #login form input:active,
 #register form input:active {
-    border: solid 1px var(--tertiary);
+    border: solid 1px $tertiary;
 }
 
 
@@ -108,11 +108,11 @@ select {
     border-radius: 0.25em;
     font-size: 1.05rem;
     cursor: pointer;
-    color: var(--primary);
+    color: $primary;
     line-height: 1.1;
-    background-color: var(--primary-lighter);
-    background-image: linear-gradient(to top, var(--primary-lighter), #fff 33%);
-    border: solid 1px var(--primary-light);
+    background-color: $primary-lighter;
+    background-image: linear-gradient(to top, $primary-lighter), #fff 33%;
+    border: solid 1px $primary-light;
 }
 
 select::-ms-expand {

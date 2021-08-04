@@ -8,22 +8,22 @@
 }
 
 .alert.alert-success{
-  background-color: var(--success-light);
-  color: var(--success);
-  border-color: var(--success);
+  background-color: $success-light;
+  color: $success;
+  border-color: $success;
 }
 .alert .alert-success{
-  background-color: var(--success);
+  background-color: $success;
 }
 
 .alert.alert-notice{
-  background-color: var(--notice-light);
-  color: var(--notice);
-  border-color: var(--notice);
+  background-color: $notice-light;
+  color: $notice;
+  border-color: $notice;
 }
 
 .alert.alert-danger,.alert.alert-error{
-  background-color: var(--danger-light);
-  color: var(--danger-darker);
-  border-color: var(--danger-darker);
+  background-color: $danger-light;
+  color: $danger;
+  border-color: $danger;
 }

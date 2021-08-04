@@ -30,7 +30,7 @@
 #sidebar a:visited,
 #sidebar a.btn.btn-basic:link,
 #sidebar a.btn.btn-basic:visited {
-    color: var(--primary-darker);
+    color: $primary-darker;
     text-decoration: none;
 
 }
@@ -65,7 +65,7 @@
 #sidebar ul.menu-vertical li.number:after,
 #sidebar ul.menu-vertical li .number:after {
     content: "2";
-    background-color: var(--white);
+    background-color: $white;
     display: block;
     border-radius: 50%;
     text-align: center;
@@ -76,7 +76,7 @@
     float: right;
     margin: 0 6px 0 0;
     font-size: .55rem;
-    color: var(--primary);
+    color: $primary;
     font-weight: bold;
     line-height: .9rem;
 }
@@ -113,11 +113,11 @@
 }
 
 #sidebar ul.menu-vertical li.active {
-    background-color: var(--primary-lighter);
+    background-color: $primary-lighter;
 }
 
 #sidebar ul.menu-vertical li.active a {
-    color: var(--primary-darker) !important;
+    color: $primary-darker;
 }
 
 #sidebar ul.menu-vertical li i {

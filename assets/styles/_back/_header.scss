@@ -12,14 +12,14 @@ header {
 
 header h1 {
   font-weight: 900;
-  color: var(--primary-darker);
+  color: $primary-darker;
   margin-bottom: 0;
   font-size: 1.9rem;
 }
 
 header h2 {
   margin-top: 0;
-  color: var(--primary-light);
+  color: $primary-light;
   font-weight: 700;
   font-size: 1.3rem;
 }
@@ -61,12 +61,12 @@ header input[type=search] {
   font-size: 1.2rem;
   height: 3rem;
   padding: .5rem;
-  background-color: var(--tertiary-light);
+  background-color: $tertiary-light;
   background-image: none;
   background-size: 1.2rem;
   background-repeat: no-repeat;
   background-position: 10px center;
-  color: var(--primary-light);
+  color: $primary-light;
   border: 0;
   border-radius: 5px;
   box-shadow: none;
@@ -95,8 +95,8 @@ header input[type=search] {
 
 #messages input[type=search]:hover,
 header input[type=search]:hover {
-  -webkit-box-shadow: 0px 0px 7px 0px var(--primary-darker);
-  box-shadow: 0px 0px 7px 0px var(--primary-darker);
+  -webkit-box-shadow: 0px 0px 7px 0px $primary-darker;
+  box-shadow: 0px 0px 7px 0px $primary-darker;
 }
 
 @media (min-width: 1200px) {

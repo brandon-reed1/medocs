@@ -61,7 +61,7 @@
 
 .vertical-list .list-item i,
 .notification-list .list-item i {
-  background-color: var(--tertiary-light);
+  background-color: $tertiary-light;
   font-size: 1rem;
   padding: 1rem;
 }
@@ -76,37 +76,28 @@
 .vertical-list .list-item h2,
 .notification-list .list-item h2 {
   font-size: 0.745rem;
-  color: var(--primary-darker);
+  color: $primary-darker;
   font-weight: 700;
 }
 
 .vertical-list .list-item h3,
 .notification-list .list-item h3 {
   font-size: .688rem;
-  color: var(--primary-light);
+  color: $primary-light;
   font-weight: 900;
 }
 
 .vertical-list .list-item.alternate:nth-child(even) {
-  background-color: var(--tertiary-light);
+  background-color: $tertiary-light;
 }
-/*
-.horizontal-group {
-  width: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 0;
-}
-*/
+
 .horizontal-item {
  margin: 5px 0;
 }
 
 .horizontal-item div:first-child{
   justify-content: center;
-  /* justify-items: center; */
   display: flex;
-  /* align-items: center; */
   flex-direction: row;
 }
 
@@ -148,13 +139,13 @@
 }
 
 .horizontal-labels .label {
-  background-color: var(--tertiary-light);
+  background-color: $tertiary-light;
   font-size: .75rem;
   max-width: max-content;
   padding: 5px;
   margin: 1px 5px;
   border-radius: 3px;
-  color: var(--tertiary-darker);
+  color: $tertiary-darker;
   font-weight: bold;
   justify-content: center;
   align-items: center;
@@ -171,8 +162,6 @@
 
 }
 
-
-/* schedule page navigation list items */
 .menu-top,
 .menu-page {
   flex-direction: row;
@@ -200,13 +189,13 @@
 }
 
 .menu-page .menu-page-item.active {
-  background-color: var(--white);
-  color: var(--tertiary-darker);
+  background-color: $white;
+  color: $tertiary-darker;
 }
 
 .menu-page .menu-page-item.active-alt {
-  background-color: var(--danger-darker);
-  color: var(--white);
+  background-color: $danger;
+  color: $white;
 }
 
 .menu-page .menu-page-item,
@@ -219,13 +208,13 @@
 .menu-top .menu-top-item a:hover,
 .menu-top .menu-top-item a:visited,
 .menu-top .menu-top-item a:active {
-  /* color: var(--primary-darker);*/
-  color: var(--primary-light);
+  /* color: $primary-darker;*/
+  color: $primary-light;
 }
 
 
 #messages .menu-top .menu-top-item a:active {
-  color: var(--primary-darker) !important;
+  color: $primary-darker;
 }
 
 .menu-page .menu-page-item.active,
@@ -233,7 +222,7 @@
 .menu-page .menu-page-item.active a:hover,
 .menu-page .menu-page-item.active a:visited,
 .menu-page .menu-page-item.active a:active {
-  color: var(--tertiary-darker);
+  color: $tertiary-darker;
 }
 
 .menu-page .menu-page-item.active-alt,
@@ -241,14 +230,14 @@
 .menu-page .menu-page-item.active-alt a:hover,
 .menu-page .menu-page-item.active-alt a:visited,
 .menu-page .menu-page-item.active-alt a:active {
-  color: var(--white);
+  color: $white;
 }
 
 
 .menu-top .menu-top-item.active:before {
   position: absolute;
   content: " ";
-  border-bottom: solid 2px var(--notice);
+  border-bottom: solid 2px $notice;
   width: 2rem;
   height: 2rem;
   top: 1rem;
@@ -260,7 +249,7 @@
 .menu-top .menu-top-item.active a:hover,
 .menu-top .menu-top-item.active a:visited,
 .menu-top .menu-top-item.active a:active {
-  color: var(--primary-darker);
+  color: $primary-darker;
   font-size: 1.1rem;
 }
 
@@ -299,7 +288,7 @@
 
 @media (min-width: 1200px) {
   .notification-list .list-item i {
-    background-color: var(--tertiary-light);
+    background-color: $tertiary-light;
     font-size: 2rem;
     padding: 1rem;
   }
@@ -321,7 +310,7 @@
   #messages .menu-top .menu-top-item.active a:hover,
   #messages .menu-top .menu-top-item.active a:visited,
   #messages .menu-top .menu-top-item.active a:active {
-    color: var(--primary-darker);
+    color: $primary-darker;
     font-size: 1.1rem;
   }
 
