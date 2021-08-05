@@ -25,12 +25,12 @@
             <span class="title text-primary">
                 <span class="text-notice">
                     <i class="fi-rr-medicine"></i>
-                </span>Ma liste de médicaments
+                </span>Mes Médocs
             </span>
         </div>
         <ul class="menu-vertical">
             <li class="
-            {% if app.request.attributes.get('_route') == 'admin_index'  %}active{% endif %}">
+            {% if app.request.attributes.get('_route') == 'admin_index' %}active{% endif %}">
                 <a href="{{ path('admin_index') }}">
                     <i class="material-icons-round">home</i> Accueil
                 </a>
@@ -55,16 +55,16 @@
                     <i class="material-icons-round">water_drop</i> Dosage
                 </a>
             </li>
-            {#  <li class=" {% if (app.request.attributes.get('_route') == 'admin_product_index')
+            {# <li class=" {% if (app.request.attributes.get('_route') == 'admin_product_index')
             or (app.request.attributes.get('_route') == 'admin_product_update') %}active{% endif %}">
                 <a href="{{ path('admin_product_index') }}">
                     <i class="material-icons-round">inventory_2</i> Produits
                 </a>
             </li> #}
         </ul>
-
-        <img src="{{ asset('images/Wavy_Med-logo_bg.png') }}"/>
-
+        <div class="profile-image">
+            <img src="{{ asset('images/Wavy_Med-logo_bg.png') }}"/>
+        </div>
         <footer>
             <span>Dashboard / Admin interface</span>
             <span>  <i class="fi-rr-copyright"></i> 2021 <a href="https://jphnovitz.be/"> Jiffy.Codes</a></span>
@@ -77,27 +77,24 @@
 
             <a href="#" id="menu"> <i class="fi-rr-menu-burger"></i> </a>
             <span class="title text-primary">
-                <span class="text-quaternary"> &amp; </span>Mes Médocs</span>
+                <span class="text-quaternary"> <i class="fi-rr-medicine"></i> </span>Mes Médocs</span>
         </div>
         <header>
-            <div>
-                <h1>
-                    {% block header_h1 %}
-                        Hello You
-                    {% endblock %}
-                    {% block header_h1_icon %}
-                        <i class="open-hand"></i>
-                    {% endblock %}
-                </h1>
-                <h2>
-                    {% block header_h2 %}
-                        Ma liste de médicaments
-                    {% endblock %}
-                </h2>
-            </div>
-
-{#            <input type="search" id="site-search" name="q"#}
-{#                   aria-label="Search through site content" placeholder=" ">#}
+            <h1>
+                {% block header_h1 %}
+                    Hello You
+                {% endblock %}
+                {% block header_h1_icon %}
+                    <i class="open-hand"></i>
+                {% endblock %}
+            </h1>
+            <h2>
+                {% block header_h2 %}
+                    Ma liste de médicaments
+                {% endblock %}
+            </h2>
+            {# <input type="search" id="site-search" name="q" #}
+            {# aria-label="Search through site content" placeholder=" "> #}
         </header>
 
         {% for message in app.flashes('notice') %}

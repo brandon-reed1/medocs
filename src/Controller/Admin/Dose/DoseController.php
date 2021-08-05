@@ -139,7 +139,7 @@ class DoseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->get('oui')->isClicked()):
+            if ($form->get('yes')->isClicked()):
                 try {
                     $this->em->remove($dose);
                     $this->em->flush();

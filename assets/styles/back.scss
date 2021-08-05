@@ -6,6 +6,7 @@
 @import "_back/_reset.scss";
 @import "_back/_colors.scss";
 @import "_back/_flash.scss";
+@import "_back/_header.scss";
 @import "_back/_card.scss";
 @import "_back/_list.scss";
 @import "_back/_buttons.scss";
@@ -149,7 +150,7 @@ table {
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  flex-direction: revert;
+  flex-direction: row;
   flex: 0;
   margin-top: 1rem;
   margin-bottom: 5rem;
