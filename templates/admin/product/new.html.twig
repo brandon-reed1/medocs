@@ -19,16 +19,16 @@
         <div class="card-body">
             {{ form_start(form) }}
             <div class="form-row">
-                {{ form_label(form.name) }}
+                {{ form_label(form.name, 'nom') }}
                 {{ form_widget(form.name) }}
             </div>
             <div class="form-row">
-                {{ form_label(form.comment) }}
+                {{ form_label(form.comment, 'commentaire') }}
                 {{ form_widget(form.comment) }}
             </div>
             <div class="form-row">
                 {% block submit %} <input type="submit" class="btn auto-min bg-primary text-white"
-                                          value="ajouter">{% endblock %}
+                                          value="Ajouter">{% endblock %}
             </div>
             {{ form_end(form) }}
         </div>
