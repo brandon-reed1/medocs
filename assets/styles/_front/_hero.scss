@@ -15,6 +15,7 @@
   text-align: center;
 }
 .hero h1{
+  color: $notice;
   font-size: 1.35rem;
   font-weight: 900;
 }
@@ -40,10 +41,54 @@
 
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (min-width: 640px) {
   .hero{
-    padding-bottom: 80vw;
-    background-position-y: 100%;
-    background-size: 80vw;
+    padding-bottom: 1.5rem;
+    background-position-y: 3.5rem;
+    background-position-x: right;
+    background-size: 35vw;
+  }
+
+  .hero #pitch{
+    padding-right: 35vw;
+    padding-bottom: 1.5rem;
+  }
+}
+
+
+@media screen and (min-width: 780px) {
+  .hero {
+    background-position-y: 3.5rem;
+  }
+
+  .hero #pitch{
+    padding-bottom: 5rem;
+  }
+}
+
+@media screen and (min-width: 980px) {
+  .hero{
+    padding-right: 35vw;
+    background-position-y: center;
+  }
+
+  .hero #pitch{
+    padding-right: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+
+@media screen and (min-width: 1200px) {
+
+
+  .hero h1,
+  h1{
+    font-size: 1.95rem
+  }
+
+  .hero h2,
+  h2{
+    font-size: 1.438rem;
   }
 }
