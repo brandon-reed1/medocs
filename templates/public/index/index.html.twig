@@ -1,4 +1,45 @@
 {% extends 'public/base.html.twig' %}
+{% block header %} {% endblock %}
 {% block body %}
-index
+    <div id="container" role="main">
+        <section class="hero">
+            <h1>Mes Médocs:<br/> Ma liste de médicaments</h1>
+            <article>
+                <h2>
+                    Les malades chroniques et les personnes agées prennent souvent beaucoup de médicaments. <br/><br/>
+                    Pas facile de tout retenir et de le communiquer à la famille, à de nouveaux soignants ouune personne
+                    de
+                    notre choix.<br/><br/>
+                    Mes Médocs fait ça !
+                </h2>
+            </article>
+            <div class="cta">
+                <a href="#" class="btn bg-notice-dark text-white">Je m'inscris</a>
+                <a href="#" class="btn btn-basic text-primary border-primary">Plus d'infos</a>
+            </div>
+        </section>
+        <section>
+            <h3>Comment fonctionne Mes Médocs ?</h3>
+            <p>
+                Simple. <br/>
+                Tu t'enregistre en fournissant simplement ton adresse email et un mot de passe, tu encode ensuite
+                les différents médicaments que tu prends et tu indique la quantité et la fréquence.
+
+                <br/>Après tu as la possibilité de :
+            </p>
+            <ul>
+                <li>Envoyer ta liste par emal à la personne de ton choix. Il suffira d'indiquer l'adresse email
+                    et de cliquer sur 'envoyer'.
+                </li>
+                <li>De créer une 'url publique'. Une url qui montre votre liste de médicaments, qui ne contient pas
+                    votre nom
+                    et acceptissible à tout le monde.
+                </li>
+            </ul>
+
+            <a href="#" class="btn btn-basic text-primary-darker border-primary  ">
+                <i class="fa fa-github"></i> Github </a>
+
+        </section>
+    </div>
 {% endblock %}

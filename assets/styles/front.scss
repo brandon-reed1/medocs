@@ -1,3 +1,13 @@
+@import "_back/reset";
+@import "_back/colors";
+@import "_back/buttons";
+@import "_front/hero";
+
+
+#container{
+  padding: 1.5rem;
+}
+/*
 @import "_front/header";
 @import "_front/footer";
 @import "_front/forms";
@@ -19,4 +29,4 @@ body, #container{
   justify-content: space-between;
   align-content: center;
 
-}
+}*/

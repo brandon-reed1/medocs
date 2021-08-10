@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}Liste de médicaments !{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+       <title>{% block title %}Liste de médicaments !{% endblock %}</title>
 
     {% block stylesheets %}
         {# parent() #}
@@ -19,7 +20,11 @@
 <div id="container">
     {% block header %}
         <header>
-            <h1>Liste de Médicaments</h1>
+            <h1>
+            {% block header_h1 %}
+                Liste de Médicaments
+            {% endblock %}
+            </h1>
         </header>
     {% endblock %}
 
