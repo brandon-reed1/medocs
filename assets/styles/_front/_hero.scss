@@ -1,4 +1,4 @@
-.hero{
+.hero {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,45 +11,55 @@
 }
 
 .hero h1,
-.hero h2{
+.hero h2 {
   text-align: center;
 }
-.hero h1{
+
+.hero h1 {
   color: $notice;
   font-size: 1.35rem;
   font-weight: 900;
 }
-.hero h2{
+
+.hero h2 {
   font-size: 1.1rem;
 }
-.hero .cta{
+
+.hero .cta {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 
-.btn{
+.btn {
   display: inline-block;
   padding: .75rem;
   width: fit-content;
   margin: .75rem auto;
 }
-.hero .cta .btn{
+
+.hero .cta .btn {
   font-size: 1.1rem;
   font-weight: bold;
 
 }
 
+footer{
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+}
+
 @media screen and (min-width: 640px) {
-  .hero{
+  .hero {
     padding-bottom: 1.5rem;
     background-position-y: 3.5rem;
     background-position-x: right;
     background-size: 35vw;
   }
 
-  .hero #pitch{
+  .hero #pitch {
     padding-right: 35vw;
     padding-bottom: 1.5rem;
   }
@@ -61,18 +71,18 @@
     background-position-y: 3.5rem;
   }
 
-  .hero #pitch{
+  .hero #pitch {
     padding-bottom: 5rem;
   }
 }
 
 @media screen and (min-width: 980px) {
-  .hero{
+  .hero {
     padding-right: 35vw;
     background-position-y: center;
   }
 
-  .hero #pitch{
+  .hero #pitch {
     padding-right: 1.5rem;
     padding-bottom: 1.5rem;
   }
@@ -81,14 +91,38 @@
 
 @media screen and (min-width: 1200px) {
 
+  .hero{
+    text-align: left;
+  }
+  .hero .cta .btn {
+    font-size: 1.95rem;
+    font-weight: bolder;
+  }
 
   .hero h1,
-  h1{
-    font-size: 1.95rem
+  h1 {
+    font-size: 1.85rem
   }
 
   .hero h2,
-  h2{
+  h2 {
     font-size: 1.438rem;
+  }
+
+  .index{
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .index ul li:before {
+    text-align: left;
+    content: '\f0a4';
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    left: .5rem;
+  }
+  .index ul li {
+    padding: .75rem 1.5rem  ;
+    list-style-type: none;
   }
 }
