@@ -57,6 +57,16 @@ class LineRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    public function findByUrl($url){
+        return $this->createQueryBuilder('l')
+            ->leftJoin('l.user', 'u')
+            ->select('l')
+            ->andWhere('u.url like :url')
+            ->setParameter('url', $url)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Line[] Returns an array of Line objects
     //  */

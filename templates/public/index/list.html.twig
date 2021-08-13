@@ -1,0 +1,44 @@
+{% extends 'public/base.html.twig' %}
+ {% block header_h1 %} Ma liste de médicaments {% endblock %}
+{% block body %}
+    <section class="card bg-white wfull">
+        <div class="card-header">
+            <h2 class="title">
+                Les médicament que je prends chaque jour
+            </h2>
+        </div>
+        <div class="card-body wrappable">
+            <table>
+                <thead>
+                <tr class="header">
+                    <th>Médicament</th>
+                    <th>Combien</th>
+                    <th>Combien de fois</th>
+                    <th>Quand</th>
+                    {# <th></th> #}
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in list %}
+                    <tr>
+                        <td class="product">
+                            {{ item.product.name }}
+                        </td>
+                        <td class="qty">{{ item.qty }}</td>
+                        <td class="freq">{{ item.dose.frequency.name }}</td>
+                        <td class="moment">{{ item.dose.moment.name }}</td>
+                        {# <td>
+                                <a href="{{ path('admin_line_update', {'id': item.id}) }}" class="text-info"> <i
+                                            class="material-icons-outlined">edit</i> </a>
+                                <a href="{{ path('admin_line_delete', {'id': item.id}) }}" class="text-danger"> <i
+                                            class="material-icons-outlined">delete</i> </a>
+                            </td> #}
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+{% endblock %}
