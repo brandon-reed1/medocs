@@ -1,0 +1,19 @@
+{
+  "build/back.css": "/build/back.css",
+  "build/back.js": "/build/back.js",
+  "build/front.css": "/build/front.css",
+  "build/front.js": "/build/front.js",
+  "build/runtime.js": "/build/runtime.js",
+  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ob-7db861.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ob-7db861.js",
+  "build/images/2341-ai(2).png": "/build/images/2341-ai(2).65763925.png",
+  "build/images/2341-ai(1).png": "/build/images/2341-ai(1).36f0ce12.png",
+  "build/images/Wavy_Med-logo_bg.png": "/build/images/Wavy_Med-logo_bg.47907079.png",
+  "build/images/google-logo.png": "/build/images/google-logo.39c52b1b.png",
+  "build/images/logo-facebook.webp": "/build/images/logo-facebook.5ee07324.webp",
+  "build/images/open-hand.svg": "/build/images/open-hand.26bb5e05.svg",
+  "build/images/visibility.svg": "/build/images/visibility.9e33846f.svg",
+  "build/images/heart-regular.svg": "/build/images/heart-regular.f358882f.svg",
+  "build/images/search-solid.svg": "/build/images/search-solid.046b3f4d.svg",
+  "build/images/ellipsis-v-solid.svg": "/build/images/ellipsis-v-solid.d529b620.svg",
+  "build/images/angle-right-solid.svg": "/build/images/angle-right-solid.92db5ac9.svg"
+}
