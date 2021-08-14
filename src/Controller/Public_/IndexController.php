@@ -23,7 +23,7 @@ class IndexController extends AbstractController
     }
 
     /**
-     * @Route("/g/{url}", name="public_index")
+     * @Route("/g/{url}", name="public_page")
      */
     public function publicUrl(User $user): Response
     {
