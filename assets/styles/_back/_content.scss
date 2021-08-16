@@ -13,11 +13,18 @@
 
 #content #content-logo {
     flex: 0;
+    flex-direction: row;
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 1rem;
     color: $primary;
     transition: margin-top .75s ease-in-out;
+}
+
+#content #content-logo a:first-child {
+    margin-right: 1.75rem;
+    display: flex;
+    align-self: center;
 }
 
 .chart-legend {
