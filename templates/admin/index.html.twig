@@ -29,7 +29,7 @@
                 <span class="header">Mon url urgence</span>
                 <div class="form-row">
                     <label for="url_url">
-                        {{ app.request.schemeAndHttpHost ~ app.request.baseUrl }}/
+                        {{ app.request.schemeAndHttpHost ~ app.request.baseUrl }}/g/
                         {{ form_widget(url_form.url, {
                             'value': app.user.url
                         }) }}
