@@ -1,7 +1,7 @@
 .btn{
     border: solid 2px #ECEFF6;
     padding: 8px;
-    font-size: .8rem;
+    font-size: .8rem !important;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -40,6 +40,7 @@ a.btn.btn-basic:link,
 a.btn.btn-basic:visited{
     color: $primary;
     text-decoration: none;
+    font-size: 1.1rem;
 
 }
 a.btn.btn-basic:hover{

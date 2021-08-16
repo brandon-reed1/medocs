@@ -1,7 +1,7 @@
 {% extends 'base_security.html.twig' %}
 
 {% block login_button %}
-    {% if app.user %}Sign in
+    {% if app.user %}
         {{ app.user.username }},
         <a href="{{ path('app_logout') }}" class="btn btn-basic">
             Déconexion
