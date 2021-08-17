@@ -18,20 +18,20 @@
 
 
 body {
-  background-color: var(--tertiary-light);
-  color: var(--tertiary-darker);
+  background-color: $notice-light;
+  color: $tertiary-darker;
   display: flex;
   flex-direction: column;
 }
 
 .top-visible {
   padding-top: 2.5rem;
-  border-top: solid 2px var(--tertiary);
+  border-top: solid 2px $tertiary;
 }
 
 .bottom-visible {
   padding-bottom: 1.5rem;
-  border-bottom: solid 2px var(--tertiary);
+  border-bottom: solid 2px $tertiary;
 }
 
 
@@ -42,11 +42,11 @@ body {
 }
 
 .border-dashed-1 {
-  border: dashed 1px var(--tertiary);
+  border: dashed 1px $tertiary;
 }
 
 .border-dashed-2 {
-  border: dashed 2px var(--tertiary);
+  border: dashed 2px $tertiary;
 }
 
 table {
@@ -211,8 +211,8 @@ table {
   align-self: center;
   width: max-content;
   padding: 1rem 1rem 1rem 1.8rem;
-  border: solid 1px var(--tertiary);
-  color: var(--tertiary-darker);
+  border: solid 1px $tertiary;
+  color: $tertiary-darker;
   font-weight: 400;
   align-content: center;
 }
@@ -328,15 +328,18 @@ table {
 }
 
 @media (min-width: 992px) {
-  .ustration {
-    background-image: url("../images/2341-ai(1).png");
+  .bg-illustration {
+    background-image: url("../images/Wavy_Med-logo_bg.png");
     background-position: 99% 50%;
-    background-size: 40%;
+    background-size: 25rem;
+    background-repeat: no-repeat;
   }
 }
 
 @media (min-width: 1200px) {
-
+  .bg-illustration {
+    background-size: 30rem;
+  }
 }
 
 
