@@ -70,8 +70,8 @@ class Dose
 
     public function getName(){
         $name = '';
-        if ($this->getFrequency()->getName()) $name .= $this->getFrequency()->getName()." ";
-        if ($this->getMoment()->getName()) $name .= $this->getMoment()->getName();
+        if ($this->getFrequency()) $name .= $this->getFrequency()->getName()." ";
+        if ($this->getMoment()) $name .= $this->getMoment()->getName();
         return  $name;
     }
 
