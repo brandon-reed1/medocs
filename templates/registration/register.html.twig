@@ -26,25 +26,30 @@
             {{ form_label(registrationForm.email) }}
             {{ form_widget(registrationForm.email) }}
         </div>
-        <div class="form-error">
-            {{ form_errors(registrationForm.email) }}
-        </div>
+        {% if form_errors(registrationForm.email)|length > 0 %}
+            <div class="alert alert-danger">
+                {{ form_errors(registrationForm.email) }}
+            </div>
+        {% endif %}
         <div class="form-row">
             {{ form_label(registrationForm.plainPassword, 'Mot de passe') }}
             {{ form_widget(registrationForm.plainPassword) }}
         </div>
-
-        <div class="form-error">
-            {{ form_errors(registrationForm.plainPassword) }}
-        </div>
+        {% if form_errors(registrationForm.plainPassword)|length > 0 %}
+            <div class="alert alert-danger">
+                {{ form_errors(registrationForm.plainPassword) }}
+            </div>
+        {% endif %}
         <div class="form-row flow-reverse" style="align-items: baseline ; justify-content: flex-end">
             {{ form_label(registrationForm.agreeTerms, 'J\'accepte les conditions') }}
             {{ form_widget(registrationForm.agreeTerms) }}
         </div>
 
-        <div class="form-error">
-            {{ form_errors(registrationForm.agreeTerms) }}
-        </div>
+        {% if form_errors(registrationForm.agreeTerms)|length > 0 %}
+            <div class="alert alert-danger">
+                {{ form_errors(registrationForm.agreeTerms) }}
+            </div>
+        {% endif %}
         <div class="form-row">
             <input type="submit" class="bg-primary" value="je m'inscris">
         </div>
