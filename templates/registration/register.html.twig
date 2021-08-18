@@ -32,7 +32,7 @@
             </div>
         {% endif %}
         <div class="form-row">
-            {{ form_label(registrationForm.plainPassword, 'Mot de passe') }}
+            {{ form_label(registrationForm.plainPassword, ' ') }}
             {{ form_widget(registrationForm.plainPassword) }}
         </div>
         {% if form_errors(registrationForm.plainPassword)|length > 0 %}
