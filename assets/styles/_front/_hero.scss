@@ -45,6 +45,14 @@
 
 }
 
+.index ul li:before {
+  text-align: left;
+  content: '\f0a4';
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  left: .5rem;
+}
+
 footer{
   display: flex;
   flex-direction: row;
