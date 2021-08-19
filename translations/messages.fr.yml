@@ -1,1 +1,18 @@
 hour: heure
+
+Sign in: Conexion
+Register: S'enregistrer
+or: ou
+
+#emails
+Hi!: Bonjour
+Reset your password: Mot de passe oublié ?
+Password Reset Email Sent: toto
+Enter your email address and we we will send you a link to reset your password: Entrez votre adresse email, nous vous enverrons une lien pour créer un nouvau mot de passe.
+Send password reset email: Nouveau mot de passe
+To reset your password, please visit the following link: Si vous souhaitez créerr un nouveau mot de passe, cliquez sur le lien suivant
+If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.: Si nous trouvons un compte correspondant à cette adresse email, un email sera envoyé afin de vous permettre de créer un nouveau mot de passe.
+If you don't receive an email please check your spam folder: Si vous ne recevez pas d'email regardez dans les spams
+try again: recommencez
+This link will expire in: Ce lien expire dans
+Cheers!: A binetôt !
