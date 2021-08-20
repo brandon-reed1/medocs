@@ -20,7 +20,7 @@ class Line
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Dose")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Dose", inversedBy="line")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $dose;

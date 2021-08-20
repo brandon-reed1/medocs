@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DoseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,19 +27,28 @@ class Dose
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Frequency")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Frequency", inversedBy="dose")
      * @ORM\JoinColumn(onDelete="SET NULL")
      *
      */
     private $frequency;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Moment")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Moment", inversedBy="dose")
      * @ORM\JoinColumn(onDelete="SET NULL")
      *
      */
     private $moment;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Line", mappedBy="dose", orphanRemoval=true, cascade={"remove"})
+     */
+    private $line;
+
+    public function __construct()
+    {
+        $this->line = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -73,6 +84,36 @@ class Dose
         if ($this->getFrequency()) $name .= $this->getFrequency()->getName()." ";
         if ($this->getMoment()) $name .= $this->getMoment()->getName();
         return  $name;
+    }
+
+    /**
+     * @return Collection|Line[]
+     */
+    public function getLine(): Collection
+    {
+        return $this->line;
+    }
+
+    public function addLine(Line $line): self
+    {
+        if (!$this->line->contains($line)) {
+            $this->line[] = $line;
+            $line->setDose($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLine(Line $line): self
+    {
+        if ($this->line->removeElement($line)) {
+            // set the owning side to null (unless already changed)
+            if ($line->getDose() === $this) {
+                $line->setDose(null);
+            }
+        }
+
+        return $this;
     }
 
 }
