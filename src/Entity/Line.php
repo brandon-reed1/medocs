@@ -42,6 +42,11 @@ class Line
      */
     private $qty;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Day")
+     */
+    private $day;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -118,6 +123,18 @@ class Line
     {
         $this->user = $user;
         $user->addLine($this);
+
+        return $this;
+    }
+
+    public function getDay(): ?Day
+    {
+        return $this->day;
+    }
+
+    public function setDay(?Day $day): self
+    {
+        $this->day = $day;
 
         return $this;
     }

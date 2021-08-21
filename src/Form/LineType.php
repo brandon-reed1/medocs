@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Day;
 use App\Entity\Dose;
 use App\Entity\Line;
 use App\Entity\Product;
@@ -21,6 +22,9 @@ class LineType extends AbstractType
             ->add('qty', NumberType::class,['attr'=>[
                 'type'=>'number'
             ]])
+            ->add('day', EntityType::class, [
+                'class' => Day::class
+            ])
             ->add('dose', EntityType::class, [
                 'class' => Dose::class
             ])

@@ -58,6 +58,17 @@
                 </div>
                 <div class="horizontal-item">
                     <div class="form-row">
+                        {{ form_label(form.day) }}
+                        {{ form_widget(form.day) }}
+                    </div>
+                    <div class="form-row">
+                        <a href="{{ path('admin_day_new') }}" class="text-primary-darker">
+                            <i class="material-icons-round">add_box</i>
+                        </a>
+                    </div>
+                </div>
+                <div class="horizontal-item">
+                    <div class="form-row">
                         {{ form_label(form.dose) }}
                         {{ form_widget(form.dose) }}
                     </div>
