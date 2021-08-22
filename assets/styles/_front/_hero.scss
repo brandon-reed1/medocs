@@ -12,7 +12,7 @@
 
 .hero h1,
 .hero h2 {
-  text-align: center;
+  text-align: left;
 }
 
 .hero h1 {
@@ -21,8 +21,8 @@
   font-weight: 900;
 }
 
-.hero h2 {
-  font-size: 1.1rem;
+.hero h2, .hero ul li {
+  font-size: 1.28rem !important;
 }
 
 .hero .cta {
@@ -40,21 +40,26 @@
 }
 
 .hero .cta .btn {
-  font-size: 1.1rem;
+  font-size: 1.8rem !important;
   font-weight: bold;
 
 }
 
-.index ul li:before {
+.hero ul li:before {
   text-align: left;
   content: '\f0a4';
   font-family: "Font Awesome 5 Free";
   position: absolute;
   left: .5rem;
 }
-.index ul li {
+.hero ul li {
   padding: .75rem 1.5rem  ;
   list-style-type: none;
+  font-weight: bold;
+}
+
+footer, footer h6, footer h6 a{
+  font-size: 1.1rem !important;
 }
 
 footer{
@@ -107,18 +112,19 @@ footer{
     text-align: left;
   }
   .hero .cta .btn {
-    font-size: 1.95rem;
+    font-size: 2rem !important;
     font-weight: bolder;
   }
 
   .hero h1,
   h1 {
-    font-size: 1.85rem
+    font-size: 1.85rem !important;
   }
 
   .hero h2,
-  h2 {
-    font-size: 1.438rem;
+  h2,
+  .hero ul li{
+    font-size: 1.438rem !important;
   }
 
   .index{
