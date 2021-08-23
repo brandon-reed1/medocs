@@ -23,6 +23,7 @@ class IndexController extends AbstractController
     {
 
         /* @todo dependy injection construct */
+
         $list_size = $this->getDoctrine()->getManager()->getRepository('App:Line')
             ->getCountByUser($this->getUser()->getId());
         $products = $this->getDoctrine()->getManager()->getRepository('App:Line')
