@@ -48,6 +48,10 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: ^/admin/dose/days, roles: ROLE_ADMIN }
+        - { path: ^/admin/dose/day, roles: ROLE_ADMIN }
+        - { path: ^/admin/(product)/\d+/delete$, roles: ROLE_ADMIN }
+        - { path: ^/admin/dose/(frequency|moment)/\d+/(delete|update)$, roles: ROLE_ADMIN }
         - { path: ^/admin, roles: ROLE_USER }
 #        - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

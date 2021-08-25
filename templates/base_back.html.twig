@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/fontawesome.min.css" integrity="sha512-W5OxdLWuf3G9SMWFKJLHLct/Ljy7CmSxaABQLV2WIfAQPQZyLSDW/bKrw71Nx7mZKN5zcL+r8pRCZw+5bIoHHw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/fontawesome.min.css"
+          integrity="sha512-W5OxdLWuf3G9SMWFKJLHLct/Ljy7CmSxaABQLV2WIfAQPQZyLSDW/bKrw71Nx7mZKN5zcL+r8pRCZw+5bIoHHw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp">
@@ -37,21 +39,24 @@
                     <i class="material-icons-round">home</i> Accueil
                 </a>
             </li>
-            <li class=" {% if ( 'admin_product' in app.request.attributes.get('_route'  )) %} active {% endif %}">
-                <a href="{{ path('admin_product_index') }}">
-                    <i class="material-icons-round">inventory_2</i> Produits
-                </a>
-            </li>
-            <li class=" {% if ( 'admin_frequency' in app.request.attributes.get('_route'  )) %} active {% endif %}">
-                <a href="{{ path('admin_frequency_index') }}">
-                    <i class="material-icons-round">timelapse</i> Fréquences
-                </a>
-            </li>
-            <li class=" {% if ( 'admin_moment' in app.request.attributes.get('_route'  )) %} active {% endif %}">
-                <a href="{{ path('admin_moment_index') }}">
-                    <i class="material-icons-round">watch</i> Moment
-                </a>
-            </li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class=" {% if ( 'admin_product' in app.request.attributes.get('_route'  )) %} active {% endif %}">
+                    <a href="{{ path('admin_product_index') }}">
+                        <i class="material-icons-round">inventory_2</i> Produits
+                    </a>
+                </li>
+
+                <li class=" {% if ( 'admin_frequency' in app.request.attributes.get('_route'  )) %} active {% endif %}">
+                    <a href="{{ path('admin_frequency_index') }}">
+                        <i class="material-icons-round">timelapse</i> Fréquences
+                    </a>
+                </li>
+                <li class=" {% if ( 'admin_moment' in app.request.attributes.get('_route'  )) %} active {% endif %}">
+                    <a href="{{ path('admin_moment_index') }}">
+                        <i class="material-icons-round">watch</i> Moment
+                    </a>
+                </li>
+            {% endif %}
             <li class=" {% if ( 'admin_dose' in app.request.attributes.get('_route'  )) %} active {% endif %}">
                 <a href="{{ path('admin_dose_index') }}">
                     <i class="material-icons-round">water_drop</i> Dosage
