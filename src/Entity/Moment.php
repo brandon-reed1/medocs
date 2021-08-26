@@ -26,7 +26,7 @@ class Moment
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Dose", mappedBy="frequency", orphanRemoval=true, cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Dose", mappedBy="moment", orphanRemoval=true, cascade={"remove"})
      *
      */
     private $dose;
