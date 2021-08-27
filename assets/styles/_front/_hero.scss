@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 5rem;
   padding-bottom: 80vw;
   background-image: url("/assets/images/Wavy_Med-logo_bg.png");
   background-repeat: no-repeat;
@@ -40,9 +41,11 @@
 }
 
 .hero .cta .btn {
-  font-size: 1.8rem !important;
-  font-weight: bold;
+  font-size: 1.313rem !important;
+}
 
+.hero .cta .btn.main-cta{
+  font-weight: bold !important;
 }
 
 .hero ul li:before {
@@ -71,7 +74,8 @@ footer{
 @media screen and (min-width: 640px) {
   .hero {
     padding-bottom: 1.5rem;
-    background-position-y: 3.5rem;
+    //background-position-y: 3.5rem;
+    background-position-y: 35%;
     background-position-x: right;
     background-size: 35vw;
   }
@@ -112,7 +116,7 @@ footer{
     text-align: left;
   }
   .hero .cta .btn {
-    font-size: 2rem !important;
+    font-size: 1.8rem !important;
     font-weight: bolder;
   }
 
