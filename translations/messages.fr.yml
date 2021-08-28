@@ -1,7 +1,15 @@
 hour: heure
-
-Sign in: Conexion
+#forms
+login: connexion
+Login: Connexion
+logout: déconnexion
+Logout: Déconnexion
+register: s'enregistrer
 Register: S'enregistrer
+Sign in: Conexion
+Forgot password: Mot de passe oublié
+forgot password: mot de passe oublié
+
 or: ou
 
 
@@ -14,6 +22,9 @@ Day: Jour
 Days: Jours
 dose: dose
 Dose: Dose
+
+
+
 
 #emails
 Hi!: Bonjour

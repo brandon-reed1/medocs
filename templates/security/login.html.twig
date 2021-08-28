@@ -6,11 +6,11 @@
     {% if app.user %}
         {{ app.user.username }},
         <a href="{{ path('app_logout') }}" class="btn btn-basic">
-            Logout
+           {% trans %} Logout {% endtrans %}
         </a>
     {% else %}
         <a href="{{ path('app_register') }}" class="btn btn-basic">
-            register
+            {% trans %} Register {% endtrans %}
         </a>
     {% endif %}
 {% endblock %}
@@ -18,7 +18,7 @@
 {% block body %}
     <div id="login">
 
-        <h1>Connectez-vous</h1>
+        <h1>{% trans %}Login{% endtrans %}</h1>
 
         <form method="post">
             {% if error %}
@@ -29,13 +29,13 @@
             </div>
 
             <div class="form-row">
-                <label for="inputEmail">Email</label>
+                <label for="inputEmail"> {% trans %}Email{% endtrans %}</label>
                 <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
                        autocomplete="email" required autofocus>
             </div>
 
             <div class="form-row">
-                <label for="inputPassword">Password</label>
+                <label for="inputPassword">{% trans %}Password{% endtrans %}</label>
                 <input type="password" name="password" id="inputPassword" class="form-control"
                        autocomplete="current-password" required>
 
@@ -52,7 +52,9 @@
 
 
             <div class="form-row">
-                <a href="forgot-password.html">Forgot password ?</a>
+                <a href="{{ path('app_forgot_password_request') }}">
+                    {% trans %}Forgot password {% endtrans %}?
+                </a>
             </div>
 
             <div class="form-row">

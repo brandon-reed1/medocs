@@ -4,11 +4,11 @@
     {% if app.user %}
         {{ app.user.username }},
         <a href="{{ path('app_logout') }}" class="btn btn-basic">
-            Déconexion
+            {% trans %} Logout {% endtrans %}
         </a>
     {% else %}
         <a href="{{ path('app_login') }}" class="btn btn-basic">
-            Conexion
+            {% trans %} Login {% endtrans %}
         </a>
     {% endif %}
 {% endblock %}
@@ -19,7 +19,7 @@
             <div class="alert alert-danger" role="alert">{{ flashError }}</div>
         {% endfor %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Enregistrement</h1>
+        <h1 class="h3 mb-3 font-weight-normal">{% trans %}Register{% endtrans %}</h1>
 
         {{ form_start(registrationForm) }}
         <div class="form-row">
