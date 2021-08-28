@@ -61,14 +61,31 @@
   font-weight: bold;
 }
 
+
 footer, footer h6, footer h6 a{
   font-size: 1.1rem !important;
+  color: $primary;
+
 }
+footer h6{
+  margin: 10px auto;
+}
+
+
 
 footer{
   display: flex;
   flex-direction: row;
   align-self: center;
+}
+
+footer ul{
+  display: inline-block;
+  text-align: center;
+}
+
+footer ul li{
+  list-style-type: none;
 }
 
 @media screen and (min-width: 640px) {
