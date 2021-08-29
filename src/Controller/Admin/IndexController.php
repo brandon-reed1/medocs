@@ -40,7 +40,6 @@ class IndexController extends AbstractController
         ]);
 
 
-
         return $this->render('admin/index.html.twig', [
             'list_size' => $list_size,
             'list' => $products,
@@ -79,9 +78,9 @@ class IndexController extends AbstractController
             //->priority(Email::PRIORITY_HIGH)
             ->subject($user->getEmail() . ' vous envoie sa liste de médicaments')
             ->htmlTemplate('emails/list/html-list.html.twig')
-            ->textTemplate('emails/list/text-list.html.twig')
+//            ->textTemplate('emails/list/text-list.html.twig')
         ->context([
-            'lines'=> $lines
+            'list'=> $lines
         ]);
 
         try {

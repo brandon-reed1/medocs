@@ -1,0 +1,15 @@
+{{ app.user.email }} a choisi de vous envoyer sa liste de médicaments.
+
+    {% for line in list %}
+        Médicament: {{ line.product.name |upper }}
+        Combien: {{ line.qty }}
+        Jour(s): {{ line.day.name }}
+        Combien de fois: {{ line.dose.frequency.name }}
+        Quand: {{ line.dose.moment.name }}
+
+        ---------------------------------------------------------------------------------------------------------------
+    {% endfor %}
+
+
+Envoyé depuis mesmedocs.be  {{ "now"|date('d.m.y') }}
+--------------------------------------------

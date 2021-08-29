@@ -48,6 +48,7 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             try {
                 $this->em->persist($product);
                 $this->em->flush();
@@ -55,6 +56,7 @@ class ProductController extends AbstractController
 
                 if ($referer = $this->get('session')->get('referer')) {
                     $this->get('session')->remove('referer');
+
                     return $this->redirect($referer);
                 } else  return $this->redirectToRoute('admin_product_new');
 

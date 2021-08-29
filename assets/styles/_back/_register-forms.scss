@@ -122,9 +122,9 @@ select::-ms-expand {
 
 /*600px*/
 @media (min-width: 38rem) {
-    #login,
+    #login h1,
     #register h1 {
-        font-size: 2.2rem;
+        font-size: 1.85rem;
     }
 
     form,

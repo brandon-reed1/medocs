@@ -10,18 +10,20 @@
             <tr class="header">
                 <th>Médicament</th>
                 <th>Combien</th>
+                <th>Jours</th>
                 <th>Combien de fois</th>
                 <th>Quand</th>
-                {# <th></th> #}
+                 <th></th>
             </tr>
             </thead>
             <tbody>
             {% for item in list %}
                 <tr>
-                    <td class="product">
+                    <td >
                         {{ item.product.name }}
                     </td>
                     <td class="qty">{{ item.qty }}</td>
+                    <td class="day">{{ item.day }}</td>
                     <td class="freq">{{ item.dose.frequency.name }}</td>
                     <td class="moment">{{ item.dose.moment.name }}</td>
                     {% block actions %}

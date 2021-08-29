@@ -40,7 +40,7 @@ class ListController extends AbstractController
      */
     public function new(Request $request): Response
     {
-
+        $this->get('session')->remove('referer');
         $line = new Line();
         $form = $this->createForm(LineType::class, $line);
 

@@ -112,6 +112,9 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.2.0"
     },
+    "league/html-to-markdown": {
+        "version": "5.0.0"
+    },
     "monolog/monolog": {
         "version": "2.3.2"
     },
@@ -168,6 +171,9 @@
         "files": [
             "./bin/console"
         ]
+    },
+    "symfony/css-selector": {
+        "version": "v5.2.12"
     },
     "symfony/dependency-injection": {
         "version": "v5.2.7"
@@ -410,6 +416,9 @@
             "./templates/base.html.twig"
         ]
     },
+    "symfony/twig-pack": {
+        "version": "v1.0.1"
+    },
     "symfony/validator": {
         "version": "4.3",
         "recipe": {
@@ -482,6 +491,15 @@
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.5.0"
+    },
+    "tijsverkoyen/css-to-inline-styles": {
+        "version": "2.2.3"
+    },
+    "twig/cssinliner-extra": {
+        "version": "v3.3.0"
+    },
+    "twig/extra-bundle": {
+        "version": "v3.3.1"
     },
     "twig/twig": {
         "version": "v3.3.0"

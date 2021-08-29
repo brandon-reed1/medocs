@@ -63,9 +63,8 @@ class DoseController extends AbstractController
                 if ($referer = $this->get('session')->get('referer')) {
                     $this->get('session')->remove('referer');
                     return $this->redirect($referer);
-                } else  return $this->redirectToRoute('admin_product_new');
+                } else  return $this->redirectToRoute('admin_dose_new');
 
-//                return $this->redirectToRoute("admin_dose_index");
 
             } catch (ORMException $ORMException) {
                 die('erreur');

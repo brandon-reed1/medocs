@@ -68,50 +68,8 @@
 
     </section>
 
-    <section class="card bg-white wfull">
-        <div class="card-header">
-            <h2 class="title">
-                Les médicament que je prends chaque jour
-                <a href="{{ path('admin_line_new') }}" class="btn circle bg-primary-lighter border-primary inline">
-                    <i class="material-icons">add</i>
-                </a>
-            </h2>
-        </div>
-        <div class="card-body wrappable">
-            <table>
-                <thead>
-                <tr class="header">
-                    <th>Médicament</th>
-                    <th>Combien</th>
-                    <th>Jour</th>
-                    <th>Combien de fois</th>
-                    <th>Quand</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for item in list %}
-                    <tr>
-                        <td class="product">
-                            {{ item.product.name }}
-                        </td>
-                        <td class="qty">{{ item.qty }}</td>
-                        <td class="day">{{ item.day }}</td>
-                        <td class="freq">{{ item.dose.frequency.name }}</td>
-                        <td class="moment">{{ item.dose.moment.name }}</td>
-                        <td>
-                            <a href="{{ path('admin_line_update', {'id': item.id}) }}" class="text-info"> <i
-                                        class="material-icons-outlined">edit</i> </a>
-                            <a href="{{ path('admin_line_delete', {'id': item.id}) }}" class="text-danger"> <i
-                                        class="material-icons-outlined">delete</i> </a>
-                        </td>
+    {% embed "_template-parts/_lines-list.html.twig" %}{% endembed %}
 
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </section>
 
     <section class="card bg-white wfull">
 

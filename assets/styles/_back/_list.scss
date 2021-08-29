@@ -269,18 +269,18 @@
 /*600px*/
 
 @media screen and (min-width: 600px) {
-
-
-
-}
-
-@media (min-width: 1200px) {
   .horizontal-group {
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
     flex: 0;
   }
+
+
+}
+
+@media (min-width: 1200px) {
+
 
   .horizontal-item {
     flex-direction: row;
