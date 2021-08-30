@@ -1,0 +1,22 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}{% trans %}Update my profile {% endtrans %}{% endblock %}
+
+{% block header_h1 %} {% trans %}My profile {% endtrans %}{% endblock %}
+{% block header_h1_icon %}
+{% endblock %}
+{% block body %}
+
+    {{ form_start(form, {'attr': {
+        'class': 'wfull',
+        'style': 'width: 100%'
+    }}) }}
+    <section class="card bg-white wfull">
+      {% trans %}Do you confirme the deletion of your account ? {% endtrans %}
+        <div class="form-row flow-row">
+            {{ form_widget(form.no, {'attr': {"class": "btn auto-min bg-success text-white size-1-1 margin-horizontal-2" }}) }}
+            {{ form_widget(form.yes, {'attr': {"class": "btn auto-min bg-danger text-white size-1-1 margin-horizontal-2" }}) }}
+        </div>
+    </section>
+    {{ form_end(form) }}
+{% endblock %}
