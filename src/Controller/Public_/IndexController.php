@@ -30,4 +30,13 @@ class IndexController extends AbstractController
             'list' => $user->getLines(),
         ]);
     }
+
+
+    /**
+     * @Route("/condition-utilisation", name="public_condition_use_fr")
+     */
+    public function condition_use(): Response
+    {
+        return $this->render('public/index/conditions-use_fr.html.twig');
+    }
 }
