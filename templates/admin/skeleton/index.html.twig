@@ -6,8 +6,8 @@
 
 {% block header_h1 %} H1 {% endblock %}
 {% block header_h1_icon %}
-    <a href="{{ path('admin_' ~ object ~ '_new') }}" class="btn circle bg-primary-lighter border-primary inline">
-        <i class="material-icons">add</i>
+    <a href="{{ path('admin_' ~ object ~ '_new') }}" class="bt bg-info text-info p06 radius-5p margin-horizontal-2 ">
+        {#<i class="material-icons">add</i>#} {% trans %} Add {% endtrans %}
     </a>
 {% endblock %}
 {% block body %}
@@ -15,7 +15,7 @@
     <section class="card wfull">
         <div class="card-header">
             <h3 class="title">
-                Liste des {% block card_title %}CARD TITLE {% endblock %} disponibles</h3>
+                Liste des {% block card_title %}CARD TITLE {% endblock %} disponibles </h3>
         </div>
         <div class="card-body">
             {# list if exist #}

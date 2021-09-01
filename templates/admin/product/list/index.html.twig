@@ -6,3 +6,12 @@
 
 {% block header_h1 %} Liste {% endblock %}
 {% block card_title %} medocs {% endblock %}
+
+{% block body %}
+
+    {% embed "_template-parts/_lines-list.html.twig" %}
+        {% block button_action %}
+            <a href="{{ path('admin_line_new') }}" class="bt bg-info text-info p06 radius-5p margin-horizontal-2 "> Ajouter</a>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

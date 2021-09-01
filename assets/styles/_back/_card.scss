@@ -164,11 +164,17 @@
 .card table tr.header {
   background-color: $tertiary-light;
   color: $primary-darker;
+  padding: .5rem ;
+  max-height: 2rem
 }
 
+.card table tr td{
+  padding: .5rem;
+}
 .card table th {
   text-align: left;
   padding: .8rem 0 .8rem 5px;
+  max-height: 2rem;
 }
 
 .card table tr td h4,

@@ -11,12 +11,19 @@
         <li class="
             {% if app.request.attributes.get('_route') == 'admin_index' %}active{% endif %}">
             <a href="{{ path('admin_index') }}">
-                <i class="material-icons-round">home</i> Ma liste
+                <i class="material-icons-round">home</i> Accueil
+            </a>
+        </li>
+        <li class="
+            {% if app.request.attributes.get('_route') == 'admin_line' %}active{% endif %}">
+            <a href="{{ path('admin_line_index') }}">
+                <i class="material-icons-round">
+format_list_bulleted</i> Ma liste
             </a>
         </li>
         <li class="
             {% if app.request.attributes.get('_route') == 'admin_profile' %}active{% endif %}">
-            <a href="{{ path('admin_index') }}">
+            <a href="{{ path('admin_profile_update') }}">
                 <i class="material-icons-round">person</i> Mon profile
             </a>
         </li>
