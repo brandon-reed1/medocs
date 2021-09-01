@@ -101,7 +101,7 @@ class UserController extends AbstractController
 //        $session = $this->get('session');
 //        $session = new Session();
 //        $session->invalidate();
-        $this->get('security.token_storage')->setToken(null);
+
 
         $form = $this->createFormBuilder()
             ->add('yes', SubmitType::class,['translation_domain'=>'messages'])
@@ -114,6 +114,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('yes')->isClicked()) {
                 try {
+                    $this->get('security.token_storage')->setToken(null);
                     $this->em->remove($user);
                     $this->em->flush();
                     $this->addFlash('success', 'Supprimé');
