@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
@@ -97,6 +98,10 @@ class UserController extends AbstractController
     public function delete(Request $request): Response
     {
         $user = $this->getUser();
+        $session = $this->get('session');
+        $session = new Session();
+        $session->invalidate();
+
         $form = $this->createFormBuilder()
             ->add('yes', SubmitType::class,['translation_domain'=>'messages'])
             ->add('no', SubmitType::class)
