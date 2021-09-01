@@ -11,4 +11,7 @@ import './styles/back.scss';
 // start the Stimulus application
 import './bootstrap';
 
+import faker from 'faker';
+
+import './js/faker';
 import './js/main';

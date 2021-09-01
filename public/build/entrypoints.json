@@ -4,6 +4,7 @@
       "js": [
         "/build/runtime.js",
         "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ob-7db861.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_from_js-node_modules_core-js_modules_es_array_i-86f3a4.js",
         "/build/back.js"
       ],
       "css": [
