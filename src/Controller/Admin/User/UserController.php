@@ -98,9 +98,10 @@ class UserController extends AbstractController
     public function delete(Request $request): Response
     {
         $user = $this->getUser();
-        $session = $this->get('session');
+//        $session = $this->get('session');
 //        $session = new Session();
-        $session->invalidate();
+//        $session->invalidate();
+        $this->get('security.token_storage')->setToken(null);
 
         $form = $this->createFormBuilder()
             ->add('yes', SubmitType::class,['translation_domain'=>'messages'])
