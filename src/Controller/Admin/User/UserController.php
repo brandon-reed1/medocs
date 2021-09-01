@@ -99,7 +99,7 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
         $session = $this->get('session');
-        $session = new Session();
+//        $session = new Session();
         $session->invalidate();
 
         $form = $this->createFormBuilder()
