@@ -13,5 +13,6 @@ import './bootstrap';
 
 import faker from 'faker';
 
+import './js/qr-code';
 import './js/faker';
 import './js/main';

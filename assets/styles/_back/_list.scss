@@ -266,6 +266,9 @@
   padding: .5rem 2rem;
 }
 
+.w20pc{
+  max-width: 20%;
+}
 /*600px*/
 
 @media screen and (min-width: 600px) {
@@ -293,6 +296,8 @@
     font-size: 2rem;
     padding: 1rem;
   }
+
+
 }
 
 @media (min-width: 1400px) {

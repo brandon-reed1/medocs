@@ -278,9 +278,17 @@ table {
   bottom: 0;
 }
 
+
+.not-mobile{
+  display: none;
+}
+
 //600px
 @media (min-width: 38rem) {
 
+  .not-mobile{
+    display: flex;
+  }
   .container-left {
     width: 80%;
     max-width: 80%;
