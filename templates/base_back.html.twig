@@ -72,10 +72,12 @@
         {% endblock %}
     </div>
     <div id="qr-cta">
-        <button id="qr-cta-show" class="btn auto-max bg-primary-lighter text-primary"> Mon code bar</button>
-        <button id="qr-cta-hide" class="btn auto-max bg-notice text-notice hide"> Cacher</button>
-            <img src="{{ qr_code_url( app.request.schemeAndHttpHost ~ app.request.baseUrl ~ '/g/' ~ app.user.url) }}"
-                 class="qr"/>
+        <button id="qr-cta-btn" class="btn auto-max bg-primary text-white">
+            <i class="material-icons-outlined">expand_less</i>
+            {% trans %}QR Code {% endtrans %}
+        </button>
+        <img src="{{ qr_code_url( app.request.schemeAndHttpHost ~ app.request.baseUrl ~ '/g/' ~ app.user.url) }}"
+             class="qr"/>
     </div>
 </div>
 

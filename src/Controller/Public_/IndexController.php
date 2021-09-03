@@ -17,6 +17,9 @@ class IndexController extends AbstractController
      */
     public function index(): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('admin_index');
+        }
         return $this->render('public/index/index.html.twig');
     }
 

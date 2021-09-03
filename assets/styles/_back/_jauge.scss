@@ -1,5 +1,4 @@
 
-
 .jauge {
   flex-direction: row;
   align-items: flex-start;
@@ -36,25 +35,26 @@
   font-size: 1.2rem;
 }
 
-.jauge .big{
+.jauge .big {
   font-size: 6rem;
 }
 
 
 .jauge form,
-.jauge form#emergency{
+.jauge form#emergency {
   align-self: flex-start;
   justify-content: center;
   width: 100%;
 }
 
 .jauge form .form-row,
-.jauge form#emergency .form-row{
+.jauge form#emergency .form-row {
   margin: 0;
   line-height: 1.5rem;
 }
+
 .jauge form .form-row label,
-.jauge form#emergency .form-row label{
+.jauge form#emergency .form-row label {
   background-color: transparent;
   margin-left: 0;
   padding-left: 0;
@@ -62,22 +62,23 @@
 }
 
 .jauge form input,
-.jauge form#emergency input{
+.jauge form#emergency input {
   line-height: 1rem;
   width: 100%;
 }
-.jauge form#emergency input[type=text]:before{
+
+.jauge form#emergency input[type=text]:before {
   content: '';
 }
 
-.jauge .qr{
+.jauge .qr {
   max-width: 50%;
   margin: auto;
   align-self: center;
 }
 
 // show add full screen qr code
-#qr-cta{
+#qr-cta {
   position: fixed;
   //bottom: 0px;
   background-color: rgba(255, 255, 255, 0.8);
@@ -86,27 +87,38 @@
   height: 100vh;
   top: 90%;
   align-items: center;
-  transition: top 600ms ease-in-out, background-color 700s ease;
+  transition: top 800ms ease-in-out, background-color 700s ease;
   z-index: 1000;
 }
 
-#qr-cta.show{
+#qr-cta.show {
   top: 0 !important;
-  background-color: rgba(0, 0, 0, 1) !important;
-  //background-color: rgba(255, 255, 255, 1) !important;
+  background-color: rgba(255, 255, 255, 1) !important;
 }
 
-#qr-cta .qr{
-  width: 80%;
-  align-self: center;
-  justify-self: center;
+#qr-cta .qr {
   display: flex;
-  margin-top: 2rem;
+  justify-self: center;
+  align-self: center;
+  width: 90%;
+  margin-top: 5rem;
 }
 
-#qr-cta-show.hide,
-#qr-cta-hide.hide{
-display: none !important;
+#qr-cta-btn {
+  width: 8rem !important;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.2rem !important;
+  font-weight: bold;
+}
+
+
+#qr-cta-btn i {
+  transition: all 1s ease;
+}
+
+#qr-cta-btn.less i {
+  transform: rotate(180deg);
 }
 
 
@@ -116,9 +128,9 @@ display: none !important;
 }
 
 @media (min-width: 1200px) {
-.jauge{
-  display: flex;
-}
+  .jauge {
+    display: flex;
+  }
 
   //.jauge .qr{
   //  max-width: 50%;
@@ -130,9 +142,9 @@ display: none !important;
     text-align: left;
   }
 
-  .jauge .myChart ,
-  .jauge .mydoughnut ,
-  .jauge .mybars  {
+  .jauge .myChart,
+  .jauge .mydoughnut,
+  .jauge .mybars {
     width: 20%;
     align-content: flex-end;
     display: flex;

@@ -1,22 +1,19 @@
-const show_btn = document.getElementById('qr-cta-show')
-const hide_btn = document.getElementById('qr-cta-hide')
+/**
+ *
+ * @type {HTMLElement}
+ * @author novitz jean-philippe <novitz@gmail.com>
+ * @description slide up qr hidden qr code
+ */
+
+const qr_btn = document.getElementById('qr-cta-btn')
 const qr_container = document.getElementById('qr-cta')
 
-if (show_btn !== undefined)
-{
-    show_btn.addEventListener('click', (e)=>{
-        qr_container.classList.add('show')
-        show_btn.classList.add('hide')
-        hide_btn.classList.toggle('hide')
-    })
-}
-
-if (hide_btn !== undefined)
-{
-    hide_btn.addEventListener('click', (e)=>{
+if (qr_btn !== undefined && qr_container !== undefined) {
+    qr_btn.addEventListener('click', (e) => {
         qr_container.classList.toggle('show')
-        show_btn.classList.toggle('hide')
-        hide_btn.classList.toggle('hide')
+        qr_btn.classList.toggle('bg-primary')
+        qr_btn.classList.toggle('bg-danger')
+        qr_btn.classList.toggle('less')
     })
 }
 
