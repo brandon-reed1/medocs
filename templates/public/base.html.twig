@@ -5,7 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 {#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">#}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-       <title>{% block title %}Liste de médicaments !{% endblock %}</title>
+    {% block seo%}
+        <title>{% block title %}Comment mémoriser ma liste de médicaments{% endblock %}</title>
+        <meta name="description"
+              content="{% block description %}Encode les médicaments que tu dois prendre chaque jour ainsi que leur dosage et leur fréquence et transmet cette liste via email ou QR Code{% endblock %}"/>
+        <meta property="og:description" content="{% block og_description %}Encode les médicaments que tu dois prendre chaque jour ainsi que leur dosage et leur fréquence et transmet cette liste via email ou QR Code{% endblock %}"/>
+        <meta property="og:title" content="{% block og_title %}Comment mémoriser ma liste de médicaments{% endblock %}"/>
+        <meta property="og:type" content="{% block og_type %}siteweb{% endblock %}" />
+        <meta property="og:locale" content="fr_BE" />
+        <meta property="og:url" content="{% block og_url %}https://medocs{% endblock %}" />
+        <meta property="og:image" content="{% block og_image %}https://medocs.be/build/images/Wavy_Med-logo_bg.47907079.png{% endblock %}" />
+        <meta property="og:site_name" content="{% block og_site_name %}Comment mémoriser ma liste de médicaments: Medocs.be{% endblock %}" />
+
+    {% endblock %}
 
     {% block stylesheets %}
         {# parent() #}
