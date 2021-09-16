@@ -43,7 +43,7 @@ class Line
     private $qty;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Day")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Day")
      */
     private $day;
 
@@ -138,4 +138,6 @@ class Line
 
         return $this;
     }
+
+
 }
