@@ -3,7 +3,7 @@
   /* flex: 0 0 18%;*/
   flex: 0;
   min-width: 13rem;
-  max-height: 96vh;
+  //max-height: 96vh;
   padding: .80rem;
   font-family: 'Roboto', sans-serif;
   margin-left: -13rem;
@@ -158,6 +158,10 @@
   font-family: 'Space Grotesk', sans-serif;
   padding: 1rem;
   font-size: .96rem;
+}
+
+#sidebar footer h6{
+  font-size: .95rem;
 }
 
 @media (min-width: 980px) {

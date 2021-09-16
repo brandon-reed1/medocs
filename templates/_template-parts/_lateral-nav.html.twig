@@ -1,9 +1,9 @@
 <nav id="sidebar" class="bg-white text-primary">
     <div id="logo">
-        <a href="#" id="sidebar-menu"> <i class="fi-rr-menu-burger"></i> </a>
+        <a href="#" id="sidebar-menu"> <span class="material-icons-two-tone"> menu </span></a>
         <span class="title text-primary">
                 <span class="text-notice">
-                    <i class="fi-rr-medicine"></i>
+                   <span class="material-icons-two-tone text-primary-darker">medication_liquid</span>
                 </span>Mes Médocs
             </span>
     </div>
@@ -50,6 +50,11 @@
                 <i class="material-icons-round">water_drop</i> Dosage
             </a>
         </li>
+        <li class="">
+            <a href="{{ path('app_logout') }}">
+                <i class="material-icons-round">watch</i> Quitter
+            </a>
+        </li>
         {# <li class=" {% if (app.request.attributes.get('_route') == 'admin_product_index')
             or (app.request.attributes.get('_route') == 'admin_product_update') %}active{% endif %}">
                 <a href="{{ path('admin_product_index') }}">
@@ -60,6 +65,8 @@
     <div class="profile-image">
         <img src="{{ asset('images/Wavy_Med-logo_bg.png') }}"/>
     </div>
+
+
     <footer>
         <h6>
             <span><a href="https://www.medocs.be">Médocs.be</a></span><br/>
