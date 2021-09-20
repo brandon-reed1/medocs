@@ -26,6 +26,20 @@
   margin-bottom: 1rem;
 }
 
+#sidebar #logo .title.material-icons,
+#sidebar #logo .title.material-icons-two-tone,
+#sidebar #logo .title .material-icons-two-tone{
+  filter: invert(69%) sepia(45%) saturate(976%) hue-rotate(337deg) brightness(101%) contrast(98%);
+  font-size: 1.500rem;
+}
+#sidebar #logo .title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.300rem;
+}
+
 #sidebar a:link,
 #sidebar a:visited,
 #sidebar a.btn.btn-basic:link,

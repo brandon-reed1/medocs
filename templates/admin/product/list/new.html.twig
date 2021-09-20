@@ -47,8 +47,7 @@
                     <div class="form-row">
                         {{ form_label(form.product, 'Produits') }}
                         {{ form_widget(form.product) }}
-                    </div>
-                    <div class="form-row">
+
                         <a href="{{ path('admin_product_new') }}"
                            title="ajouter un produit"
                            class="text-primary-darker">
@@ -60,8 +59,7 @@
                     <div class="form-row">
                         {{ form_label(form.day) }}
                         {{ form_widget(form.day) }}
-                    </div>
-                    <div class="form-row">
+
                         <a href="{{ path('admin_day_new') }}" class="text-primary-darker">
                             <i class="material-icons-round">add_box</i>
                         </a>
@@ -71,8 +69,7 @@
                     <div class="form-row">
                         {{ form_label(form.dose) }}
                         {{ form_widget(form.dose) }}
-                    </div>
-                    <div class="form-row">
+
                         <a href="{{ path('admin_dose_new') }}" class="text-primary-darker">
                             <i class="material-icons-round">add_box</i>
                         </a>

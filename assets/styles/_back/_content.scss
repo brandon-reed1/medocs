@@ -13,14 +13,28 @@
 
 }
 
+
+
 #content #content-logo {
     flex: 0;
     flex-direction: row;
-    font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 1rem;
     color: $primary;
+    font-size: 1.850rem;
     transition: margin-top .75s ease-in-out;
+}
+
+#content #content-logo .title .material-icons-two-tone{
+    filter: invert(69%) sepia(45%) saturate(976%) hue-rotate(337deg) brightness(101%) contrast(98%);
+    padding-left: .75rem;
+}
+#content #content-logo .title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    //font-size: 1.300rem;
 }
 
 #content #content-logo a:first-child {
