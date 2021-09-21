@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -52,9 +53,16 @@ class User implements UserInterface
     private $lines;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=125, nullable=true)
      */
     private $url;
+
+
+    /**
+     * @Gedmo\Slug(fields={"url"}, separator="_")
+     * @ORM\Column(length=255, unique=true, nullable=true)
+     */
+    private $slug;
 
     public function __construct()
     {
@@ -191,6 +199,18 @@ class User implements UserInterface
     public function setUrl(?string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

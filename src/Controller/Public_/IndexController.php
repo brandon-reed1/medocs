@@ -24,11 +24,10 @@ class IndexController extends AbstractController
     }
 
     /**
-     * @Route("/g/{url}", name="public_page")
+     * @Route("/g/{slug}", name="public_page")
      */
     public function publicUrl(User $user): Response
     {
-
         return $this->render('public/index/list.html.twig', [
             'list' => $user->getLines(),
         ]);

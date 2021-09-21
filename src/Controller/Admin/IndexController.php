@@ -21,6 +21,7 @@ class IndexController extends AbstractController
      */
     public function index(): Response
     {
+//        dd($this->getUser());
 
         /* @todo dependy injection construct */
 
