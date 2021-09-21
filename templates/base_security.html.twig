@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp">
     <title>{% block title %}Liste de médicaments !{% endblock %}</title>
     {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
@@ -20,7 +22,7 @@
 <div class="container-left bg-white border-primary">
     {% block header %}
         <header class="toolbar">
-            <span class="title text-primary"> <span class="text-quaternary"> <i class="fi-rr-doctor"></i> </span>Mes médocs</span>
+            <span class="title text-primary">  <i class="material-icons-two-tone">medication_liquid</i> Mes médocs</span>
 
             {% block login_button %}
                 {% if app.user %}

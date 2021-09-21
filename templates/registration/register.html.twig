@@ -41,8 +41,10 @@
             </div>
         {% endif %}
         <div class="form-row flow-reverse" style="align-items: baseline ; justify-content: flex-end">
-{#            {{ form_label(registrationForm.agreeTerms, 'J\'accepte les conditions') }}#}
-            <label for="registration_form_agreeTerms"> <a href="{{path('public_condition_use_fr') }}"> J'accepte les conditions </a></label>
+            {# {{ form_label(registrationForm.agreeTerms, 'J\'accepte les conditions') }} #}
+            <label for="registration_form_agreeTerms">
+                <a href="{{ path('public_condition_use_fr') }}"> J'accepte les <u><strong>conditions</strong></u> </a>
+            </label>
             {{ form_widget(registrationForm.agreeTerms) }}
         </div>
 
