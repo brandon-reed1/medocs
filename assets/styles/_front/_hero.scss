@@ -1,14 +1,34 @@
+body {
+background-color: $aliceblue;
+}
+
+.p1-5 {
+  padding: 1.5rem;
+}
+
+.card{
+  border-radius: 8px;
+  -webkit-box-shadow: 4px 4px 9px 1px rgba(206,206,206,0.43);
+  box-shadow: 4px 4px 9px 1px rgba(206,206,206,0.43);
+}
+
+
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 5rem;
   padding-bottom: 80vw;
-  background-image: url("/assets/images/Wavy_Med-logo_bg.png");
+  background-image: url("/assets/images/2454173-ai.png");
+  //background-image: url("/assets/images/Wavy_Med-logo_bg.png");
   background-repeat: no-repeat;
   background-position-y: 100%;
   background-size: 80vw;
   background-position-x: center;
+  background-color: white;
+  border-radius: 8px;
+  -webkit-box-shadow: 6px 6px 11px 1px rgba(100,99,170,0.43);
+  box-shadow: 6px 6px 11px 1px rgba(100,99,170,0.43);
 }
 
 .hero h1,
@@ -61,6 +81,30 @@
   font-weight: bold;
 }
 
+
+
+.index ul.yes-list li,
+.index ul.no-list li {
+  padding: .75rem 1.5rem  ;
+  list-style-type: none;
+  font-weight: bold;
+}
+.index ul.yes-list li:before,
+.index ul.no-list li:before {
+  text-align: left;
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  left: 1.5rem;
+}
+
+.index ul.yes-list li:before{
+  color: $success;
+  content: '\f00c';
+}
+.index ul.no-list li:before{
+  color: $danger;
+  content: '\f00d';
+}
 
 footer, footer h6, footer h6 a{
   font-size: 1.1rem !important;
@@ -117,7 +161,7 @@ footer ul li{
 
 @media screen and (min-width: 980px) {
   .hero {
-    padding-right: 35vw;
+    padding: 1rem 35vw 1rem 1rem;
     background-position-y: center;
   }
 
@@ -150,8 +194,8 @@ footer ul li{
   }
 
   .index{
-    font-size: 1.5rem;
-    line-height: 2rem;
+    font-size: 1.2rem;
+    line-height: 1.75rem;
   }
 
   .index ul li:before {
