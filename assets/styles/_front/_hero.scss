@@ -1,15 +1,24 @@
 body {
-background-color: $aliceblue;
+  background-color: $aliceblue;
+}
+
+
+.full-w {
+  width: 90vw;
+}
+
+.centered {
+  align-self: center;
 }
 
 .p1-5 {
   padding: 1.5rem;
 }
 
-.card{
+.card {
   border-radius: 8px;
-  -webkit-box-shadow: 4px 4px 9px 1px rgba(206,206,206,0.43);
-  box-shadow: 4px 4px 9px 1px rgba(206,206,206,0.43);
+  -webkit-box-shadow: 4px 4px 9px 1px rgba(206, 206, 206, 0.43);
+  box-shadow: 4px 4px 9px 1px rgba(206, 206, 206, 0.43);
 }
 
 
@@ -17,8 +26,11 @@ background-color: $aliceblue;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 90vw;
+  align-self: center;
   margin-bottom: 5rem;
-  padding-bottom: 80vw;
+  //padding-bottom: 80vw;
+  padding: 1rem 1rem 55vh 1rem;
   background-image: url("/assets/images/2454173-ai.png");
   //background-image: url("/assets/images/Wavy_Med-logo_bg.png");
   background-repeat: no-repeat;
@@ -27,8 +39,8 @@ background-color: $aliceblue;
   background-position-x: center;
   background-color: white;
   border-radius: 8px;
-  -webkit-box-shadow: 6px 6px 11px 1px rgba(100,99,170,0.43);
-  box-shadow: 6px 6px 11px 1px rgba(100,99,170,0.43);
+  -webkit-box-shadow: 6px 6px 11px 1px rgba(100, 99, 170, 0.43);
+  box-shadow: 6px 6px 11px 1px rgba(100, 99, 170, 0.43);
 }
 
 .hero h1,
@@ -64,7 +76,7 @@ background-color: $aliceblue;
   font-size: 1.313rem !important;
 }
 
-.hero .cta .btn.main-cta{
+.hero .cta .btn.main-cta {
   font-weight: bold !important;
 }
 
@@ -75,61 +87,64 @@ background-color: $aliceblue;
   position: absolute;
   left: .5rem;
 }
+
 .hero ul li {
-  padding: .75rem 1.5rem  ;
+  padding: .75rem 1.5rem;
   list-style-type: none;
   font-weight: bold;
 }
-
 
 
 .index ul.yes-list li,
 .index ul.no-list li {
-  padding: .75rem 1.5rem  ;
+  padding: .75rem .5rem;
   list-style-type: none;
   font-weight: bold;
 }
+
 .index ul.yes-list li:before,
 .index ul.no-list li:before {
   text-align: left;
   font-family: "Font Awesome 5 Free";
   position: absolute;
-  left: 1.5rem;
+  left: .5rem;
 }
 
-.index ul.yes-list li:before{
+.index ul.yes-list li:before {
   color: $success;
   content: '\f00c';
 }
-.index ul.no-list li:before{
+
+.index ul.no-list li:before {
   color: $danger;
   content: '\f00d';
 }
 
-footer, footer h6, footer h6 a{
+footer, footer h6, footer h6 a {
   font-size: 1.1rem !important;
   color: $primary;
 
 }
-footer h6{
+
+footer h6 {
   margin: 10px auto;
 }
 
 
-
-footer{
+footer {
   margin-top: 5rem;
   display: flex;
   flex-direction: row;
   align-self: center;
 }
 
-footer ul{
+footer ul {
   display: inline-block;
   text-align: center;
+  padding-left: 0;
 }
 
-footer ul li{
+footer ul li {
   list-style-type: none;
 }
 
@@ -157,6 +172,17 @@ footer ul li{
   .hero #pitch {
     padding-bottom: 5rem;
   }
+
+  .index ul.yes-list li:before,
+  .index ul.no-list li:before {
+
+    left: 2rem;
+  }
+
+  .index ul.yes-list li,
+  .index ul.no-list li {
+    padding: .75rem 1.5rem;
+  }
 }
 
 @media screen and (min-width: 980px) {
@@ -174,7 +200,7 @@ footer ul li{
 
 @media screen and (min-width: 1200px) {
 
-  .hero{
+  .hero {
     text-align: left;
   }
   .hero .cta .btn {
@@ -189,11 +215,11 @@ footer ul li{
 
   .hero h2,
   h2,
-  .hero ul li{
+  .hero ul li {
     font-size: 1.438rem !important;
   }
 
-  .index{
+  .index {
     font-size: 1.2rem;
     line-height: 1.75rem;
   }
@@ -206,7 +232,7 @@ footer ul li{
     left: .5rem;
   }
   .index ul li {
-    padding: .75rem 1.5rem  ;
+    padding: .75rem 1.5rem;
     list-style-type: none;
   }
 }
