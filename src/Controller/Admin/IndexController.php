@@ -71,11 +71,11 @@ class IndexController extends AbstractController
             ->getAllUserLines($this->getUser()->getId());
 
         $email = (new TemplatedEmail())
-            ->from('hello@example.com')
+            ->from('info@medocs.be')
             ->to($request->request->get('share_list')['email'])
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
+            //->cc('cc@medocs.be')
+            //->bcc('bcc@medocs.be')
+            //->replyTo('fabien@medocs.be')
             //->priority(Email::PRIORITY_HIGH)
             ->subject($user->getEmail() . ' vous envoie sa liste de médicaments')
             ->htmlTemplate('emails/list/html-list.html.twig')

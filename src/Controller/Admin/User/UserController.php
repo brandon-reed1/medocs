@@ -6,11 +6,13 @@ use App\Entity\User;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
@@ -95,7 +97,7 @@ class UserController extends AbstractController
      *     name="admin_profile_delete",
      *     methods={"GET", "DELETE"})
      */
-    public function delete(Request $request): Response
+    public function delete(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
         $user = $this->getUser();
 //        $session = $this->get('session');
@@ -114,14 +116,35 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('yes')->isClicked()) {
                 try {
+//                    dd($this->getUser());
+                    $user_details = $entityManager
+                        ->getRepository(User::class)
+                    ->findUserWithDetails($this->getUser()->getId());
+//                    dd($user_details->getEmail());
                     $this->get('security.token_storage')->setToken(null);
                     $this->em->remove($user);
                     $this->em->flush();
                     $this->addFlash('success', 'Supprimé');
 
+
+                    // send email
+                    $email = (new TemplatedEmail())
+                        ->from('info@medocs.be')
+                        ->to($user_details->getEmail())
+                        ->subject('Suppression de votre compte')
+                        ->htmlTemplate('emails/user/delete-confirmation.html.twig')
+//            ->textTemplate('emails/list/text-list.html.twig')
+                        ->context([
+                            'details'=> $user_details
+                        ]);
+
+                        $mailer->send($email);
+
+                    //
                     return $this->redirectToRoute("public_index");
                 } catch (ORMException $ORMException) {
-                    die('erreur');
+                    dd($ORMException);
+//                    die('erreur');
                 }
             } else return $this->redirectToRoute('admin_profile_update');
         }

@@ -91,9 +91,19 @@
   z-index: 1000;
 }
 
+#qr-cta.show img {
+  margin: auto;
+  width: 80%;
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+
 #qr-cta.show {
   top: 0 !important;
   background-color: rgba(255, 255, 255, 1) !important;
+  border: solid 4px $primary-darker;
+  border-radius: 25px;
 }
 
 #qr-cta .qr {

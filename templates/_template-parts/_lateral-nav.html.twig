@@ -24,7 +24,7 @@
         <li class="
             {% if app.request.attributes.get('_route') == 'admin_profile' %}active{% endif %}">
             <a href="{{ path('admin_profile_update') }}">
-                <i class="material-icons-round">person</i> Mon profile
+                <i class="material-icons-round">person</i> Mon profil
             </a>
         </li>
         {% if is_granted('ROLE_ADMIN') %}
