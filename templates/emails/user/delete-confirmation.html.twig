@@ -439,8 +439,8 @@
     <h1>{% trans %}Your account has been deleted{% endtrans %}</h1>
     <h2>{% trans %}Here is your information, they have been deleted{% endtrans %}</h2>
 <ul>
-    <li>Username: {{ details.email }}</li>
     <li>Email: {{ details.email }}</li>
+    <li>Url publique: {{ url }}</li>
 
 </ul>
     {% embed "_template-parts/_lines-list.html.twig" with {'list': details.lines} %}
