@@ -28,11 +28,11 @@
                 {% if app.user %}
                     {{ app.user.username }},
                     <a href="{{ path('app_logout') }}" class="btn btn-basic">
-                        Logout
+                        {% trans %}Logout{% endtrans %}
                     </a>
                 {% else %}
                     <a href="{{ path('app_login') }}" class="btn btn-basic">
-                        Sign in
+                        {% trans %}Sign in{% endtrans %}
                     </a> or
                     <a href="{{ path('app_register') }}" class="btn btn-basic">
                         Register
