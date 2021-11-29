@@ -2,23 +2,23 @@
   "entrypoints": {
     "back": {
       "js": [
-        "/build/runtime.f799512a.js",
-        "/build/758.98edc635.js",
-        "/build/817.35d7b108.js",
-        "/build/back.ba124b9a.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ob-7db861.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_from_js-node_modules_core-js_modules_es_array_i-86f3a4.js",
+        "/build/back.js"
       ],
       "css": [
-        "/build/back.3e70cb4a.css"
+        "/build/back.css"
       ]
     },
     "front": {
       "js": [
-        "/build/runtime.f799512a.js",
-        "/build/758.98edc635.js",
-        "/build/front.be83830c.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ob-7db861.js",
+        "/build/front.js"
       ],
       "css": [
-        "/build/front.5917ccfb.css"
+        "/build/front.css"
       ]
     }
   }

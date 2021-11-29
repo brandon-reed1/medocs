@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Form\ShareListType;
 use App\Form\UrlType;
 use App\Form\UserType;
+use App\Repository\LineRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,19 +17,21 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 class IndexController extends AbstractController
 {
+    private $lineRepository;
+
+    public function __construct(LineRepository $lineRepository){
+        $this->lineRepository = $lineRepository;
+    }
+
     /**
      * @Route("/admin/index", name="admin_index")
      */
     public function index(): Response
     {
-//        dd($this->getUser());
-
         /* @todo dependy injection construct */
 
-        $list_size = $this->getDoctrine()->getManager()->getRepository('App:Line')
-            ->getCountByUser($this->getUser()->getId());
-        $products = $this->getDoctrine()->getManager()->getRepository('App:Line')
-            ->getAllUserLines($this->getUser()->getId());;
+        $list_size = $this->lineRepository->getCountByUser($this->getUser()->getId());
+        $products = $this->lineRepository->getAllUserLines($this->getUser()->getId());;
 
         $url_form = $this->createForm(UrlType::class, null, [
             'action' => $this->generateUrl('admin_index_url'),

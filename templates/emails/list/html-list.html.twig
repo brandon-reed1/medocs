@@ -325,6 +325,9 @@
             color: #000;
             font-weight: normal;
         }
+        .card.horizontal {
+            flex-direction: row;
+        }
 
         @media screen and (min-width: 600px) {
             .card.horizontal {
@@ -410,29 +413,12 @@
             .card.horizontal .card-header .title {
                 font-size: 1.1rem;
             }
-        }
 
-        @media (min-width: 1700px) {
-
-            .card.horizontal .card-header .title {
-                color: #626264;
-                font-weight: 900;
-                font-size: 1.2rem;
-            }
-
-            .card.horizontal .panel-right .description {
-                font-size: 1rem;
-            }
-
-            .card.horizontal .panel-right .actions .btn {
-                font-size: 1.1rem;
-                padding: 1.5rem;
-                font-weight: bold;
-            }
-        }
         .wfull {
             max-width: 100%;
         }
+        }
+
     </style>
 </head>
 <body>
