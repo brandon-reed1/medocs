@@ -8,17 +8,44 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
 
-class DayController extends AbstractController
-{
+class DayController{
     protected $em;
+    /**
+     * @var \Twig\Environment
+     */
+    private $twig;
+    /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+    /**
+     * @var FlashBag
+     */
+    private $flashBag;
+    /**
+     * @var RouterInterface
+     */
+    private $router;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager,
+                                \Twig\Environment $twig,
+                                FormFactoryInterface $formFactory,
+                                FlashBag $flashBag,
+                                RouterInterface $router)
     {
         $this->em = $entityManager;
+        $this->twig = $twig;
+        $this->formFactory = $formFactory;
+        $this->flashBag = $flashBag;
+        $this->router = $router;
     }
 
     /**
@@ -29,9 +56,9 @@ class DayController extends AbstractController
         $list = $this->em->getRepository(Day::class)
             ->getAll();
 
-        return $this->render('admin/dose/day/index.html.twig', [
+        return new Response($this->twig->render('admin/dose/day/index.html.twig', [
             'list' => $list,
-        ]);
+        ]));
     }
 
 
@@ -44,7 +71,7 @@ class DayController extends AbstractController
     {
 
         $day = new Day();
-        $form = $this->createForm(DayType::class, $day);
+        $form = $this->formFactory->create(DayType::class, $day);
 
         $form->handleRequest($request);
 
@@ -53,17 +80,17 @@ class DayController extends AbstractController
                 $this->em->persist($day);
                 $this->em->flush();
 
-                $this->addFlash('success', 'ajouté');
+                $this->flashBag->add('success', 'ajouté');
 
-                return $this->redirectToRoute("admin_day_index");
+                return new RedirectResponse($this->router->generate("admin_day_index"));
 
             } catch (ORMException $ORMException) {
                 die('erreur');
             }
         }
-        return $this->render('admin/dose/day/create.html.twig', [
+        return new RedirectResponse($this->twig->render('admin/dose/day/create.html.twig', [
             'form' => $form->createView(),
-        ]);
+        ]));
     }
 
     /**
@@ -75,12 +102,12 @@ class DayController extends AbstractController
     {
 
         if (!$day) {
-            $this->addFlash('error', 'N\'existe pas');
+            $this->flashBag->add('error', 'N\'existe pas');
 
-            return $this->redirectToRoute("admin_day_index");
+            return new RedirectResponse($this->router->generate("admin_day_index"));
         }
 
-        $form = $this->createForm(DayType::class, $day, [
+        $form = $this->formFactory->create(DayType::class, $day, [
             'method' => 'PUT'
         ]);
 
@@ -91,17 +118,17 @@ class DayController extends AbstractController
                 ;
                 $this->em->flush();
 
-                $this->addFlash('success', 'modifié');
+                $this->flashBag->add('success', 'modifié');
 
-                return $this->redirectToRoute("admin_day_index");
+                return new RedirectResponse($this->router->generate("admin_day_index"));
 
             } catch (ORMException $ORMException) {
                 die('erreur');
             }
         }
-        return $this->render('admin/dose/day/update.html.twig', [
+        return new RedirectResponse($this->twig->render('admin/dose/day/update.html.twig', [
             'form' => $form->createView(),
-        ]);
+        ]));
     }
 
     /**
@@ -113,18 +140,18 @@ class DayController extends AbstractController
     {
 
         if (!$day) {
-            $this->addFlash('error', 'N\'existe pas');
+            $this->flashBag->add('error', 'N\'existe pas');
 
-            return $this->redirectToRoute("admin_day_index");
+            return new RedirectResponse($this->router->generate("admin_day_index"));
         }
 
         $defaultData = ['message' => 'Voulez vous effacer ' . $day->getName() . ' ?'];
-        $form = $this->createFormBuilder($defaultData)
+        $form = $this->formFactory->createBuilder(null, $defaultData)
             ->add('yes', SubmitType::class)
             ->add('no', SubmitType::class)
             ->setMethod('DELETE')
             ->getForm();
-//dd($form);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -133,24 +160,24 @@ class DayController extends AbstractController
                     $this->em->remove($day);
                     $this->em->flush();
 
-                    $this->addFlash('success', 'supprimé');
+                    $this->flashBag->add('success', 'supprimé');
 
-                    return $this->redirectToRoute("admin_day_index");
+                    return new RedirectResponse($this->router->generate("admin_day_index"));
 
                 } catch (ORMException $ORMException) {
                     die('erreur');
                 }
             else:
-                $this->addFlash('notice', 'annulé');
+                $this->flashBag->add('notice', 'annulé');
 
-                return $this->redirectToRoute("admin_day_index");
+                return new RedirectResponse($this->router->generate("admin_day_index"));
 
             endif;
 
         }
-        return $this->render('admin/dose/day/delete.html.twig', [
+        return new RedirectResponse($this->twig->render('admin/dose/day/delete.html.twig', [
             'form' => $form->createView(),
             'default_data' => $defaultData
-        ]);
+        ]));
     }
 }
