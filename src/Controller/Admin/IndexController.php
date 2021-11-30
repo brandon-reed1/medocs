@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author novitz jean-philippe <hello@jphnovitz.be>
+ * @copyright 2021-2022
+ */
 
 namespace App\Controller\Admin;
 
@@ -6,21 +10,75 @@ use App\Form\ShareListType;
 use App\Form\UrlType;
 use App\Form\UserType;
 use App\Repository\LineRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\SecurityFactoryInterface;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Security;
+use Twig\Environment;
+use Twig\Extension\AbstractExtension;
 
-class IndexController extends AbstractController
+class IndexController
 {
     private $lineRepository;
+    /**
+     * @var UrlGeneratorInterface
+     */
+    private $urlGenerator;
+    /**
+     * @var AbstractExtension
+     */
+    private $twig;
+    /**
+     * @var FormFactoryInterface
+     */
+    private $formBuilder;
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+    /**
+     * @var Response
+     */
+    private $response;
+    /**
+     * @var FlashBagInterface
+     */
+    private $flashBag;
+    /**
+     * @var RouterInterface
+     */
+    private $router;
+    private $user;
 
-    public function __construct(LineRepository $lineRepository){
+
+    public function __construct(EntityManagerInterface $entityManager,
+                                LineRepository $lineRepository,
+                                Security $security,
+                                FormFactoryInterface $formBuilder,
+                                UrlGeneratorInterface $urlGenerator,
+                                RouterInterface $router,
+                                \Twig\Environment $twig,
+                                FlashBagInterface $flashBag)
+    {
         $this->lineRepository = $lineRepository;
+        $this->user = $security->getUser();
+        $this->urlGenerator = $urlGenerator;
+        $this->twig = $twig;
+        $this->formBuilder = $formBuilder;
+        $this->entityManager = $entityManager;
+        $this->flashBag = $flashBag;
+        $this->router = $router;
     }
 
     /**
@@ -30,26 +88,24 @@ class IndexController extends AbstractController
     {
         /* @todo dependy injection construct */
 
-        $list_size = $this->lineRepository->getCountByUser($this->getUser()->getId());
-        $products = $this->lineRepository->getAllUserLines($this->getUser()->getId());;
+        $products = $this->lineRepository->getAllUserLines($this->user);;
 
-        $url_form = $this->createForm(UrlType::class, null, [
-            'action' => $this->generateUrl('admin_index_url'),
+        $url_form = $this->formBuilder->create(UrlType::class, null, [
+            'action' => $this->urlGenerator->generate('admin_index_url'),
             'method' => 'POST'
         ]);
 
-        $send_form = $this->createForm(ShareListType::class, null, [
-            'action' => $this->generateUrl('admin_index_send_email'),
+        $send_form = $this->formBuilder->create(ShareListType::class, null, [
+            'action' => $this->urlGenerator->generate('admin_index_send_email'),
             'method' => 'POST'
         ]);
 
 
-        return $this->render('admin/index.html.twig', [
-            'list_size' => $list_size,
+        return new Response($this->twig->render('admin/index.html.twig', [
             'list' => $products,
             'url_form' => $url_form->createView(),
             'send_form' => $send_form->createView()
-        ]);
+        ]));
     }
 
     /**
@@ -57,11 +113,11 @@ class IndexController extends AbstractController
      */
     public function updateUrl(Request $request): Response
     {
-        $this->getUser()->setUrl($request->request->get('url')['url']);
-        $this->getDoctrine()->getManager()->flush();
+        $this->user->setUrl($request->request->get('url')['url']);
+        $this->entityManager->flush();
 
-        $this->addFlash('success', 'url modifiée');
-        return $this->redirectToRoute('admin_index');
+        $this->flashBag->add('success', 'url modifiée');
+        return  new RedirectResponse($this->router->generate('admin_index'));
     }
 
     /**
@@ -69,9 +125,7 @@ class IndexController extends AbstractController
      */
     public function sendMyUrl(MailerInterface $mailer, Request $request): Response
     {
-        $user = $this->getUser();
-        $lines = $this->getDoctrine()->getManager()->getRepository('App:Line')
-            ->getAllUserLines($this->getUser()->getId());
+        $lines = $this->lineRepository->getAllUserLines($this->user->getId());
 
         $email = (new TemplatedEmail())
             ->from('info@medocs.be')
@@ -80,17 +134,17 @@ class IndexController extends AbstractController
             //->bcc('bcc@medocs.be')
             //->replyTo('fabien@medocs.be')
             //->priority(Email::PRIORITY_HIGH)
-            ->subject($user->getEmail() . ' vous envoie sa liste de médicaments')
+            ->subject($this->user->getEmail() . ' vous envoie sa liste de médicaments')
             ->htmlTemplate('emails/list/html-list.html.twig')
 //            ->textTemplate('emails/list/text-list.html.twig')
-        ->context([
-            'list'=> $lines
-        ]);
+            ->context([
+                'list' => $lines
+            ]);
 
         try {
             $mailer->send($email);
-            $this->addFlash('success', 'email envoyé');
-            return $this->redirectToRoute('admin_index');
+            $this->flashBag->add('success', 'email envoyé');
+            return new RedirectResponse($this->urlGenerator->generate('admin_index'));
         } catch (TransportExceptionInterface $exception) {
             die('error');
         }
