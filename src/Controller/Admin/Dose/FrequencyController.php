@@ -8,19 +8,55 @@ use App\Form\FrequencyType;
 use App\Repository\FrequencyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
 
-class FrequencyController extends AbstractController
+class FrequencyController
 {
-    protected $em;
+    /**
+     * @var \Twig\Environment
+     */
+    private $twig;
+    /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+    /**
+     * @var FlashBagInterface
+     */
+    private $flashBag;
+    /**
+     * @var RouterInterface
+     */
+    private $router;
+    /**
+     * @var FrequencyRepository
+     */
+    private $frequencyRepository;
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager,
+                                FrequencyRepository $frequencyRepository,
+                                \Twig\Environment $twig,
+                                FormFactoryInterface $formFactory,
+                                FlashBagInterface $flashBag,
+                                RouterInterface $router)
     {
-        $this->em = $entityManager;
+        $this->twig = $twig;
+        $this->formFactory = $formFactory;
+        $this->flashBag = $flashBag;
+        $this->router = $router;
+        $this->frequencyRepository = $frequencyRepository;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -28,14 +64,10 @@ class FrequencyController extends AbstractController
      */
     public function index(): Response
     {
-        $list = $this->em->getRepository(Frequency::class)
-            ->getAll();
-
-        return $this->render('admin/dose/frequency/index.html.twig', [
-            'list' => $list,
-        ]);
+        return new Response($this->twig->render('admin/dose/frequency/index.html.twig', [
+            'list' => $this->frequencyRepository->getAll()
+        ]));
     }
-
 
     /**
      * @Route("/admin/dose/frequency/new",
@@ -44,28 +76,27 @@ class FrequencyController extends AbstractController
      */
     public function create(Request $request): Response
     {
-
         $frequency = new Frequency();
-        $form = $this->createForm(FrequencyType::class, $frequency);
+        $form = $this->formFactory->create(FrequencyType::class, $frequency);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $this->em->persist($frequency);
-                $this->em->flush();
+                $this->entityManager->persist($frequency);
+                $this->entityManager->flush();
 
-                $this->addFlash('success', 'ajouté');
+                $this->flashBag->add('success', 'ajouté');
 
-                return $this->redirectToRoute("admin_frequency_index");
+                return new RedirectResponse($this->router->generate("admin_frequency_index"));
 
             } catch (ORMException $ORMException) {
                 die('erreur');
             }
         }
-        return $this->render('admin/dose/frequency/create.html.twig', [
+        return new Response($this->twig->render('admin/dose/frequency/create.html.twig', [
             'form' => $form->createView(),
-        ]);
+        ]));
     }
 
     /**
@@ -75,14 +106,13 @@ class FrequencyController extends AbstractController
      */
     public function update(Request $request, Frequency $frequency): Response
     {
-
         if (!$frequency) {
-            $this->addFlash('error', 'N\'existe pas');
+            $this->flashBag->add('error', 'N\'existe pas');
 
-            return $this->redirectToRoute("admin_frequency_index");
+            return new RedirectResponse($this->router->generate("admin_frequency_index"));
         }
 
-        $form = $this->createForm(FrequencyType::class, $frequency, [
+        $form = $this->formFactory->create(FrequencyType::class, $frequency, [
             'method' => 'PUT'
         ]);
 
@@ -91,19 +121,18 @@ class FrequencyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 ;
-                $this->em->flush();
+                $this->entityManager->flush();
+                $this->flashBag->add('success', 'modifié');
 
-                $this->addFlash('success', 'modifié');
-
-                return $this->redirectToRoute("admin_frequency_index");
+                return new RedirectResponse($this->router->generate("admin_frequency_index"));
 
             } catch (ORMException $ORMException) {
                 die('erreur');
             }
         }
-        return $this->render('admin/dose/frequency/update.html.twig', [
+        return new Response($this->twig->render('admin/dose/frequency/update.html.twig', [
             'form' => $form->createView(),
-        ]);
+        ]));
     }
 
     /**
@@ -115,44 +144,44 @@ class FrequencyController extends AbstractController
     {
 
         if (!$frequency) {
-            $this->addFlash('error', 'N\'existe pas');
+            $this->flashBag->add('error', 'N\'existe pas');
 
-            return $this->redirectToRoute("admin_frequency_index");
+            return new RedirectResponse($this->router->generate("admin_frequency_index"));
         }
 
         $defaultData = ['message' => 'Voulez vous effacer ' . $frequency->getName() . ' ?'];
-        $form = $this->createFormBuilder($defaultData)
+        $form = $this->formFactory->createBuilder(null, $defaultData)
             ->add('yes', SubmitType::class)
             ->add('no', SubmitType::class)
             ->setMethod('DELETE')
             ->getForm();
-//dd($form);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('yes')->isClicked()):
                 try {
-                    $this->em->remove($frequency);
-                    $this->em->flush();
+                    $this->entityManager->remove($frequency);
+                    $this->entityManager->flush();
 
-                    $this->addFlash('success', 'supprimé');
+                    $this->flashBag->add('success', 'supprimé');
 
-                    return $this->redirectToRoute("admin_frequency_index");
+                    return new RedirectResponse($this->router->generate("admin_frequency_index"));
 
                 } catch (ORMException $ORMException) {
                     die('erreur');
                 }
             else:
-                $this->addFlash('notice', 'annulé');
+                $this->flashBag->add('notice', 'annulé');
 
-                return $this->redirectToRoute("admin_frequency_index");
+                return new RedirectResponse($this->router->generate("admin_frequency_index"));
 
             endif;
 
         }
-        return $this->render('admin/dose/frequency/delete.html.twig', [
+        return new Response($this->twig->render('admin/dose/frequency/delete.html.twig', [
             'form' => $form->createView(),
             'default_data' => $defaultData
-        ]);
+        ]));
     }
 }
