@@ -10,17 +10,46 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
 
-class DoseController extends AbstractController
+class DoseController
 {
     protected $em;
+    /**
+     * @var \Twig\Environment
+     */
+    private $twig;
+    /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+    /**
+     * @var FlashBagInterface
+     */
+    private $flashBag;
+    /**
+     * @var RouterInterface
+     */
+    private $router;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager,
+                                \Twig\Environment $twig,
+                                FormFactoryInterface $formFactory,
+                                FlashBagInterface $flashBag,
+                                RouterInterface $router)
     {
         $this->em = $entityManager;
+        $this->twig = $twig;
+        $this->formFactory = $formFactory;
+        $this->flashBag = $flashBag;
+        $this->router = $router;
     }
 
     /**
@@ -31,9 +60,9 @@ class DoseController extends AbstractController
         $list = $this->em->getRepository(Dose::class)
             ->getAll();
 
-        return $this->render('admin/dose/dose/index.html.twig', [
-            'list' => $list,
-        ]);
+        return new Response($this->twig->render('admin/dose/dose/index.html.twig', [
+                'list' => $list,
+            ]));
     }
 
 
@@ -42,37 +71,36 @@ class DoseController extends AbstractController
      *     name="admin_dose_new",
      *     methods={"GET", "POST"})
      */
-    public function create(Request $request): Response
+    public function create(Request $request, SessionInterface $session): Response
     {
-        if (!$this->get('session')->get('referer')) {
-            $this->get('session')->set('referer', $request->server->get('HTTP_REFERER'));
+        if (!$session->get('session')->get('referer')) {
+            $session->get('session')->set('referer', $request->server->get('HTTP_REFERER'));
         }
         $dose = new Dose();
-        $form = $this->createForm(DoseType::class, $dose);
+        $form = $this->formFactory->create(DoseType::class, $dose);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                //dd($dose);
                 $this->em->persist($dose);
                 $this->em->flush();
 
-                $this->addFlash('success', 'ajouté');
+                $this->flashBag->add('success', 'ajouté');
 
-                if ($referer = $this->get('session')->get('referer')) {
-                    $this->get('session')->remove('referer');
-                    return $this->redirect($referer);
-                } else  return $this->redirectToRoute('admin_dose_new');
+                if ($referer = $session->get('session')->get('referer')) {
+                    $session->get('session')->remove('referer');
+                    return new RedirectResponse($this->router->generate($referer));
+                } else  return new RedirectResponse($this->router->generate('admin_dose_new'));
 
 
             } catch (ORMException $ORMException) {
                 die('erreur');
             }
         }
-        return $this->render('admin/dose/dose/new.html.twig', [
+        return new Response($this->twig->render('admin/dose/dose/new.html.twig', [
             'form' => $form->createView(),
-        ]);
+        ]));
     }
 
 
@@ -83,14 +111,13 @@ class DoseController extends AbstractController
      */
     public function update(Request $request, Dose $dose): Response
     {
-
         if (!$dose) {
-            $this->addFlash('error', 'N\'existe pas');
+            $this->flashBag->add('error', 'N\'existe pas');
 
-            return $this->redirectToRoute("admin_dose_index");
+            return new Response($this->router->generate("admin_dose_index"));
         }
 
-        $form = $this->createForm(DoseType::class, $dose, [
+        $form = $this->formFactory->create(DoseType::class, $dose, [
             'method' => 'PUT'
         ]);
 
@@ -101,17 +128,17 @@ class DoseController extends AbstractController
                 ;
                 $this->em->flush();
 
-                $this->addFlash('success', 'modifié');
+                $this->flashBag->add('success', 'modifié');
 
-                return $this->redirectToRoute("admin_dose_index");
+                return new Response($this->router->generate("admin_dose_index"));
 
             } catch (ORMException $ORMException) {
                 die('erreur');
             }
         }
-        return $this->render('admin/dose/dose/update.html.twig', [
+        return new Response($this->twig->render('admin/dose/dose/update.html.twig', [
             'form' => $form->createView(),
-        ]);
+        ]));
     }
 
     /**
@@ -123,18 +150,18 @@ class DoseController extends AbstractController
     {
 
         if (!$dose) {
-            $this->addFlash('error', 'N\'existe pas');
+            $this->flashBag->add('error', 'N\'existe pas');
 
-            return $this->redirectToRoute("admin_dose_index");
+            return new Response($this->router->generate("admin_dose_index"));
         }
 
         $defaultData = ['message' => 'Voulez vous effacer ' . $dose . ' ?'];
-        $form = $this->createFormBuilder($defaultData)
+        $form = $this->formFactory->createBuilder(null, $defaultData)
             ->add('yes', SubmitType::class)
             ->add('no', SubmitType::class)
             ->setMethod('DELETE')
             ->getForm();
-//dd($form);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -143,25 +170,21 @@ class DoseController extends AbstractController
                     $this->em->remove($dose);
                     $this->em->flush();
 
-                    $this->addFlash('success', 'supprimé');
-
-                    return $this->redirectToRoute("admin_dose_index");
+                    $this->flashBag->add('success', 'supprimé');
+                    return new Response($this->router->generate("admin_dose_index"));
 
                 } catch (ORMException $ORMException) {
                     die('erreur');
                 }
             else:
-                $this->addFlash('notice', 'annulé');
-
-                return $this->redirectToRoute("admin_dose_index");
-
+                $this->flashBag->add('notice', 'annulé');
+                return new Response($this->router->generate("admin_dose_index"));
             endif;
-
         }
-        return $this->render('admin/dose/dose/delete.html.twig', [
+        return new Response($this->twig->render('admin/dose/dose/delete.html.twig', [
             'form' => $form->createView(),
             'default_data' => $defaultData
-        ]);
+        ]));
     }
 
 

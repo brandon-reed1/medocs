@@ -12,7 +12,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -38,7 +38,7 @@ class DayController{
     public function __construct(EntityManagerInterface $entityManager,
                                 \Twig\Environment $twig,
                                 FormFactoryInterface $formFactory,
-                                FlashBag $flashBag,
+                                FlashBagInterface $flashBag,
                                 RouterInterface $router)
     {
         $this->em = $entityManager;
