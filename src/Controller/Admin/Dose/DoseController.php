@@ -1,11 +1,15 @@
 <?php
-
+/**
+ * @author novitz jean-philippe <hello@jphnovitz.be>
+ * @copyright 2021-2022
+ */
 namespace App\Controller\Admin\Dose;
 
 use App\Entity\Dose;
 use App\Entity\Moment;
 use App\Form\DoseType;
 use App\Form\MomentType;
+use App\Repository\DoseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,8 +42,13 @@ class DoseController
      * @var RouterInterface
      */
     private $router;
+    /**
+     * @var DoseRepository
+     */
+    private $doseRepository;
 
     public function __construct(EntityManagerInterface $entityManager,
+                                DoseRepository $doseRepository,
                                 \Twig\Environment $twig,
                                 FormFactoryInterface $formFactory,
                                 FlashBagInterface $flashBag,
@@ -50,6 +59,7 @@ class DoseController
         $this->formFactory = $formFactory;
         $this->flashBag = $flashBag;
         $this->router = $router;
+        $this->doseRepository = $doseRepository;
     }
 
     /**
@@ -57,12 +67,9 @@ class DoseController
      */
     public function index(): Response
     {
-        $list = $this->em->getRepository(Dose::class)
-            ->getAll();
-
-        return new Response($this->twig->render('admin/dose/dose/index.html.twig', [
-                'list' => $list,
-            ]));
+        return new Response ($this->twig->render('admin/dose/dose/index.html.twig', [
+            'list' => $this->doseRepository->getAll(),
+        ]));
     }
 
 
