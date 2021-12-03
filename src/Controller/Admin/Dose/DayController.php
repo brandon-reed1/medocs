@@ -1,9 +1,13 @@
 <?php
-
+/**
+ * @author novitz jean-philippe <hello@jphnovitz.be>
+ * @copyright 2021-2022
+ */
 namespace App\Controller\Admin\Dose;
 
 use App\Entity\Day;
 use App\Form\DayType;
+use App\Repository\DayRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,16 +30,19 @@ class DayController{
      * @var FormFactoryInterface
      */
     private $formFactory;
-    /**
-     * @var FlashBag
-     */
+
     private $flashBag;
     /**
      * @var RouterInterface
      */
     private $router;
+    /**
+     * @var DayRepository
+     */
+    private $dayRepository;
 
     public function __construct(EntityManagerInterface $entityManager,
+                                DayRepository $dayRepository,
                                 \Twig\Environment $twig,
                                 FormFactoryInterface $formFactory,
                                 FlashBagInterface $flashBag,
@@ -46,6 +53,7 @@ class DayController{
         $this->formFactory = $formFactory;
         $this->flashBag = $flashBag;
         $this->router = $router;
+        $this->dayRepository = $dayRepository;
     }
 
     /**
@@ -53,11 +61,8 @@ class DayController{
      */
     public function index(): Response
     {
-        $list = $this->em->getRepository(Day::class)
-            ->getAll();
-
-        return new Response($this->twig->render('admin/dose/day/index.html.twig', [
-            'list' => $list,
+        return new Response ($this->twig->render('admin/dose/day/index.html.twig', [
+            'list' => $this->dayRepository->getAll(),
         ]));
     }
 
