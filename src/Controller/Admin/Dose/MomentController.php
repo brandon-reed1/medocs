@@ -1,24 +1,62 @@
 <?php
-
+/**
+ * @author novitz jean-philippe <hello@jphnovitz.be>
+ * @copyright 2021-2022
+ */
 namespace App\Controller\Admin\Dose;
 
 use App\Entity\Moment;
 use App\Form\MomentType;
+use App\Repository\MomentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
 
-class MomentController extends AbstractController
+class MomentController
 {
     protected $em;
+    /**
+     * @var MomentRepository
+     */
+    private $momentRepository;
+    /**
+     * @var \Twig\Environment
+     */
+    private $twig;
+    /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+    /**
+     * @var FlashBagInterface
+     */
+    private $flashBag;
+    /**
+     * @var RouterInterface
+     */
+    private $router;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager,
+                                MomentRepository $momentRepository,
+                                \Twig\Environment $twig,
+                                FormFactoryInterface $formFactory,
+                                FlashBagInterface $flashBag,
+                                RouterInterface $router)
     {
         $this->em = $entityManager;
+        $this->momentRepository = $momentRepository;
+        $this->twig = $twig;
+        $this->formFactory = $formFactory;
+        $this->flashBag = $flashBag;
+        $this->router = $router;
     }
 
     /**
@@ -26,12 +64,9 @@ class MomentController extends AbstractController
      */
     public function index(): Response
     {
-        $list = $this->em->getRepository(Moment::class)
-            ->getAll();
-
-        return $this->render('admin/dose/moment/index.html.twig', [
-            'list' => $list,
-        ]);
+        return new Response ($this->twig->render('admin/dose/moment/index.html.twig', [
+            'list' => $this->momentRepository->getAll(),
+        ]));
     }
 
 
@@ -44,7 +79,7 @@ class MomentController extends AbstractController
     {
 
         $moment = new Moment();
-        $form = $this->createForm(MomentType::class, $moment);
+        $form = $this->formFactory->create(MomentType::class, $moment);
 
         $form->handleRequest($request);
 
@@ -53,17 +88,17 @@ class MomentController extends AbstractController
                 $this->em->persist($moment);
                 $this->em->flush();
 
-                $this->addFlash('success', 'ajouté');
+                $this->flashBag->add('success', 'ajouté');
 
-                return $this->redirectToRoute("admin_moment_index");
+                return new RedirectResponse($this->router->generate("admin_moment_index"));
 
             } catch (ORMException $ORMException) {
                 die('erreur');
             }
         }
-        return $this->render('admin/dose/moment/create.html.twig', [
+        return new Response ($this->twig->render('admin/dose/moment/create.html.twig', [
             'form' => $form->createView(),
-        ]);
+        ]));
     }
 
     /**
@@ -75,12 +110,12 @@ class MomentController extends AbstractController
     {
 
         if (!$moment) {
-            $this->addFlash('error', 'N\'existe pas');
+            $this->flashBag->add('error', 'N\'existe pas');
 
-            return $this->redirectToRoute("admin_moment_index");
+            return new RedirectResponse($this->router->generate("admin_moment_index"));
         }
 
-        $form = $this->createForm(MomentType::class, $moment, [
+        $form = $this->formFactory->create(MomentType::class, $moment, [
             'method' => 'PUT'
         ]);
 
@@ -91,17 +126,17 @@ class MomentController extends AbstractController
                 ;
                 $this->em->flush();
 
-                $this->addFlash('success', 'modifié');
+                $this->flashBag->add('success', 'modifié');
 
-                return $this->redirectToRoute("admin_moment_index");
+                return new RedirectResponse($this->router->generate("admin_moment_index"));
 
             } catch (ORMException $ORMException) {
                 die('erreur');
             }
         }
-        return $this->render('admin/dose/moment/update.html.twig', [
+        return new Response ($this->twig->render('admin/dose/moment/update.html.twig', [
             'form' => $form->createView(),
-        ]);
+        ]));
     }
 
     /**
@@ -113,18 +148,18 @@ class MomentController extends AbstractController
     {
 
         if (!$moment) {
-            $this->addFlash('error', 'N\'existe pas');
+            $this->flashBag->add('error', 'N\'existe pas');
 
-            return $this->redirectToRoute("admin_moment_index");
+            return new RedirectResponse($this->router->generate("admin_moment_index"));
         }
 
         $defaultData = ['message' => 'Voulez vous effacer ' . $moment->getName() . ' ?'];
-        $form = $this->createFormBuilder($defaultData)
+        $form = $this->formFactory->createBuilder(null, $defaultData)
             ->add('yes', SubmitType::class)
             ->add('no', SubmitType::class)
             ->setMethod('DELETE')
             ->getForm();
-//dd($form);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -133,24 +168,24 @@ class MomentController extends AbstractController
                     $this->em->remove($moment);
                     $this->em->flush();
 
-                    $this->addFlash('success', 'supprimé');
+                    $this->flashBag->add('success', 'supprimé');
 
-                    return $this->redirectToRoute("admin_moment_index");
+                    return new RedirectResponse($this->router->generate("admin_moment_index"));
 
                 } catch (ORMException $ORMException) {
                     die('erreur');
                 }
             else:
-                $this->addFlash('notice', 'annulé');
+                $this->flashBag->add('notice', 'annulé');
 
-                return $this->redirectToRoute("admin_moment_index");
+                return new RedirectResponse($this->router->generate("admin_moment_index"));
 
             endif;
 
         }
-        return $this->render('admin/dose/moment/delete.html.twig', [
+        return new Response ($this->twig->render('admin/dose/moment/delete.html.twig', [
             'form' => $form->createView(),
             'default_data' => $defaultData
-        ]);
+        ]));
     }
 }
