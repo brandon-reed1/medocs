@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -59,7 +60,7 @@ class UserController
         EncoderFactoryInterface $encoderFactory,
         UserPasswordEncoderInterface $passwordEncoder,
         Security $security,
-        Router $router,
+        RouterInterface $router,
         FormFactoryInterface $formFactory,
         FlashBagInterface $flashBag,
         \Twig\Environment $twig)
