@@ -7,20 +7,45 @@ use App\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Security;
 
-class IndexController extends AbstractController
+class IndexController
 {
+    /**
+     * @var Security
+     */
+    private $security;
+    /**
+     * @var \Twig\Environment
+     */
+    private $twig;
+    /**
+     * @var Router
+     */
+    private $router;
+
+    public function __construct(Security $security,
+                                \Twig\Environment $twig,
+                                RouterInterface $router)
+    {
+        $this->security = $security;
+        $this->twig = $twig;
+        $this->router = $router;
+    }
+
     /**
      * @Route("/", name="public_index")
      */
     public function index(): Response
     {
-        if ($this->getUser()) {
-            return $this->redirectToRoute('admin_index');
+        if ($this->security->getUser()) {
+            return new RedirectResponse($this->router->generate('admin_index'));
         }
-        return $this->render('public/index/index.html.twig');
+        return new Response($this->twig->render('public/index/index.html.twig'));
     }
 
     /**
@@ -28,9 +53,9 @@ class IndexController extends AbstractController
      */
     public function publicUrl(User $user): Response
     {
-        return $this->render('public/index/list.html.twig', [
+        return new Response($this->twig->render('public/index/list.html.twig', [
             'list' => $user->getLines(),
-        ]);
+        ]));
     }
 
 
@@ -39,6 +64,6 @@ class IndexController extends AbstractController
      */
     public function condition_use(): Response
     {
-        return $this->render('public/index/conditions-use_fr.html.twig');
+        return new Response($this->twig->render('public/index/conditions-use_fr.html.twig'));
     }
 }
