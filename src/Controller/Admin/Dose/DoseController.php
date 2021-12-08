@@ -7,16 +7,18 @@ namespace App\Controller\Admin\Dose;
 
 use App\Entity\Dose;
 use App\Entity\Moment;
+use App\Form\DeleteFormType;
 use App\Form\DoseType;
 use App\Form\MomentType;
 use App\Repository\DoseRepository;
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\ORMException;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\Exception\ORMException;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -46,13 +48,18 @@ class DoseController
      * @var DoseRepository
      */
     private $doseRepository;
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
 
     public function __construct(EntityManagerInterface $entityManager,
                                 DoseRepository $doseRepository,
                                 \Twig\Environment $twig,
                                 FormFactoryInterface $formFactory,
                                 FlashBagInterface $flashBag,
-                                RouterInterface $router)
+                                RouterInterface $router,
+                                RequestStack $requestStack)
     {
         $this->em = $entityManager;
         $this->twig = $twig;
@@ -60,6 +67,7 @@ class DoseController
         $this->flashBag = $flashBag;
         $this->router = $router;
         $this->doseRepository = $doseRepository;
+        $this->requestStack = $requestStack;
     }
 
     /**
@@ -80,9 +88,11 @@ class DoseController
      */
     public function create(Request $request, SessionInterface $session): Response
     {
-        if (!$session->get('session')->get('referer')) {
-            $session->get('session')->set('referer', $request->server->get('HTTP_REFERER'));
+
+        if (!$this->requestStack->getCurrentRequest()->getSession()->get('referer')){
+            $this->requestStack->getCurrentRequest()->getSession()->set('referer', $request->server->get('HTTP_REFERER'));
         }
+
         $dose = new Dose();
         $form = $this->formFactory->create(DoseType::class, $dose);
 
@@ -95,13 +105,13 @@ class DoseController
 
                 $this->flashBag->add('success', 'ajouté');
 
-                if ($referer = $session->get('session')->get('referer')) {
-                    $session->get('session')->remove('referer');
-                    return new RedirectResponse($this->router->generate($referer));
+                if ($referer = $this->requestStack->getCurrentRequest()->getSession()->get('referer')) {
+                    $this->requestStack->getCurrentRequest()->getSession()->remove('referer');
+                    return new RedirectResponse($referer);
                 } else  return new RedirectResponse($this->router->generate('admin_dose_new'));
 
 
-            } catch (ORMException $ORMException) {
+            } catch (Exception $exception) {
                 die('erreur');
             }
         }
@@ -155,7 +165,6 @@ class DoseController
      */
     public function delete(Request $request, Dose $dose): Response
     {
-
         if (!$dose) {
             $this->flashBag->add('error', 'N\'existe pas');
 
@@ -163,11 +172,8 @@ class DoseController
         }
 
         $defaultData = ['message' => 'Voulez vous effacer ' . $dose . ' ?'];
-        $form = $this->formFactory->createBuilder(null, $defaultData)
-            ->add('yes', SubmitType::class)
-            ->add('no', SubmitType::class)
-            ->setMethod('DELETE')
-            ->getForm();
+
+        $form = $this->formFactory->create(DeleteFormType::class,  $defaultData);
 
         $form->handleRequest($request);
 
@@ -178,14 +184,14 @@ class DoseController
                     $this->em->flush();
 
                     $this->flashBag->add('success', 'supprimé');
-                    return new Response($this->router->generate("admin_dose_index"));
+                    return new RedirectResponse($this->router->generate("admin_dose_index"));
 
                 } catch (ORMException $ORMException) {
                     die('erreur');
                 }
             else:
                 $this->flashBag->add('notice', 'annulé');
-                return new Response($this->router->generate("admin_dose_index"));
+                return new RedirectResponse($this->router->generate("admin_dose_index"));
             endif;
         }
         return new Response($this->twig->render('admin/dose/dose/delete.html.twig', [
