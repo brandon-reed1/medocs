@@ -10,20 +10,20 @@ namespace App\Controller\Admin\Product;
 use App\Entity\Line;
 use App\Entity\Product;
 use App\Entity\User;
+use App\Form\DeleteFormType;
 use App\Form\LineType;
 use App\Form\ProductType;
-use App\Repository\ProductRepository;
+use App\Repository\LineRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Security;
@@ -31,10 +31,7 @@ use Symfony\Component\Security\Core\Security;
 class ListController 
 {
     protected $em;
-    /**
-     * @var ProductRepository
-     */
-    private $productRepository;
+
     /**
      * @var \Twig\Environment
      */
@@ -60,29 +57,33 @@ class ListController
      */
     private $userRepository;
     /**
-     * @var SessionInterface
+     * @var LineRepository
      */
-    private $session;
+    private $lineRepositoryRepository;
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
 
     public function __construct(EntityManagerInterface $entityManager,
-                                ProductRepository $productRepository,
+                                LineRepository $lineRepositoryRepository,
                                 UserRepository $userRepository,
                                 Security $security,
                                 \Twig\Environment $twig,
                                 FormFactoryInterface $formFactory,
                                 FlashBagInterface $flashBag,
                                 RouterInterface $router, 
-                                SessionInterface $session)
+                                RequestStack $requestStack)
     {
         $this->em = $entityManager;
-        $this->productRepository = $productRepository;
+        $this->lineRepositoryRepository = $lineRepositoryRepository;
         $this->twig = $twig;
         $this->formFactory = $formFactory;
         $this->flashBag = $flashBag;
         $this->router = $router;
         $this->security = $security;
         $this->userRepository = $userRepository;
-        $this->session = $session;
+        $this->requestStack = $requestStack;
     }
 
     /**
@@ -90,8 +91,12 @@ class ListController
      */
     public function index(): Response
     {
+//        dd($list = $this->productRepository->getAll());
+        if (!$list = $this->lineRepositoryRepository->getAll())
+            return new RedirectResponse($this->router->generate('admin_line_new'));
+
         return new Response ($this->twig->render('admin/product/list/index.html.twig', [
-            'list' => $this->productRepository->getAll(),
+            'list' => $list
         ]));
     }
 
@@ -100,7 +105,7 @@ class ListController
      */
     public function new(Request $request): Response
     {
-        $this->session->get('session')->remove('referer');
+        $this->requestStack->getCurrentRequest()->getSession()->remove('referer');
         $line = new Line();
         $form = $this->formFactory->create(LineType::class, $line);
 
@@ -175,11 +180,7 @@ class ListController
         }
 
         $defaultData = ['message' => 'Voulez vous effacer ' . $line->getName() . ' ?'];
-        $form = $this->formFactory->createBuilder(null, $defaultData)
-            ->add('yes', SubmitType::class, ['label' => 'Oui Supprimer'])
-            ->add('no', SubmitType::class, ['label' => 'Non Annuler'])
-            ->setMethod('DELETE')
-            ->getForm();
+        $form = $this->formFactory->create(DeleteFormType::class, $defaultData);
 
         $form->handleRequest($request);
 

@@ -3,6 +3,7 @@
 namespace App\Controller\Admin\User;
 
 use App\Entity\User;
+use App\Form\DeleteFormType;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
@@ -12,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -54,6 +56,10 @@ class UserController
      * @var FlashBagInterface
      */
     private $flashBag;
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
 
     public function __construct(
         EntityManagerInterface $em,
@@ -63,7 +69,8 @@ class UserController
         RouterInterface $router,
         FormFactoryInterface $formFactory,
         FlashBagInterface $flashBag,
-        \Twig\Environment $twig)
+        \Twig\Environment $twig,
+        RequestStack $requestStack)
     {
         $this->em = $em;
         $this->encoderFactory = $encoderFactory;
@@ -73,6 +80,7 @@ class UserController
         $this->twig = $twig;
         $this->formFactory = $formFactory;
         $this->flashBag = $flashBag;
+        $this->requestStack = $requestStack;
     }
 
     /**
@@ -132,11 +140,7 @@ class UserController
     {
         $user = $this->security->getUser();
 
-        $form = $this->formFactory->createBuilder()
-            ->add('yes', SubmitType::class, ['translation_domain' => 'messages'])
-            ->add('no', SubmitType::class)
-            ->setMethod("DELETE")
-            ->getForm();
+        $form = $this->formFactory->create(DeleteFormType::class);
 
         $form->handleRequest($request);
 
@@ -144,16 +148,10 @@ class UserController
             if ($form->get('yes')->isClicked()) {
                 try {
                     $user_details = $this->security->getUser();
-//                    $user_details = $entityManager
-//                        ->getRepository(User::class)
-//                        ->findUserWithDetails($this->security->getUser()->getId());
-
                     $this->security->getToken()->setAuthenticated(false);
-//                    $this->security->get('security.token_storage')->setToken(null);
                     $this->em->remove($user);
                     $this->em->flush();
-                    $this->flashBag->add('success', 'Supprimé');
-
+//                    $this->flashBag->add('success', 'Supprimé');
 
                     // send email
                     $email = (new TemplatedEmail())
@@ -168,7 +166,9 @@ class UserController
 
                     $mailer->send($email);
 
-                    return new Response($this->router->generate("public_index"));
+                    $this->requestStack->getSession()->invalidate();
+                    return new RedirectResponse($this->router->generate("public_index"));
+//                    return new RedirectResponse($this->router->generate("public_index"));
 
                 } catch (ORMException $ORMException) {
                     dd($ORMException);

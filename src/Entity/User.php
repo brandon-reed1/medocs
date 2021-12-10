@@ -47,7 +47,7 @@ class User implements UserInterface
     private $isVerified = false;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Line", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Line", mappedBy="user", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $lines;
@@ -187,6 +187,7 @@ class User implements UserInterface
     public function removeLine(Line $line): self
     {
         $this->lines->removeElement($line);
+        $line->setUser(null);
 
         return $this;
     }
