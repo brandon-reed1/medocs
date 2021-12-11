@@ -87,8 +87,11 @@ class ProductController
      */
     public function index(): Response
     {
+        if (!$list = $this->productRepository->getAll())
+            return new RedirectResponse($this->router->generate('admin_product_new'));
+
         return new Response ($this->twig->render('admin/product/list/index.html.twig', [
-            'list' => $this->productRepository->getAll(),
+            'list' => $list
         ]));
     }
 
