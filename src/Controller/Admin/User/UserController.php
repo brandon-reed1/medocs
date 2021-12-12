@@ -25,6 +25,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
 /**
  * Class UserController
@@ -60,6 +61,10 @@ class UserController
      * @var RequestStack
      */
     private $requestStack;
+    /**
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
 
     public function __construct(
         EntityManagerInterface $em,
@@ -70,7 +75,7 @@ class UserController
         FormFactoryInterface $formFactory,
         FlashBagInterface $flashBag,
         \Twig\Environment $twig,
-        RequestStack $requestStack)
+        RequestStack $requestStack, TokenStorageInterface $tokenStorage)
     {
         $this->em = $em;
         $this->encoderFactory = $encoderFactory;
@@ -81,6 +86,7 @@ class UserController
         $this->formFactory = $formFactory;
         $this->flashBag = $flashBag;
         $this->requestStack = $requestStack;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -138,35 +144,36 @@ class UserController
      */
     public function delete(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
-        $user = $this->security->getUser();
-
         $form = $this->formFactory->create(DeleteFormType::class);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->get('yes')->isClicked()) {
                 try {
-                    $user_details = $this->security->getUser();
-                    $this->security->getToken()->setAuthenticated(false);
+                    if ($user = $this->security->getUser())
+                    {
+//                        $session = $this->requestStack->getSession();
+                        $session = new Session();
+                        $session->invalidate();
+                        $this->security->getToken()->setAuthenticated(false);
+                    }
+
                     $this->em->remove($user);
                     $this->em->flush();
-//                    $this->flashBag->add('success', 'Supprimé');
 
                     // send email
                     $email = (new TemplatedEmail())
                         ->from('info@medocs.be')
-                        ->to($user_details->getEmail())
+                        ->to($user->getEmail())
                         ->subject('Suppression de votre compte')
                         ->htmlTemplate('emails/user/delete-confirmation.html.twig')
 //            ->textTemplate('emails/list/text-list.html.twig')
                         ->context([
-                            'details' => $user_details
+                            'details' => $user
                         ]);
 
                     $mailer->send($email);
 
-                    $this->requestStack->getSession()->invalidate();
                     return new RedirectResponse($this->router->generate("public_index"));
 //                    return new RedirectResponse($this->router->generate("public_index"));
 
