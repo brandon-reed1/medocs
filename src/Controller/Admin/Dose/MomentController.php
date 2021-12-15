@@ -6,6 +6,7 @@
 namespace App\Controller\Admin\Dose;
 
 use App\Entity\Moment;
+use App\Form\DeleteFormType;
 use App\Form\MomentType;
 use App\Repository\MomentRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -154,12 +155,7 @@ class MomentController
         }
 
         $defaultData = ['message' => 'Voulez vous effacer ' . $moment->getName() . ' ?'];
-        $form = $this->formFactory->createBuilder(null, $defaultData)
-            ->add('yes', SubmitType::class)
-            ->add('no', SubmitType::class)
-            ->setMethod('DELETE')
-            ->getForm();
-
+        $form = $this->formFactory->create(DeleteFormType::class, $defaultData);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -167,21 +163,16 @@ class MomentController
                 try {
                     $this->em->remove($moment);
                     $this->em->flush();
-
                     $this->flashBag->add('success', 'supprimé');
 
                     return new RedirectResponse($this->router->generate("admin_moment_index"));
-
                 } catch (ORMException $ORMException) {
                     die('erreur');
                 }
             else:
                 $this->flashBag->add('notice', 'annulé');
-
                 return new RedirectResponse($this->router->generate("admin_moment_index"));
-
             endif;
-
         }
         return new Response ($this->twig->render('admin/dose/moment/delete.html.twig', [
             'form' => $form->createView(),

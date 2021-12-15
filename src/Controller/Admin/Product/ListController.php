@@ -91,7 +91,6 @@ class ListController
      */
     public function index(): Response
     {
-//        dd($list = $this->productRepository->getAll());
         if (!$list = $this->lineRepositoryRepository->getAll())
             return new RedirectResponse($this->router->generate('admin_line_new'));
 

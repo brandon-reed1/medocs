@@ -3,10 +3,12 @@
  * @author novitz jean-philippe <hello@jphnovitz.be>
  * @copyright 2021-2022
  */
+
 namespace App\Controller\Admin\Dose;
 
 
 use App\Entity\Frequency;
+use App\Form\DeleteFormType;
 use App\Form\FrequencyType;
 use App\Repository\FrequencyRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -153,12 +155,7 @@ class FrequencyController
         }
 
         $defaultData = ['message' => 'Voulez vous effacer ' . $frequency->getName() . ' ?'];
-        $form = $this->formFactory->createBuilder(null, $defaultData)
-            ->add('yes', SubmitType::class)
-            ->add('no', SubmitType::class)
-            ->setMethod('DELETE')
-            ->getForm();
-
+        $form = $this->formFactory->create(DeleteFormType::class, $defaultData);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -166,21 +163,16 @@ class FrequencyController
                 try {
                     $this->entityManager->remove($frequency);
                     $this->entityManager->flush();
-
                     $this->flashBag->add('success', 'supprimé');
 
                     return new RedirectResponse($this->router->generate("admin_frequency_index"));
-
                 } catch (ORMException $ORMException) {
                     die('erreur');
                 }
             else:
                 $this->flashBag->add('notice', 'annulé');
-
                 return new RedirectResponse($this->router->generate("admin_frequency_index"));
-
             endif;
-
         }
         return new Response($this->twig->render('admin/dose/frequency/delete.html.twig', [
             'form' => $form->createView(),

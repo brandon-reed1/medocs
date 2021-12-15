@@ -7,6 +7,7 @@ namespace App\Controller\Admin\Dose;
 
 use App\Entity\Day;
 use App\Form\DayType;
+use App\Form\DeleteFormType;
 use App\Repository\DayRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
@@ -143,20 +144,14 @@ class DayController{
      */
     public function delete(Request $request, Day $day): Response
     {
-
         if (!$day) {
             $this->flashBag->add('error', 'N\'existe pas');
-
             return new RedirectResponse($this->router->generate("admin_day_index"));
         }
 
         $defaultData = ['message' => 'Voulez vous effacer ' . $day->getName() . ' ?'];
-        $form = $this->formFactory->createBuilder(null, $defaultData)
-            ->add('yes', SubmitType::class)
-            ->add('no', SubmitType::class)
-            ->setMethod('DELETE')
-            ->getForm();
 
+        $form = $this->formFactory->create(DeleteFormType::class, $defaultData);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -164,7 +159,6 @@ class DayController{
                 try {
                     $this->em->remove($day);
                     $this->em->flush();
-
                     $this->flashBag->add('success', 'supprimé');
 
                     return new RedirectResponse($this->router->generate("admin_day_index"));
@@ -174,9 +168,7 @@ class DayController{
                 }
             else:
                 $this->flashBag->add('notice', 'annulé');
-
                 return new RedirectResponse($this->router->generate("admin_day_index"));
-
             endif;
 
         }
