@@ -175,8 +175,7 @@ class FrequencyController
             endif;
         }
         return new Response($this->twig->render('admin/dose/frequency/delete.html.twig', [
-            'form' => $form->createView(),
-            'default_data' => $defaultData
+            'form' => $form->createView()
         ]));
     }
 }

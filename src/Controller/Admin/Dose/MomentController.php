@@ -175,8 +175,7 @@ class MomentController
             endif;
         }
         return new Response ($this->twig->render('admin/dose/moment/delete.html.twig', [
-            'form' => $form->createView(),
-            'default_data' => $defaultData
+            'form' => $form->createView()
         ]));
     }
 }
