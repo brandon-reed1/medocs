@@ -200,8 +200,7 @@ class ListController
             endif;
         }
         return new Response($this->twig->render('admin/product/list/delete.html.twig', [
-            'form' => $form->createView(),
-            'default_data' => $defaultData
+            'form' => $form->createView()
         ]));
     }
 }
