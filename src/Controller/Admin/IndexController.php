@@ -86,7 +86,6 @@ class IndexController
      */
     public function index(): Response
     {
-        /* @todo dependy injection construct */
 
         $products = $this->lineRepository->getAllUserLines($this->user);;
 
