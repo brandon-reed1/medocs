@@ -66,4 +66,13 @@ class IndexController
     {
         return new Response($this->twig->render('public/index/conditions-use_fr.html.twig'));
     }
+
+    /**
+     * @Route("/foire-aux-questions", name="public_faq_fr")
+     */
+    public function faq(): Response
+    {
+        return new Response($this->twig->render('public/index/faq_fr.html.twig'));
+    }
+
 }
